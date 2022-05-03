@@ -44,7 +44,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
 
       addDoc(collection(db, collectionPath), {
         user: currentUser,
-        value: commentInputValue.trim(),
+        value: commentInputValue.trim().slice(0, 500),
         reactions: {},
         createdAt: serverTimestamp(),
       }).finally(() => setCommentLoading(false));
@@ -74,7 +74,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
   );
 
   return (
-    <div>
+    <div className="max-w-[92vw] md:max-w-[calc(88vw-300px)]">
       <h1 className="text-2xl mt-10">Comments</h1>
 
       {error ? (
@@ -138,17 +138,17 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
             </div>
           )}
 
-          <div className="flex flex-col items-stretch gap-3">
+          <div className="flex flex-col items-stretch gap-3 w-full">
             {commentData?.docs.map((doc) => {
               const docData = doc.data() as CommentType;
               return (
-                <div key={doc.id} className="flex gap-2">
+                <div key={doc.id} className="flex gap-2 w-full">
                   <img
-                    className="w-[50px] h-[50px] rounded-full"
+                    className="w-[50px] h-[50px] rounded-full flex-shrink-0"
                     src={resizeImage(docData.user.photoURL, "50", "50")}
                     alt=""
                   />
-                  <div className="flex flex-col items-stretch">
+                  <div className="flex-1 min-w-0">
                     <div className="flex gap-2 items-end">
                       <p className="font-bold">{docData.user.displayName}</p>
                       <p className="text-gray-400 text-sm">
@@ -159,7 +159,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                           : "Just now"}
                       </p>
                     </div>
-                    <p>{docData.value}</p>
+                    <p style={{ wordWrap: "break-word" }}>{docData.value}</p>
 
                     <div className="flex gap-3 items-center">
                       <button
