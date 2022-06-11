@@ -20,7 +20,7 @@ const Home: FC = () => {
   const { data, error, setSize } = useSWRInfinite(
     getKey,
     (key) => getHome(Number(key.split("-").slice(-1)[0])),
-    { revalidateFirstPage: false }
+    { revalidateFirstPage: false },
   );
 
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -47,10 +47,7 @@ const Home: FC = () => {
       </div>
 
       <div className="flex">
-        <SideBar
-          sidebarActive={sidebarActive}
-          setSidebarActive={setSidebarActive}
-        />
+        <SideBar sidebarActive={sidebarActive} setSidebarActive={setSidebarActive} />
 
         <div className="flex-grow px-[4vw] md:px-8 pb-8 pt-0 overflow-hidden flex flex-col items-stretch">
           {!data || error ? (
@@ -86,16 +83,13 @@ const Home: FC = () => {
                 .reduce((acc, current) => [...acc, ...current], [])
                 .map((section) =>
                   section.homeSectionType === "BANNER" ? (
-                    <div
-                      key={section.homeSectionId}
-                      className="overflow-hidden w-full mt-8"
-                    >
+                    <div key={section.homeSectionId} className="overflow-hidden w-full mt-8">
                       <BannerSlider
                         images={
                           (section.recommendContentVOList
                             .map((item) => {
                               const searchParams = new URLSearchParams(
-                                new URL(item.jumpAddress).search
+                                new URL(item.jumpAddress).search,
                               );
 
                               if (!searchParams.get("id")) return null;
@@ -126,7 +120,7 @@ const Home: FC = () => {
                       <SectionSlider
                         images={section.recommendContentVOList.map((item) => {
                           const searchParams = new URLSearchParams(
-                            new URL(item.jumpAddress).search
+                            new URL(item.jumpAddress).search,
                           );
 
                           return {
@@ -141,7 +135,7 @@ const Home: FC = () => {
                         coverType={section.coverType}
                       />
                     </div>
-                  )
+                  ),
                 )}
             </InfiniteScroll>
           )}

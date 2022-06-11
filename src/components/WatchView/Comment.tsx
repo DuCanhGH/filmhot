@@ -66,11 +66,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
     loading,
   } = useCollectionQuery(
     `${collectionPath}-${commentLimit}`,
-    query(
-      collection(db, collectionPath),
-      orderBy("createdAt", "desc"),
-      limit(commentLimit)
-    )
+    query(collection(db, collectionPath), orderBy("createdAt", "desc"), limit(commentLimit)),
   );
 
   return (
@@ -108,28 +104,19 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                   <div className="w-[25px] h-[25px] rounded-full border-white border-t-transparent border-[3px] animate-spin"></div>
                 </div>
               ) : (
-                <button
-                  className="absolute right-[14px] top-1/2 -translate-y-1/2"
-                  type="submit"
-                >
+                <button className="absolute right-[14px] top-1/2 -translate-y-1/2" type="submit">
                   <i className="fas fa-paper-plane text-xl"></i>
                 </button>
               )}
             </form>
           ) : (
             <div className="flex items-center gap-3 h-12 border border-gray-600 rounded-full my-6 px-3">
-              <img
-                className="w-[30px] h-[30px] rounded-full"
-                src="/default-avatar.png"
-                alt=""
-              />
+              <img className="w-[30px] h-[30px] rounded-full" src="/default-avatar.png" alt="" />
               <p>
                 You need to{" "}
                 <Link
                   className="text-primary"
-                  to={`/sign-in?redirect=${encodeURIComponent(
-                    location.pathname
-                  )}`}
+                  to={`/sign-in?redirect=${encodeURIComponent(location.pathname)}`}
                 >
                   Sign in
                 </Link>{" "}
@@ -153,9 +140,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                       <p className="font-bold">{docData.user.displayName}</p>
                       <p className="text-gray-400 text-sm">
                         {docData?.createdAt?.seconds
-                          ? calculateCreatedTime(
-                              docData.createdAt.seconds * 1000
-                            )
+                          ? calculateCreatedTime(docData.createdAt.seconds * 1000)
                           : "Just now"}
                       </p>
                     </div>
@@ -167,19 +152,17 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                           addReaction(
                             doc.id,
                             Object.entries(docData.reactions).find(
-                              (item) => item[0] === currentUser?.uid
+                              (item) => item[0] === currentUser?.uid,
                             )?.[1] === 1
                               ? 0
-                              : 1
+                              : 1,
                           )
                         }
                         className={`flex items-center gap-1 transition ${
-                          !currentUser
-                            ? "cursor-default"
-                            : "hover:brightness-75"
+                          !currentUser ? "cursor-default" : "hover:brightness-75"
                         } ${
                           Object.entries(docData.reactions).find(
-                            (item) => item[0] === currentUser?.uid
+                            (item) => item[0] === currentUser?.uid,
                           )?.[1] === 1
                             ? "text-primary"
                             : ""
@@ -187,11 +170,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                       >
                         <i className="fas fa-thumbs-up"></i>
                         <span>
-                          {
-                            Object.values(docData.reactions).filter(
-                              (item) => item === 1
-                            ).length
-                          }
+                          {Object.values(docData.reactions).filter((item) => item === 1).length}
                         </span>
                       </button>
 
@@ -200,19 +179,17 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                           addReaction(
                             doc.id,
                             Object.entries(docData.reactions).find(
-                              (item) => item[0] === currentUser?.uid
+                              (item) => item[0] === currentUser?.uid,
                             )?.[1] === 2
                               ? 0
-                              : 2
+                              : 2,
                           )
                         }
                         className={`flex items-center gap-1 transition ${
-                          !currentUser
-                            ? "cursor-default"
-                            : "hover:brightness-75"
+                          !currentUser ? "cursor-default" : "hover:brightness-75"
                         } ${
                           Object.entries(docData.reactions).find(
-                            (item) => item[0] === currentUser?.uid
+                            (item) => item[0] === currentUser?.uid,
                           )?.[1] === 2
                             ? "text-primary"
                             : ""
@@ -220,11 +197,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                       >
                         <i className="fas fa-thumbs-down"></i>
                         <span>
-                          {
-                            Object.values(docData.reactions).filter(
-                              (item) => item === 2
-                            ).length
-                          }
+                          {Object.values(docData.reactions).filter((item) => item === 2).length}
                         </span>
                       </button>
                     </div>
@@ -238,18 +211,16 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
             <p className="text-center text-gray-400">No one has commented</p>
           )}
 
-          {!loading &&
-            Boolean(commentData?.size) &&
-            (commentData?.size as number) >= commentLimit && (
-              <div className="flex justify-center mt-8">
-                <button
-                  onClick={() => setCommentLimit(commentLimit + 10)}
-                  className="bg-primary text-white px-4 py-2 rounded hover:brightness-[115%] transition"
-                >
-                  Load more
-                </button>
-              </div>
-            )}
+          {!loading && Boolean(commentData?.size) && (commentData?.size as number) >= commentLimit && (
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setCommentLimit(commentLimit + 10)}
+                className="bg-primary text-white px-4 py-2 rounded hover:brightness-[115%] transition"
+              >
+                Load more
+              </button>
+            </div>
+          )}
         </>
       )}
     </div>

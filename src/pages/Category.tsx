@@ -9,9 +9,7 @@ import useSWR from "swr";
 const Category: FC = () => {
   const { id } = useParams() as { id: string };
 
-  const { data: searchConfig, error } = useSWR(`search-config`, () =>
-    getSearchConfig()
-  );
+  const { data: searchConfig, error } = useSWR(`search-config`, () => getSearchConfig());
 
   if (error) return <Error />;
 

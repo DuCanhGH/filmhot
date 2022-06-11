@@ -60,15 +60,10 @@ const SearchBox: FC<SearchBoxProps> = ({ autoFocus }) => {
       {suggestions.length > 0 && (
         <div className="absolute z-10 top-full left-0 w-full bg-dark-lighten rounded overflow-x-hidden overflow-y-auto max-h-[200px] flex-col items-stretch hidden group-focus-within:flex">
           {suggestions.map((suggestion, index) => (
-            <Link
-              key={index}
-              to={`/search?q=${encodeURIComponent(suggestion)}`}
-            >
+            <Link key={index} to={`/search?q=${encodeURIComponent(suggestion)}`}>
               <button
                 className={`text-left p-2 w-full ${
-                  index !== suggestions.length - 1
-                    ? "border-b border-gray-500"
-                    : ""
+                  index !== suggestions.length - 1 ? "border-b border-gray-500" : ""
                 }`}
               >
                 {suggestion}

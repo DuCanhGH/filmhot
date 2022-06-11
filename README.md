@@ -1,6 +1,4 @@
-# Filmhot
-
-AdFree Movie / Anime Watching Website
+# Filmhot - AdFree Movie / Anime Watching Website
 
 <p align="center">
   <img alt="Stars" src="https://badgen.net/github/stars/napthedev/filmhot">
@@ -9,46 +7,45 @@ AdFree Movie / Anime Watching Website
   <img alt="Commits" src="https://badgen.net/github/commits/napthedev/filmhot">
 </p>
 
-## Live demo
-
-Official website: [https://filmhot.live](https://filmhot.live)
-
 ## Movie sources
-
-From LokLok App.  
-I have created a documentation on how to leak their api: [https://documenter.getpostman.com/view/18986031/UVXdNeFD](https://documenter.getpostman.com/view/18986031/UVXdNeFD)
+- LokLok App.  
+napthedev created a documentation on how to leak their API: [https://documenter.getpostman.com/view/18986031/UVXdNeFD](https://documenter.getpostman.com/view/18986031/UVXdNeFD)
 
 ## Main technology used
 
 - React, Typescript, Tailwind
-- Zustand (State management)
-- SWR (Data fetching)
-- Firebase (authentication, comment)
+- Zustand (state management)
+- SWR (data fetching)
+- Firebase (authentication, comments)
 - Swiper (slider)
-- react-infinite-scroll-component (Infinite loading)
+- react-infinite-scroll-component (infinite loading)
 
 ## Features
 
-- Full HD movies with subtitles in many languages
-- Suggested movies
-- Top searches
-- Search by name
-- Filter by region, categories, periods
-- Discovery feature (Short videos like tiktok)
-- Watch history
-- Comments (require authentication using google, facebook)
+- Full HD movies with subtitles in many languages.
+- Suggested movies.
+- Top searches.
+- Search by names.
+- Filter by regions, categories, periods.
+- Discovery (short videos like Tiktok).
+- Watch history.
+- Comments (this feature requires a Google account).
 
-## Installation
+## How to use this repo
 
-- Clone the Project
-- Run `npm install`
-- Create your own firebase project and add _The JSON stringified_ config to `VITE_FIREBASE_CONFIG` environment variable
-
-- Example .env file:
-
+- Clone the project first.
+- Run `pnpm i`.
+- Create your own firebase project and add its config as environment variables, just like this:
 ```env
-VITE_FIREBASE_CONFIG={"apiKey":"","authDomain":"","projectId":"","storageBucket":"","messagingSenderId":"","appId":""}
+VITE_FIREBASE_API_KEY=
+VITE_FIREBASE_AUTH_DOMAIN=
+VITE_FIREBASE_PROJECT_ID=
+VITE_FIREBASE_STORAGE_BUCKET=
+VITE_FIREBASE_MESSAGING_SENDER_ID=
+VITE_FIREBASE_APP_ID=
 ```
+- Run `pnpm build`.
+- Run `pnpm preview`.
 
 ## Screenshots, Preview
 
@@ -59,4 +56,4 @@ VITE_FIREBASE_CONFIG={"apiKey":"","authDomain":"","projectId":"","storageBucket"
 
 ## Summary
 
-### 👉 If you like this project, give it a star ✨ and share 👨🏻‍💻 it to your friends 👈
+- This repo is a fork of the now archived `https://github.com/napthedev/filmhot`, with support for PWA.

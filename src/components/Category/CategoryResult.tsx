@@ -21,7 +21,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   };
 
   const { data, error, setSize } = useInfiniteSWR(getKey, (limit) =>
-    getCategoryItems(id, limit.split("-").slice(-1)[0])
+    getCategoryItems(id, limit.split("-").slice(-1)[0]),
   );
 
   if (error) return <Error />;
@@ -50,11 +50,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
               .map((item) => (
                 <Link
                   title={item.name}
-                  to={
-                    item.domainType === 0
-                      ? `/movie/${item.id}`
-                      : `/tv/${item.id}`
-                  }
+                  to={item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
                   key={item.id}
                   className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
                 >

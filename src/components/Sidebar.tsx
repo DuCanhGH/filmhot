@@ -29,15 +29,11 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
       >
         <Link to="/" className="flex gap-2 items-center">
           <img className="w-6 h-6" src="/icon.png" alt="" />
-          <p className="font-semibold text-xl block sm:hidden xl:block">
-            FilmHot
-          </p>
+          <p className="font-semibold text-xl block sm:hidden xl:block">FilmHot</p>
         </Link>
 
         <div className="mt-0 sm:mt-4 xl:mt-0 block sm:flex flex-col gap-0 sm:gap-4 xl:block xl:gap-0">
-          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">
-            Menu
-          </p>
+          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">Menu</p>
 
           <div className="flex flex-col items-stretch gap-3">
             <Link
@@ -101,9 +97,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
             </Link>
           </div>
 
-          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">
-            Personal
-          </p>
+          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">Personal</p>
 
           {!currentUser ? (
             <Link
@@ -122,9 +116,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
                   alt=""
                 />
 
-                <p className="text-gray-400 block sm:hidden xl:block">
-                  {currentUser.displayName}
-                </p>
+                <p className="text-gray-400 block sm:hidden xl:block">{currentUser.displayName}</p>
               </div>
               <button
                 onClick={handleSignOut}

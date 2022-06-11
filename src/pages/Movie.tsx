@@ -8,19 +8,11 @@ import useSWR from "swr";
 const Info: FC = () => {
   const { id } = useParams();
 
-  const { data, error } = useSWR(`movie-${id}`, () =>
-    getMovieDetail(id as string)
-  );
+  const { data, error } = useSWR(`movie-${id}`, () => getMovieDetail(id as string));
 
   if (error) return <Error />;
 
-  return (
-    <WatchView
-      data={data?.data}
-      sources={data?.sources}
-      subtitles={data?.subtitles}
-    />
-  );
+  return <WatchView data={data?.data} sources={data?.sources} subtitles={data?.subtitles} />;
 };
 
 export default Info;

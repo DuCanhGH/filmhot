@@ -3,7 +3,7 @@ import axios from "../shared/axios";
 
 export const getTVDetail = async (
   id: string,
-  episodeIndex: number
+  episodeIndex: number,
 ): Promise<{
   data: DetailType;
   sources: { quality: number; url: string }[];
@@ -31,15 +31,15 @@ export const getTVDetail = async (
                 definition: quality.code,
               },
             })
-          ).data.data.mediaUrl
-      )
+          ).data.data.mediaUrl,
+      ),
     )
   )
     .map((url, index) => ({
       quality: Number(
         data.episodeVo[episodeIndex].definitionList[index].description
           .toLowerCase()
-          .replace("p", "")
+          .replace("p", ""),
       ),
       url,
     }))

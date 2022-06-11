@@ -25,10 +25,7 @@ const Slider: FC<SliderProps> = ({ images, coverType }) => {
       spaceBetween={30}
     >
       {images.map((item) => (
-        <SwiperSlide
-          style={{ width: IMAGE_CARD_SIZE[coverType || 1].width }}
-          key={item.image}
-        >
+        <SwiperSlide style={{ width: IMAGE_CARD_SIZE[coverType || 1].width }} key={item.image}>
           <Link to={item.link}>
             <div className="rounded-lg overflow-hidden bg-dark-lighten group">
               <LazyLoadImage

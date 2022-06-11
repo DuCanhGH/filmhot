@@ -21,7 +21,7 @@ const Discovery: FC = () => {
     (key) => getDiscoveryItems(Number(key.split("-").slice(-1)[0])),
     {
       revalidateFirstPage: false,
-    }
+    },
   );
 
   const location = useLocation();
@@ -46,10 +46,7 @@ const Discovery: FC = () => {
       </div>
 
       <div className="flex">
-        <Sidebar
-          sidebarActive={sidebarActive}
-          setSidebarActive={setSidebarActive}
-        />
+        <Sidebar sidebarActive={sidebarActive} setSidebarActive={setSidebarActive} />
 
         <div className="flex-grow py-10 px-[4vw]">
           {!data && (
@@ -67,10 +64,7 @@ const Discovery: FC = () => {
               {data
                 ?.reduce((acc, current) => [...acc, ...current], [])
                 .map((item) => (
-                  <div
-                    key={item.id}
-                    className="w-full max-w-[600px] flex gap-2"
-                  >
+                  <div key={item.id} className="w-full max-w-[600px] flex gap-2">
                     <ImageFade
                       className="w-12 h-12 rounded-full flex-shrink-0 bg-gray-500"
                       src={resizeImage(item.upInfo.upImgUrl)}
@@ -78,9 +72,7 @@ const Discovery: FC = () => {
                     />
 
                     <div className="flex flex-col items-stretch flex-grow gap-3">
-                      <p className="font-semibold">
-                        {item.refList[0]?.name || item.name}
-                      </p>
+                      <p className="font-semibold">{item.refList[0]?.name || item.name}</p>
 
                       <p>{item.introduction}</p>
 

@@ -14,7 +14,7 @@ const TV: FC = () => {
   const episodeIndex = Number(queryParams.get("episode")) || 0;
 
   const { data, error } = useSWR(`tv-${id}-${episodeIndex}`, () =>
-    getTVDetail(id as string, episodeIndex)
+    getTVDetail(id as string, episodeIndex),
   );
 
   if (error) return <Error />;

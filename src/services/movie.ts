@@ -2,7 +2,7 @@ import { DetailType } from "../shared/types";
 import axios from "../shared/axios";
 
 export const getMovieDetail = async (
-  id: string
+  id: string,
 ): Promise<{
   data: DetailType;
   sources: { quality: number; url: string }[];
@@ -30,15 +30,13 @@ export const getMovieDetail = async (
                 definition: quality.code,
               },
             })
-          ).data.data.mediaUrl
-      )
+          ).data.data.mediaUrl,
+      ),
     )
   )
     .map((url, index) => ({
       quality: Number(
-        data.episodeVo[0].definitionList[index].description
-          .toLowerCase()
-          .replace("p", "")
+        data.episodeVo[0].definitionList[index].description.toLowerCase().replace("p", ""),
       ),
       url,
     }))

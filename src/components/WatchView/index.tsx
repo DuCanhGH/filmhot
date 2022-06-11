@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { PROXY, subtitleProxy } from "../../shared/constants";
+import { subtitleProxy } from "../../shared/constants";
 
 import Comment from "./Comment";
 import { DetailType } from "../../shared/types";
@@ -29,22 +29,13 @@ interface WatchViewProps {
   episodeIndex?: number;
 }
 
-const WatchView: FC<WatchViewProps> = ({
-  data,
-  sources,
-  subtitles,
-  episodeIndex,
-}) => {
+const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex }) => {
   const mediaType = typeof episodeIndex === "undefined" ? "movie" : "tv";
-  const playerKey = `${mediaType}-${data?.id}${
-    episodeIndex ? `-${episodeIndex}` : ""
-  }`;
+  const playerKey = `${mediaType}-${data?.id}${episodeIndex ? `-${episodeIndex}` : ""}`;
 
   useEffect(() => {
     if (!data) return;
-    let existing = JSON.parse(
-      localStorage.getItem("filmhot-recent") || "[]"
-    ) as {
+    let existing = JSON.parse(localStorage.getItem("filmhot-recent") || "[]") as {
       id: string;
       category: number;
       coverVerticalUrl: string;
@@ -70,9 +61,7 @@ const WatchView: FC<WatchViewProps> = ({
       {data && (
         <Title
           value={`Watch ${data.name}${
-            typeof episodeIndex !== "undefined"
-              ? ` - Episode ${episodeIndex + 1}`
-              : ""
+            typeof episodeIndex !== "undefined" ? ` - Episode ${episodeIndex + 1}` : ""
           } - FilmHot`}
         />
       )}
@@ -95,13 +84,7 @@ const WatchView: FC<WatchViewProps> = ({
                       })) || []
                     }
                   >
-                    {(ref, props) => (
-                      <HlsPlayer
-                        playerRef={ref}
-                        {...props}
-                        src={`${PROXY}${props.src}`}
-                      />
-                    )}
+                    {(ref, props) => <HlsPlayer playerRef={ref} {...props} src={`${props.src}`} />}
                   </Player>
                 ) : (
                   <div className="w-full h-0 pb-[56.25%] relative">

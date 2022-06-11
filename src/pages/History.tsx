@@ -50,9 +50,7 @@ const History: FC = () => {
             {data.map((item) => (
               <Link
                 title={item.name}
-                to={
-                  item.category === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
-                }
+                to={item.category === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
                 key={item.id}
                 className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
               >

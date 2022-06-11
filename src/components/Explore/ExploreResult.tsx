@@ -15,11 +15,7 @@ interface ExploreResultProps {
   sectionIndex: number;
 }
 
-const ExploreResult: FC<ExploreResultProps> = ({
-  params,
-  configs,
-  sectionIndex,
-}) => {
+const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }) => {
   const getKey = (_, previousPageData: any) => {
     if (previousPageData && previousPageData.length === 0) return null;
 
@@ -33,7 +29,7 @@ const ExploreResult: FC<ExploreResultProps> = ({
     (key) => advanceSearch(params, configs, key.split("-").slice(-1)[0]),
     {
       revalidateFirstPage: false,
-    }
+    },
   );
 
   if (error) return <Error />;
@@ -56,9 +52,7 @@ const ExploreResult: FC<ExploreResultProps> = ({
           .map((item) => (
             <Link
               title={item.name}
-              to={
-                item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
-              }
+              to={item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
               key={item.id}
               className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
             >
