@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { subtitleProxy } from "../../shared/constants";
+import { PROXY, subtitleProxy } from "../../shared/constants";
 
 import Comment from "./Comment";
 import { DetailType } from "../../shared/types";
@@ -84,7 +84,7 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
                       })) || []
                     }
                   >
-                    {(ref, props) => <HlsPlayer playerRef={ref} {...props} src={`${props.src}`} />}
+                    {(ref, props) => <HlsPlayer playerRef={ref} {...props} src={`${PROXY}${props.src}`} />}
                   </Player>
                 ) : (
                   <div className="w-full h-0 pb-[56.25%] relative">
