@@ -34,7 +34,7 @@ napthedev created a documentation on how to leak their API: [https://documenter.
 ## How to use this repo
 
 - Clone the project first.
-- Run `pnpm i`.
+- Run `pnpm i`/`npm i`.
 - Create your own firebase project and add its config as environment variables, just like this:
 ```env
 VITE_FIREBASE_API_KEY=
@@ -44,8 +44,8 @@ VITE_FIREBASE_STORAGE_BUCKET=
 VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 ```
-- Run `pnpm build`.
-- Run `pnpm preview`.
+- Run `pnpm build`/`npm run build`.
+- Run `pnpm preview`/`npm run preview`.
 
 ## Screenshots, Preview
 
