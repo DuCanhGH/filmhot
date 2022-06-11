@@ -16,5 +16,3 @@ export const IMAGE_CARD_SIZE = {
     height: 246,
   },
 };
-
-export const PROXY = "https://ezexpress.tk/";
