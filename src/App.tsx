@@ -18,7 +18,6 @@ import { useStore } from "./store";
 const App: FC = () => {
   const setCurrentUser = useStore((state) => state.setCurrentUser);
   const location = useLocation();
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {

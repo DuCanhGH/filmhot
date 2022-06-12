@@ -8,7 +8,6 @@ import SectionSlider from "../components/Home/SectionSlider";
 import SideBar from "../components/Sidebar";
 import Skeleton from "../components/Skeleton";
 import SkeletonSlider from "../components/Home/SkeletonSlider";
-import Title from "../components/Title";
 import TopSearches from "../components/Home/TopSearches";
 import { getHome } from "../services/home";
 import { resizeImage } from "../shared/constants";
@@ -33,8 +32,6 @@ const Home: FC = () => {
 
   return (
     <>
-      <Title value="FilmHot - AdFree Movie / Anime Watching Website" />
-
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
         <Link to="/" className="flex items-center gap-2">
           <img className="w-8 h-8" src="/icon.png" alt="" />

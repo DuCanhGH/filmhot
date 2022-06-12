@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { subtitleProxy } from "../../shared/constants";
 
 import Comment from "./Comment";
@@ -9,7 +10,6 @@ import NavBar from "../NavBar";
 import { Player } from "react-tuby";
 import Similar from "./Similar";
 import Skeleton from "../Skeleton";
-import Title from "../Title";
 
 interface WatchViewProps {
   data?: DetailType;
@@ -59,11 +59,11 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
   return (
     <>
       {data && (
-        <Title
-          value={`Watch ${data.name}${
+        <Helmet>
+          <title>{`Watch ${data.name}${
             typeof episodeIndex !== "undefined" ? ` - Episode ${episodeIndex + 1}` : ""
-          } - FilmHot`}
-        />
+          }`}</title>
+        </Helmet>
       )}
       <div className="flex justify-center">
         <div className="mx-[4vw] lg:mx-[6vw] flex-1">

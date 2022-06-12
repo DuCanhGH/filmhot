@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import Error from "../components/Error";
 import HlsPlayer from "react-hls-player";
@@ -34,6 +35,9 @@ const Discovery: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Discovery</title>
+      </Helmet>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
         <Link to="/" className="flex items-center gap-2">
           <img className="w-8 h-8" src="/icon.png" alt="" />

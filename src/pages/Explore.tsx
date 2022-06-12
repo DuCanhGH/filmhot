@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 import Error from "../components/Error";
 import ExploreConfig from "../components/Explore/ExploreConfig";
 import NavBar from "../components/NavBar";
-import Title from "../components/Title";
 import { getSearchConfig } from "../services/explore";
 import useSWR from "swr";
 
@@ -16,7 +16,9 @@ const Explore: FC = () => {
 
   return (
     <>
-      <Title value="Explore - FilmHot" />
+      <Helmet>
+        <title>Explore</title>
+      </Helmet>
       <div className="flex flex-col items-stretch min-h-screen mx-[7vw]">
         <NavBar />
 

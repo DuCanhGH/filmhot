@@ -1,5 +1,5 @@
 import { CommentType, DetailType } from "../../shared/types";
-import { FC, FormEvent, useState } from "react";
+import { FC, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   addDoc,
@@ -11,12 +11,14 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
+import { useForm } from "react-hook-form";
 
 import { calculateCreatedTime } from "../../shared/utils";
 import { db } from "../../shared/firebase";
 import { resizeImage } from "../../shared/constants";
 import { useCollectionQuery } from "../../hooks/useCollectionQuery";
 import { useStore } from "../../store";
+import { RHFInput } from "../../components/RHFInput";
 
 interface CommentProps {
   data: DetailType;
@@ -28,7 +30,14 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
 
   const location = useLocation();
 
-  const [commentInputValue, setCommentInputValue] = useState("");
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+  });
   const [commentLoading, setCommentLoading] = useState(false);
 
   const mediaType = typeof episodeIndex === "undefined" ? "movie" : "tv";
@@ -37,21 +46,21 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
 
   const [commentLimit, setCommentLimit] = useState(10);
 
-  const handleFormSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    if (commentInputValue.trim()) {
+  const handleFormSubmit = handleSubmit(async (data) => {
+    const { commentInput } = data;
+    if (commentInput) {
       setCommentLoading(true);
-
       addDoc(collection(db, collectionPath), {
         user: currentUser,
-        value: commentInputValue.trim().slice(0, 500),
+        value: commentInput,
         reactions: {},
         createdAt: serverTimestamp(),
       }).finally(() => setCommentLoading(false));
-
-      setCommentInputValue("");
+      reset({
+        commentInput: "",
+      });
     }
-  };
+  });
 
   const addReaction = async (commentId: string, value: number) => {
     if (currentUser?.uid)
@@ -87,16 +96,26 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                 src={resizeImage(currentUser.photoURL, "30", "30")}
                 alt=""
               />
-
-              <input
-                value={commentInputValue}
-                onChange={(e) => setCommentInputValue(e.target.value)}
+              <RHFInput
+                register={register}
+                id="comment-section-input"
+                name="commentInput"
+                className="w-full h-12 bg-transparent outline-none text-white px-12"
+                placeholder="Comment what you think... (max: 1000 characters)"
+                type="text"
+                autoComplete="off"
                 onKeyDown={(e) => e.stopPropagation()}
                 onKeyUp={(e) => e.stopPropagation()}
                 onKeyPress={(e) => e.stopPropagation()}
-                className="w-full h-12 bg-transparent outline-none text-white px-12"
-                placeholder="Comment what you think..."
-                type="text"
+                rules={{
+                  maxLength: {
+                    value: 1000,
+                    message: "Maximum characters reached!",
+                  },
+                }}
+                maxLength={1000}
+                errors={errors}
+                errorClassName="px-12"
               />
 
               {commentLoading ? (
@@ -118,7 +137,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                   className="text-primary"
                   to={`/sign-in?redirect=${encodeURIComponent(location.pathname)}`}
                 >
-                  Sign in
+                  sign in
                 </Link>{" "}
                 to comment
               </p>

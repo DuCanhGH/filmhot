@@ -3,10 +3,10 @@ import { FC } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import Title from "../Title";
 import { getCategoryItems } from "../../services/category";
 import { resizeImage } from "../../shared/constants";
 import useInfiniteSWR from "swr/infinite";
+import { Helmet } from 'react-helmet-async';
 
 interface CategoryResultProps {
   id: string;
@@ -28,7 +28,9 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
 
   return (
     <>
-      <Title value={`Category ${categoryName} - FilmHot`} />
+      <Helmet>
+        <title>{`Category ${categoryName}`}</title>
+      </Helmet>
       <InfiniteScroll
         dataLength={data?.length || 0}
         next={() => setSize((size) => size + 1)}

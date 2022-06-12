@@ -1,8 +1,9 @@
 import { FC } from "react";
+import { Helmet } from "react-helmet-async";
+
 import NavBar from "../components/NavBar";
 import SearchBox from "../components/Search/SearchBox";
 import SearchResult from "../components/Search/SearchResult";
-import Title from "../components/Title";
 import TopSearches from "../components/Home/TopSearches";
 import { useQueryParams } from "../hooks/useQueryParams";
 
@@ -13,7 +14,9 @@ const Search: FC = () => {
   if (!query?.trim())
     return (
       <>
-        <Title value="Search - FilmHot" />
+        <Helmet>
+          <title>Search</title>
+        </Helmet>
         <div className="flex justify-center my-[100px] mx-6">
           <div className="w-full max-w-[400px] flex flex-col items-center gap-4">
             <div className="flex flex-col items-stretch gap-3">
@@ -32,7 +35,9 @@ const Search: FC = () => {
 
   return (
     <>
-      <Title value={`Search for ${query} - FilmHot`} />
+      <Helmet>
+        <title>{`Search for ${query}`}</title>
+      </Helmet>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">
         <NavBar />
         <div>

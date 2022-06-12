@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
-
+import { Helmet } from "react-helmet-async";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+
 import NavBar from "../components/NavBar";
-import Title from "../components/Title";
 import { resizeImage } from "../shared/constants";
 
 const getHistory = () => {
@@ -25,7 +25,9 @@ const History: FC = () => {
 
   return (
     <>
-      <Title value="Watch history - FilmHot" />
+      <Helmet>
+        <title>Watch history</title>
+      </Helmet>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">
         <NavBar />
         <div className="flex justify-between mb-6">
