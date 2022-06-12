@@ -16,15 +16,28 @@ interface ReactHookInputProps<TFormValues extends Record<string, unknown>>
   rules?: RegisterOptions;
   errorClassName?: string;
   /** Avoid using this boolean. */
-  disableErrorMessage?: boolean
+  disableErrorMessage?: boolean;
 }
 
 //You can use this input with react-hook-form
 export const RHFInput = <TFormValues extends Record<string, unknown>>(
   props: ReactHookInputProps<TFormValues>,
 ): ReactElement => {
-  const { name, style, register, type, loading, id, label, errors, rules, className, disableErrorMessage, errorClassName, ...other } =
-    props;
+  const {
+    name,
+    style,
+    register,
+    type,
+    loading,
+    id,
+    label,
+    errors,
+    rules,
+    className,
+    disableErrorMessage,
+    errorClassName,
+    ...other
+  } = props;
   const errorMessages = get(errors, name);
   const hasError = !!(errors && errorMessages);
   return (

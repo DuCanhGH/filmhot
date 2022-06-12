@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { getCategoryItems } from "../../services/category";
 import { resizeImage } from "../../shared/constants";
 import useInfiniteSWR from "swr/infinite";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 interface CategoryResultProps {
   id: string;

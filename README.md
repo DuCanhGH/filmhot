@@ -8,8 +8,9 @@
 </p>
 
 ## Movie sources
+
 - LokLok App.  
-napthedev created a documentation on how to leak their API: [https://documenter.getpostman.com/view/18986031/UVXdNeFD](https://documenter.getpostman.com/view/18986031/UVXdNeFD)
+  napthedev created a documentation on how to leak their API: [https://documenter.getpostman.com/view/18986031/UVXdNeFD](https://documenter.getpostman.com/view/18986031/UVXdNeFD)
 
 ## Main technology used
 
@@ -36,6 +37,7 @@ napthedev created a documentation on how to leak their API: [https://documenter.
 - Clone the project first.
 - Run `pnpm i`/`npm i`.
 - Create your own firebase project and add its config as environment variables, just like this:
+
 ```env
 VITE_FIREBASE_API_KEY=
 VITE_FIREBASE_AUTH_DOMAIN=
@@ -44,6 +46,7 @@ VITE_FIREBASE_STORAGE_BUCKET=
 VITE_FIREBASE_MESSAGING_SENDER_ID=
 VITE_FIREBASE_APP_ID=
 ```
+
 - Run `pnpm build`/`npm run build`.
 - Run `pnpm preview`/`npm run preview`.
 

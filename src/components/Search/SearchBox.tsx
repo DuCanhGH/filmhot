@@ -25,14 +25,12 @@ const SearchBox: FC<SearchBoxProps> = ({ autoFocus }) => {
       setSuggestions(data.map((item) => htmlToText(item)));
     }, 500);
   }, [watchSearchInput]);
-  const handleFormSubmit = handleSubmit(
-    (data) => {  
-      const { searchInput } = data;
-      if (searchInput) {
-        navigate(`/search?q=${encodeURIComponent(searchInput)}`);
-      }
+  const handleFormSubmit = handleSubmit((data) => {
+    const { searchInput } = data;
+    if (searchInput) {
+      navigate(`/search?q=${encodeURIComponent(searchInput)}`);
     }
-  );
+  });
   return (
     <div className="relative group w-full">
       <form onSubmit={handleFormSubmit} className="relative">
