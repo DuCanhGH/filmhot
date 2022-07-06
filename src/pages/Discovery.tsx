@@ -11,6 +11,7 @@ import Sidebar from "../components/Sidebar";
 import { getDiscoveryItems } from "../services/discovery";
 import { resizeImage } from "../shared/constants";
 import useSWRInfinite from "swr/infinite";
+import { Player } from "react-tuby";
 
 const Discovery: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -81,27 +82,49 @@ const Discovery: FC = () => {
                       <p>{item.introduction}</p>
 
                       <InView threshold={0.5}>
-                        {({ ref, inView }) => (
-                          <div ref={ref} className="h-0 relative pb-[100%]">
-                            {/* @ts-ignore */}
-                            <HlsPlayer
-                              controls
-                              muted
-                              autoPlay={inView}
-                              playsInline
-                              src={item.mediaUrl}
-                              className="absolute top-0 left-0 w-full h-full object-contain"
-                            />
-                          </div>
-                        )}
+                        {({ ref, inView }) => {
+                          const playerKey = `${item.mediaUrl}-${item.mediaInfo}-discovery-component`;
+                          return (
+                            <div ref={ref} className="h-0 relative pb-[100%]">
+                              <Player
+                                primaryColor="#0D90F3"
+                                src={[
+                                  {
+                                    quality: 1080,
+                                    url: item.mediaUrl,
+                                  },
+                                ]}
+                                playerKey={playerKey}
+                              >
+                                {(ref2, props) => {
+                                  const { src, ...others } = props;
+                                  return (
+                                    <HlsPlayer
+                                      controls
+                                      muted
+                                      autoPlay={inView}
+                                      playsInline
+                                      playerRef={ref2}
+                                      src={src}
+                                      {...others}
+                                    />
+                                  );
+                                }}
+                              </Player>
+                            </div>
+                          );
+                        }}
                       </InView>
                     </div>
 
                     <div className="flex flex-col items-center justify-center w-20 gap-5">
                       <div className="flex flex-col items-center gap-2">
-                        <button className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center">
+                        <div
+                          className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
+                          aria-label="Likes"
+                        >
                           <i className="fas fa-heart text-red-500"></i>
-                        </button>
+                        </div>
                         <span>{item.likeCount}</span>
                       </div>
 
