@@ -1,6 +1,5 @@
 import { FC, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-
 import Category from "./pages/Category";
 import Discovery from "./pages/Discovery";
 import Explore from "./pages/Explore";
@@ -10,6 +9,7 @@ import Movie from "./pages/Movie";
 import Search from "./pages/Search";
 import SignIn from "./pages/SignIn";
 import TV from "./pages/TV";
+import NonExistentPage from "./pages/NonExistent";
 import { auth } from "./shared/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useLocation } from "react-router-dom";
@@ -39,6 +39,7 @@ const App: FC = () => {
 
   return (
     <Routes>
+      <Route path="*" element={<NonExistentPage />} />
       <Route index element={<Home />} />
       <Route path="movie/:id" element={<Movie />} />
       <Route path="tv/:id" element={<TV />} />
