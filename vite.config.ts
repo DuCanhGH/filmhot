@@ -16,6 +16,7 @@ export default defineConfig({
     VitePWA({
       manifest: {
         name: "Filmhot - AdFree Movie / Anime Watching Website",
+        description: "Filmhot, where you can watch ad-free movies and animes!",
         short_name: "Filmhot",
         theme_color: "#191A1F",
         icons: [
@@ -33,17 +34,17 @@ export default defineConfig({
             src: "pwa-512x512.png",
             sizes: "512x512",
             type: "image/png",
-            purpose: "any maskable",
+            purpose: "maskable",
           },
         ],
       },
       registerType: "autoUpdate",
       devOptions: {
-        enabled: process.env.SW_DEV === "true",
+        enabled: false,
         type: "module",
       },
       srcDir: "src",
-      filename: "claims-sw.ts",
+      filename: "sw.ts",
       strategies: "injectManifest",
     }),
     eslint({

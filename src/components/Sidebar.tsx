@@ -11,6 +11,35 @@ interface SidebarProps {
   setSidebarActive: (state: boolean) => void;
 }
 
+interface SidebarLinkType {
+  label: string;
+  link: string;
+  icon_class: string
+}
+
+const sidebar_links: SidebarLinkType[] = [
+  {
+    label: "Home",
+    link: "/",
+    icon_class: "fa-home"
+  },
+  {
+    label: "Discovery",
+    link: "/discovery",
+    icon_class: "fa-compass"
+  },
+  {
+    label: "Explore",
+    link: "/explore",
+    icon_class: "fa-desktop"
+  },
+  {
+    label: "History",
+    link: "/history",
+    icon_class: "fa-history"
+  },
+];
+
 const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
   const location = useLocation();
 
@@ -27,63 +56,34 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
           sidebarActive ? "translate-x-full" : "translate-x-0"
         }`}
       >
-        <Link to="/" className="flex gap-2 items-center">
+        <Link to="/" className="flex gap-2 items-center" aria-label="Filmhot">
           <img className="w-6 h-6" src="/icon.png" alt="" />
-          <p className="font-semibold text-xl block sm:hidden xl:block">FilmHot</p>
+          <p className="font-semibold text-xl block sm:hidden xl:block" aria-hidden>
+            FilmHot
+          </p>
         </Link>
 
         <div className="mt-0 sm:mt-4 xl:mt-0 block sm:flex flex-col gap-0 sm:gap-4 xl:block xl:gap-0">
           <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">Menu</p>
 
           <div className="flex flex-col items-stretch gap-3">
-            <Link
-              to="/"
-              className={`flex items-center gap-2 transition ${
-                location.pathname === "/"
-                  ? "text-primary border-r-4 border-primary hover:brightness-125"
-                  : "text-gray-400 hover:text-gray-300"
-              }`}
-            >
-              <i className="fas fa-home text-xl w-[24px]"></i>
-              <p className="block sm:hidden xl:block">Home</p>
-            </Link>
-
-            <Link
-              to="/discovery"
-              className={`flex items-center gap-2 transition ${
-                location.pathname === "/discovery"
-                  ? "text-primary border-r-4 border-primary hover:brightness-125"
-                  : "text-gray-400 hover:text-gray-300"
-              }`}
-            >
-              <i className="fas fa-compass text-xl w-[24px]"></i>
-              <p className="block sm:hidden xl:block">Discovery</p>
-            </Link>
-
-            <Link
-              to="/explore"
-              className={`flex items-center gap-2 transition ${
-                location.pathname === "/explore"
-                  ? "text-primary border-r-4 border-primary hover:brightness-125"
-                  : "text-gray-400 hover:text-gray-300"
-              }`}
-            >
-              <i className="fas fa-desktop text-xl w-[24px]"></i>
-              <p className="block sm:hidden xl:block">Explore</p>
-            </Link>
-
-            <Link
-              to="/history"
-              className={`flex items-center gap-2 transition ${
-                location.pathname === "/history"
-                  ? "text-primary border-r-4 border-primary hover:brightness-125"
-                  : "text-gray-400 hover:text-gray-300"
-              }`}
-            >
-              <i className="fas fa-history text-xl w-[24px]"></i>
-              <p className="block sm:hidden xl:block">History</p>
-            </Link>
-
+            {sidebar_links.map((link) => (
+              <Link
+                to={link.link}
+                className={`flex items-center gap-2 transition ${
+                  location.pathname === link.link
+                    ? "text-primary border-r-4 border-primary hover:brightness-125"
+                    : "text-gray-400 hover:text-gray-300"
+                }`}
+                aria-label={link.label}
+                key={`${link.label}-link-sidebar-component`}
+              >
+                <i className={`fas ${link.icon_class} text-xl w-[24px]`}></i>
+                <p className="block sm:hidden xl:block" aria-hidden>
+                  {link.label}
+                </p>
+              </Link>
+            ))}
             <Link
               to="/search"
               className={`md:!hidden flex items-center gap-2 transition ${
@@ -91,9 +91,12 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
                   ? "text-primary border-r-4 border-primary hover:brightness-125"
                   : "text-gray-400 hover:text-gray-300"
               }`}
+              aria-label="Search"
             >
               <i className="fas fa-search text-xl w-[24px]"></i>
-              <p className="block sm:hidden xl:block">Search</p>
+              <p className="block sm:hidden xl:block" aria-hidden>
+                Search
+              </p>
             </Link>
           </div>
 
@@ -103,9 +106,12 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
             <Link
               to={`/sign-in?redirect=${encodeURIComponent(location.pathname)}`}
               className="flex items-center cursor-pointer gap-2 transition text-gray-400 hover:text-gray-300"
+              aria-label="Sign in"
             >
               <i className="fas fa-sign-in-alt text-xl w-[24px]"></i>
-              <p className="block sm:hidden xl:block">Sign In</p>
+              <p className="block sm:hidden xl:block" aria-hidden>
+                Sign in
+              </p>
             </Link>
           ) : (
             <div className="flex flex-col items-stretch gap-3">
@@ -123,7 +129,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
                 className="flex items-center cursor-pointer gap-2 transition text-gray-400 hover:text-gray-300"
               >
                 <i className="fas fa-sign-out-alt text-xl w-[24px]"></i>
-                <p className="block sm:hidden xl:block">Sign Out</p>
+                <p className="block sm:hidden xl:block">Sign out</p>
               </button>
             </div>
           )}

@@ -38,7 +38,7 @@ const Home: FC = () => {
           <span className="text-xl font-medium">FilmHot</span>
         </Link>
 
-        <button onClick={() => setSidebarActive(!sidebarActive)}>
+        <button aria-label="Toggle sidebar" onClick={() => setSidebarActive(!sidebarActive)}>
           <i className="fas fa-bars text-2xl"></i>
         </button>
       </div>

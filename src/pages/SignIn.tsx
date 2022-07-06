@@ -45,7 +45,7 @@ const SignIn: FC = () => {
       <div className="min-h-screen w-screen bg-[url('/bg.png')] bg-no-repeat bg-cover bg-center">
         <div className="w-full min-h-screen flex justify-center items-center bg-[#00000056]">
           <div className="w-[90vw] max-w-[350px] bg-black p-10 flex flex-col items-center gap-6 rounded-xl">
-            <h1 className="text-3xl font-semibold">Sign In</h1>
+            <h1 className="text-3xl font-semibold">Sign in</h1>
 
             {error && (
               <div className="p-3 bg-red-200 text-red-600 border border-red-400 w-full rounded">
@@ -60,7 +60,7 @@ const SignIn: FC = () => {
             >
               <img className="w-6 h-6" src="/google.svg" alt="" />
 
-              <span>Sign In With Google</span>
+              <span>Sign in with Google</span>
             </button>
 
             <button
@@ -70,7 +70,7 @@ const SignIn: FC = () => {
             >
               <img className="w-6 h-6" src="/facebook.svg" alt="" />
 
-              <span>Sign In With Facebook</span>
+              <span>Sign in with Facebook</span>
             </button>
           </div>
         </div>

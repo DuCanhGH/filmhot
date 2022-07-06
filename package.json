@@ -5,7 +5,7 @@
   "scripts": {
     "dev:typecheck": "tsc -b -w --preserveWatchOutput",
     "dev:vite": "vite",
-    "dev": "cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ SW_DEV=true run-p dev:*",
+    "dev": "cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ run-p dev:*",
     "build": "tsc && cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ vite build",
     "preview": "vite preview",
     "format": "prettier --write --embedded-language-formatting=auto .",
@@ -67,9 +67,12 @@
     "vite-plugin-eslint": "1.6.1",
     "vite-plugin-pwa": "0.12.2",
     "vitest": "0.17.0",
+    "workbox-cacheable-response": "6.5.3",
     "workbox-core": "6.5.3",
+    "workbox-expiration": "6.5.3",
     "workbox-precaching": "6.5.3",
     "workbox-routing": "6.5.3",
+    "workbox-strategies": "6.5.3",
     "workbox-window": "6.5.3"
   }
 }
