@@ -36,16 +36,7 @@
 
 - Clone the project first.
 - Run `pnpm i`/`npm i`.
-- Create your own firebase project and add its config as environment variables, just like this:
-
-```env
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-```
+- Create your own firebase project and add VITE_FIREBASE_CONFIG to .env (see .env.example).
 
 - Run `pnpm build`/`npm run build`.
 - Run `pnpm preview`/`npm run preview`.
