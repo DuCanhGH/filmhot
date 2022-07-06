@@ -44,7 +44,7 @@ const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }
           <div className="w-10 h-10 border-[3px] border-primary border-t-transparent rounded-full animate-spin my-10"></div>
         </div>
       }
-      endMessage={<p className="text-center mt-6">Nothing more to see</p>}
+      endMessage={<p className="text-center mt-6">Nothing to see here.</p>}
     >
       <div className="w-full grid grid-cols-sm md:grid-cols-lg gap-6">
         {data

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
 import ExploreResult from "./ExploreResult";
-import { SearchConfig } from "../../shared/types";
+import { SearchConfig, ScreeningItems } from "../../shared/types";
 
 interface ExploreConfigProps {
   config: SearchConfig;
@@ -9,21 +9,20 @@ interface ExploreConfigProps {
 }
 
 const ExploreConfig: FC<ExploreConfigProps> = ({ config, sectionIndex }) => {
-  const [configs, setConfigs] = useState(
+  const [configs, setConfigs] = useState<ScreeningItems>(
     config.screeningItems.reduce((acc, current) => {
+      //@ts-ignore
       acc[current.items[0].screeningType] = current.items[0].params;
       return acc;
-    }, {}),
+    }),
   );
-
-  const handleConfigChange = (name, value) => {
+  const handleConfigChange = (name: string, value: string) => {
     const clone = JSON.parse(JSON.stringify(configs));
 
     clone[name] = value;
 
     setConfigs(clone);
   };
-
   return (
     <>
       <div className="flex gap-3 flex-wrap my-6">
@@ -31,6 +30,7 @@ const ExploreConfig: FC<ExploreConfigProps> = ({ config, sectionIndex }) => {
           <select
             className="outline-none bg-dark-lighten px-3 py-2 rounded"
             key={`${index}`}
+            //@ts-ignore
             value={configs[section.items[0].screeningType]}
             onChange={(e) => handleConfigChange(section.items[0].screeningType, e.target.value)}
           >

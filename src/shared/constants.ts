@@ -6,7 +6,12 @@ export const resizeImage = (url: string, width = "", height = "") =>
 export const subtitleProxy = (url: string) =>
   `https://srt-to-vtt.vercel.app?url=${encodeURIComponent(url)}`;
 
-export const IMAGE_CARD_SIZE = {
+export const IMAGE_CARD_SIZE: {
+  [key: number]: {
+    width: number,
+    height: number
+  }
+} = {
   0: {
     width: 200,
     height: 100,

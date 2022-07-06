@@ -1,13 +1,25 @@
 import { DiscoveryItem } from "../shared/types";
 import axios from "../shared/axios";
 
+interface VideoRecommendPoolDataType {
+  id: string;
+  category: string;
+  mediaInfo: {
+    id: string;
+    definitionList: {
+      code: string;
+    }[];
+  };
+}
+
 export const getDiscoveryItems = async (page = 0): Promise<DiscoveryItem[]> => {
   const data = (
-    await axios.get("recommendPool/getVideoFromRecommondPool", {
+    await axios.get<{
+      data: VideoRecommendPoolDataType[];
+    }>("recommendPool/getVideoFromRecommondPool", {
       params: {
         page,
       },
-
       headers: { deviceid: Math.random().toString(36).slice(-8) },
     })
   ).data.data;

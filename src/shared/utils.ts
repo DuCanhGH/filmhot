@@ -5,7 +5,9 @@ export const htmlToText = (html: string) => {
 };
 
 export const calculateCreatedTime = (timeCreated: number) => {
-  const periods = {
+  const periods: {
+    [key: string]: number
+  } = {
     year: 365 * 30 * 24 * 60 * 60 * 1000,
     month: 30 * 24 * 60 * 60 * 1000,
     week: 7 * 24 * 60 * 60 * 1000,

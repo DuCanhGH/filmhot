@@ -6,6 +6,13 @@ import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { resizeImage } from "../shared/constants";
 
+interface DataType {
+  id: string;
+  name: string;
+  coverVerticalUrl: string;
+  category: number;
+};
+
 const getHistory = () => {
   try {
     const existing = JSON.parse(localStorage.getItem("filmhot-recent") || "[]");
@@ -16,7 +23,7 @@ const getHistory = () => {
 };
 
 const History: FC = () => {
-  const [data, setData] = useState(getHistory());
+  const [data, setData] = useState<DataType[]>(getHistory());
 
   const clearHistory = () => {
     localStorage.removeItem("filmhot-recent");

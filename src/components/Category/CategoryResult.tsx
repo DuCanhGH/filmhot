@@ -13,6 +13,13 @@ interface CategoryResultProps {
   categoryName: string;
 }
 
+interface DataType {
+  id: string;
+  name: string;
+  coverVerticalUrl: string;
+  domainType: number;
+};
+
 const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   const getKey = (_: unknown, previousPageData: any) => {
     if (previousPageData && previousPageData.length === 0) return null;
@@ -20,7 +27,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
     return `${id}-${previousPageData?.slice(-1)?.[0]?.sort || ""}`;
   };
 
-  const { data, error, setSize } = useInfiniteSWR(getKey, (limit) =>
+  const { data, error, setSize } = useInfiniteSWR<DataType[]>(getKey, (limit) =>
     getCategoryItems(id, limit.split("-").slice(-1)[0]),
   );
 

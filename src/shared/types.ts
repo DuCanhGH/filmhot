@@ -140,19 +140,21 @@ export interface SearchResultItem {
   };
 }
 
+export interface ScreeningItems {
+  id?: number;
+  items: {
+    name: string;
+    params: string;
+    screeningType: string;
+  }[];
+  name: string;
+}
+
 export interface SearchConfig {
   id: number;
   name: string;
   params: string;
-  screeningItems: {
-    id?: number;
-    items: {
-      name: string;
-      params: string;
-      screeningType: string;
-    }[];
-    name: string;
-  }[];
+  screeningItems: ScreeningItems[];
 }
 
 export interface User {
