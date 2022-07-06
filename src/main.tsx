@@ -11,8 +11,13 @@ import { createRoot } from "react-dom/client";
 import { SWRConfig } from "swr";
 import { StrictMode } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import invariant from "tiny-invariant";
 
-createRoot(document.getElementById("root")!).render(
+const container = document.getElementById("root");
+
+invariant(container, "There's no element with id 'root' in DOM. Add one.");
+
+createRoot(container).render(
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>

@@ -1,0 +1,30 @@
+name: Test with Vitest & build app
+on:
+  push:
+jobs:
+  test_n_build:
+    name: ⬣, 🔎, ⚡ Lint, Typecheck and Vitest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.15.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.0.x
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+      - name: ⬣ ESLint
+        run: pnpm lint
+      - name: 🔎 Type check
+        run: pnpm typecheck  
+      - name: Render app without exploding
+        run: pnpm test
+      - name: Build app
+        run: pnpm build

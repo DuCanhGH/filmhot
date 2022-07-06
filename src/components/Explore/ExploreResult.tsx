@@ -16,7 +16,7 @@ interface ExploreResultProps {
 }
 
 const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }) => {
-  const getKey = (_, previousPageData: any) => {
+  const getKey = (_: unknown, previousPageData: any) => {
     if (previousPageData && previousPageData.length === 0) return null;
 
     return `explore-${sectionIndex}-${JSON.stringify(configs)}-${

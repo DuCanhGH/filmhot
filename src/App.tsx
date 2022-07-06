@@ -23,9 +23,9 @@ const App: FC = () => {
       if (user) {
         setCurrentUser({
           uid: user.uid,
-          email: user.email,
-          photoURL: user.photoURL,
-          displayName: user.displayName,
+          email: user.email ?? "",
+          photoURL: user.photoURL ?? "",
+          displayName: user.displayName ?? "",
         });
       } else {
         setCurrentUser(null);

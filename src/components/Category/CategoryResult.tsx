@@ -14,7 +14,7 @@ interface CategoryResultProps {
 }
 
 const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
-  const getKey = (_, previousPageData: any) => {
+  const getKey = (_: unknown, previousPageData: any) => {
     if (previousPageData && previousPageData.length === 0) return null;
 
     return `${id}-${previousPageData?.slice(-1)?.[0]?.sort || ""}`;

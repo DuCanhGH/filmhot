@@ -1,9 +1,16 @@
+/// <reference types="vitest" />
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
+import eslint from "vite-plugin-eslint";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: "jsdom",
+  },
   plugins: [
     react(),
     VitePWA({
@@ -32,12 +39,16 @@ export default defineConfig({
       },
       registerType: "autoUpdate",
       devOptions: {
-        enabled: false,
+        enabled: process.env.SW_DEV === "true",
         type: "module",
       },
       srcDir: "src",
       filename: "claims-sw.ts",
       strategies: "injectManifest",
     }),
+    eslint({
+      cache: true,
+      cacheLocation: "./node_modules/.cache/eslint"
+    })
   ],
 });

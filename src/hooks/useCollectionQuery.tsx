@@ -13,6 +13,7 @@ export const useCollectionQuery: (
 ) => { loading: boolean; error: boolean; data: QuerySnapshot | null } = (key, collection) => {
   const [data, setData] = useState<QuerySnapshot<DocumentData> | null>(null);
 
+  //eslint-ignore-next-line
   const [loading, setLoading] = useState(!Boolean(data));
   const [error, setError] = useState(false);
 

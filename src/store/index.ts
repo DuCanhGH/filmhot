@@ -4,10 +4,10 @@ import create from "zustand";
 interface Store {
   currentUser: null | undefined | User;
 
-  setCurrentUser: (user: any) => void;
+  setCurrentUser: (user: User | null) => void;
 }
 
-export const useStore = create<Store>((set: any) => ({
+export const useStore = create<Store>((set) => ({
   currentUser: undefined,
-  setCurrentUser: (user: any) => set({ currentUser: user }),
+  setCurrentUser: (user: User | null) => set({ currentUser: user }),
 }));
