@@ -18,7 +18,7 @@ interface DataType {
   name: string;
   coverVerticalUrl: string;
   domainType: number;
-};
+}
 
 const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   const getKey = (_: unknown, previousPageData: any) => {

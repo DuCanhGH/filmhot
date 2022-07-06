@@ -25,7 +25,7 @@ jobs:
       - name: ⬣ ESLint
         run: pnpm lint
       - name: 🔎 Typecheck
-        run: pnpm typecheck  
+        run: pnpm typecheck
       - name: ⚡ Vitest
         run: pnpm test
       - name: 🔨 Build app

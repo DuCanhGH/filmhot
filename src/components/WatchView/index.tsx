@@ -86,7 +86,7 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
                   >
                     {(ref, props) => {
                       const { src, ...others } = props;
-                      return <HlsPlayer playerRef={ref} src={src} {...others} />
+                      return <HlsPlayer playerRef={ref} src={src} {...others} />;
                     }}
                   </Player>
                 ) : (

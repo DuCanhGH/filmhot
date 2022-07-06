@@ -8,9 +8,9 @@ export const subtitleProxy = (url: string) =>
 
 export const IMAGE_CARD_SIZE: {
   [key: number]: {
-    width: number,
-    height: number
-  }
+    width: number;
+    height: number;
+  };
 } = {
   0: {
     width: 200,

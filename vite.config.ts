@@ -48,7 +48,7 @@ export default defineConfig({
     }),
     eslint({
       cache: true,
-      cacheLocation: "./node_modules/.cache/eslint"
-    })
+      cacheLocation: "./node_modules/.cache/eslint",
+    }),
   ],
 });

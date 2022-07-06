@@ -11,7 +11,7 @@ interface DataType {
   name: string;
   coverVerticalUrl: string;
   category: number;
-};
+}
 
 const getHistory = () => {
   try {
