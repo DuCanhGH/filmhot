@@ -9,12 +9,12 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
+    "react-app",
+    "plugin:jsx-a11y/recommended",
     "prettier",
   ],
   parser: "@typescript-eslint/parser",
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["@typescript-eslint", "jsx-a11y"],
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: ["tsconfig.json", "tsconfig.eslint.json"],
@@ -24,17 +24,11 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  settings: {
-    react: {
-      version: "18.2.0",
-    },
-  },
   rules: {
     "@typescript-eslint/ban-ts-comment": "off",
     //it was a literal nightmare trying to fix the code to enable this one
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": ["error", { ignoreRestSiblings: true }],
     "no-extra-boolean-cast": "off",
-    "react/prop-types": "off",
   },
 };

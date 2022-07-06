@@ -129,12 +129,13 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
           )}
         </div>
       </div>
-      <div
+      <button
         onClick={() => setSidebarActive(false)}
+        aria-label="Close sidebar"
         className={`bg-[#00000080] z-[5] fixed top-0 left-0 w-full h-full transition-all duration-500 sm:!opacity-0 ${
           sidebarActive ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
-      ></div>
+      />
     </>
   );
 };

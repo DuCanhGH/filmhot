@@ -6,11 +6,7 @@ import { RHFInput } from "../RHFInput";
 import { htmlToText } from "../../shared/utils";
 import { searchKeywords } from "../../services/search";
 
-interface SearchBoxProps {
-  autoFocus?: boolean;
-}
-
-const SearchBox: FC<SearchBoxProps> = ({ autoFocus }) => {
+const SearchBox: FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const { register, handleSubmit, watch, getValues } = useForm();
   const watchSearchInput = watch("searchInput");
@@ -24,7 +20,7 @@ const SearchBox: FC<SearchBoxProps> = ({ autoFocus }) => {
       const data = await searchKeywords(getValues("searchInput"));
       setSuggestions(data.map((item) => htmlToText(item)));
     }, 500);
-  }, [watchSearchInput]);
+  }, [watchSearchInput, getValues]);
   const handleFormSubmit = handleSubmit((data) => {
     const { searchInput } = data;
     if (searchInput) {
@@ -45,7 +41,6 @@ const SearchBox: FC<SearchBoxProps> = ({ autoFocus }) => {
           type="text"
           placeholder="Search..."
           autoComplete="off"
-          autoFocus={autoFocus}
         />
         <button className="absolute right-2 top-1/2 -translate-y-1/2">
           <i className="fas fa-search text-xl"></i>

@@ -21,7 +21,7 @@ const Search: FC = () => {
           <div className="w-full max-w-[400px] flex flex-col items-center gap-4">
             <div className="flex flex-col items-stretch gap-3">
               <h1 className="text-2xl">Search for your favorite movies</h1>
-              <SearchBox autoFocus />
+              <SearchBox />
             </div>
 
             <div className="mt-8 w-full">

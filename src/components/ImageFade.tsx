@@ -1,7 +1,7 @@
 import { FC, HTMLProps, useState } from "react";
 
 const ImageFade: FC<HTMLProps<HTMLImageElement>> = (props) => {
-  const { className, onLoad, crossOrigin, ...others } = props;
+  const { className, onLoad, crossOrigin, alt, ...others } = props;
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -11,6 +11,7 @@ const ImageFade: FC<HTMLProps<HTMLImageElement>> = (props) => {
         setLoaded(true);
         onLoad && onLoad(e);
       }}
+      alt={alt ?? "An image."}
       {...others}
     />
   );
