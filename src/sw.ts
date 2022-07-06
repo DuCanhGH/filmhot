@@ -22,19 +22,19 @@ if (import.meta.env.DEV) denylist = [/^\/manifest.webmanifest$/];
 
 registerRoute(
   ({ url, sameOrigin }) => {
-      const match = url.pathname.match(/(.*)\.(jpe?g|png|woff2?|svg|json)$/);
-      return sameOrigin && match && match.length > 0;
+    const match = url.pathname.match(/(.*)\.(jpe?g|png|woff2?|svg|json)$/);
+    return sameOrigin && match && match.length > 0;
   },
   new StaleWhileRevalidate({
-      cacheName: "images-fonts-jsonfiles",
-      plugins: [
-          new CacheableResponsePlugin({
-              statuses: [0, 200],
-          }),
-          new ExpirationPlugin({
-              maxAgeSeconds: 60 * 60 * 24 * 30,
-          }),
-      ],
+    cacheName: "images-fonts-jsonfiles",
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new ExpirationPlugin({
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
   }),
 );
 

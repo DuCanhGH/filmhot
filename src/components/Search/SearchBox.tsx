@@ -42,7 +42,11 @@ const SearchBox: FC = () => {
           placeholder="Search..."
           autoComplete="off"
         />
-        <button className="absolute right-2 top-1/2 -translate-y-1/2" type="submit" aria-label="Search">
+        <button
+          className="absolute right-2 top-1/2 -translate-y-1/2"
+          type="submit"
+          aria-label="Search"
+        >
           <i className="fas fa-search text-xl"></i>
         </button>
       </form>

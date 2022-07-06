@@ -14,29 +14,29 @@ interface SidebarProps {
 interface SidebarLinkType {
   label: string;
   link: string;
-  icon_class: string
+  icon_class: string;
 }
 
 const sidebar_links: SidebarLinkType[] = [
   {
     label: "Home",
     link: "/",
-    icon_class: "fa-home"
+    icon_class: "fa-home",
   },
   {
     label: "Discovery",
     link: "/discovery",
-    icon_class: "fa-compass"
+    icon_class: "fa-compass",
   },
   {
     label: "Explore",
     link: "/explore",
-    icon_class: "fa-desktop"
+    icon_class: "fa-desktop",
   },
   {
     label: "History",
     link: "/history",
-    icon_class: "fa-history"
+    icon_class: "fa-history",
   },
 ];
 
