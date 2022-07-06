@@ -5,6 +5,8 @@ jobs:
   test_n_build:
     name: ⬣, 🔎, ⚡ Lint, Typecheck and Vitest
     runs-on: ubuntu-latest
+    env:
+      VITE_FIREBASE_CONFIG: {"apiKey":"","authDomain":"","projectId":"","storageBucket":"","messagingSenderId":"","appId":""}
     strategy:
       matrix:
         node-version: [16.15.x]
@@ -22,9 +24,9 @@ jobs:
         run: pnpm install
       - name: ⬣ ESLint
         run: pnpm lint
-      - name: 🔎 Type check
+      - name: 🔎 Typecheck
         run: pnpm typecheck  
-      - name: Render app without exploding
+      - name: ⚡ Vitest
         run: pnpm test
-      - name: Build app
+      - name: 🔨 Build app
         run: pnpm build
