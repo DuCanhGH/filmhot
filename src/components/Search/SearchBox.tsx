@@ -1,6 +1,8 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { RHFInput } from "../RHFInput";
 import { htmlToText } from "../../shared/utils";
@@ -47,7 +49,7 @@ const SearchBox: FC = () => {
           type="submit"
           aria-label="Search"
         >
-          <i className="fas fa-search text-xl"></i>
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xl" />
         </button>
       </form>
 

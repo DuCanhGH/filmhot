@@ -1,10 +1,20 @@
 import { Link, useLocation } from "react-router-dom";
-
 import { FC } from "react";
 import { auth } from "../shared/firebase";
 import { resizeImage } from "../shared/constants";
 import { signOut } from "firebase/auth";
 import { useStore } from "../store";
+import {
+  faHouseChimney,
+  faCompass,
+  faDesktop,
+  faClockRotateLeft,
+  faMagnifyingGlass,
+  faRightToBracket,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface SidebarProps {
   sidebarActive: boolean;
@@ -14,29 +24,29 @@ interface SidebarProps {
 interface SidebarLinkType {
   label: string;
   link: string;
-  icon_class: string;
+  icon_class: IconDefinition;
 }
 
 const sidebar_links: SidebarLinkType[] = [
   {
     label: "Home",
     link: "/",
-    icon_class: "fa-home",
+    icon_class: faHouseChimney,
   },
   {
     label: "Discovery",
     link: "/discovery",
-    icon_class: "fa-compass",
+    icon_class: faCompass,
   },
   {
     label: "Explore",
     link: "/explore",
-    icon_class: "fa-desktop",
+    icon_class: faDesktop,
   },
   {
     label: "History",
     link: "/history",
-    icon_class: "fa-history",
+    icon_class: faClockRotateLeft,
   },
 ];
 
@@ -78,7 +88,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
                 aria-label={link.label}
                 key={`${link.label}-link-sidebar-component`}
               >
-                <i className={`fas ${link.icon_class} text-xl w-[24px]`}></i>
+                <FontAwesomeIcon icon={link.icon_class} className="text-xl w-[24px]" />
                 <p className="block sm:hidden xl:block" aria-hidden>
                   {link.label}
                 </p>
@@ -93,7 +103,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
               }`}
               aria-label="Search"
             >
-              <i className="fas fa-search text-xl w-[24px]"></i>
+              <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xl w-[24px]" />
               <p className="block sm:hidden xl:block" aria-hidden>
                 Search
               </p>
@@ -108,7 +118,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
               className="flex items-center cursor-pointer gap-2 transition text-gray-400 hover:text-gray-300"
               aria-label="Sign in"
             >
-              <i className="fas fa-sign-in-alt text-xl w-[24px]"></i>
+              <FontAwesomeIcon icon={faRightToBracket} className="text-xl w-[24px]" />
               <p className="block sm:hidden xl:block" aria-hidden>
                 Sign in
               </p>
@@ -128,7 +138,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
                 onClick={handleSignOut}
                 className="flex items-center cursor-pointer gap-2 transition text-gray-400 hover:text-gray-300"
               >
-                <i className="fas fa-sign-out-alt text-xl w-[24px]"></i>
+                <FontAwesomeIcon icon={faRightFromBracket} className="text-xl w-[24px]" />
                 <p className="block sm:hidden xl:block">Sign out</p>
               </button>
             </div>

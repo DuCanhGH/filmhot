@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faHeart, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 import Error from "../components/Error";
 import HlsPlayer from "react-hls-player";
@@ -11,7 +13,6 @@ import Sidebar from "../components/Sidebar";
 import { getDiscoveryItems } from "../services/discovery";
 import { resizeImage } from "../shared/constants";
 import useSWRInfinite from "swr/infinite";
-import { Player } from "react-tuby";
 
 const Discovery: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -46,7 +47,7 @@ const Discovery: FC = () => {
         </Link>
 
         <button aria-label="Toggle sidebar" onClick={() => setSidebarActive(!sidebarActive)}>
-          <i className="fas fa-bars text-2xl"></i>
+          <FontAwesomeIcon icon={faBars} className="text-2xl" />
         </button>
       </div>
 
@@ -82,38 +83,19 @@ const Discovery: FC = () => {
                       <p>{item.introduction}</p>
 
                       <InView threshold={0.5}>
-                        {({ ref, inView }) => {
-                          const playerKey = `${item.mediaUrl}-${item.mediaInfo}-discovery-component`;
-                          return (
-                            <div ref={ref} className="h-0 relative pb-[100%]">
-                              <Player
-                                primaryColor="#0D90F3"
-                                src={[
-                                  {
-                                    quality: 1080,
-                                    url: item.mediaUrl,
-                                  },
-                                ]}
-                                playerKey={playerKey}
-                              >
-                                {(ref2, props) => {
-                                  const { src, ...others } = props;
-                                  return (
-                                    <HlsPlayer
-                                      controls
-                                      muted
-                                      autoPlay={inView}
-                                      playsInline
-                                      playerRef={ref2}
-                                      src={src}
-                                      {...others}
-                                    />
-                                  );
-                                }}
-                              </Player>
-                            </div>
-                          );
-                        }}
+                        {({ ref, inView }) => (
+                          <div ref={ref} className="h-0 relative pb-[100%]">
+                            {/* @ts-ignore */}
+                            <HlsPlayer
+                              controls
+                              muted
+                              autoPlay={inView}
+                              playsInline
+                              src={item.mediaUrl}
+                              className="absolute top-0 left-0 w-full h-full object-contain"
+                            />
+                          </div>
+                        )}
                       </InView>
                     </div>
 
@@ -123,7 +105,7 @@ const Discovery: FC = () => {
                           className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
                           aria-label="Likes"
                         >
-                          <i className="fas fa-heart text-red-500"></i>
+                          <FontAwesomeIcon icon={faHeart} className="text-red-500" />
                         </div>
                         <span>{item.likeCount}</span>
                       </div>
@@ -138,7 +120,7 @@ const Discovery: FC = () => {
                             }
                             className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
                           >
-                            <i className="fas fa-external-link-alt"></i>
+                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                           </Link>
                           <span>Open</span>
                         </div>

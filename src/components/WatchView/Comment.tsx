@@ -12,7 +12,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useForm } from "react-hook-form";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane, faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import { calculateCreatedTime } from "../../shared/utils";
 import { db } from "../../shared/firebase";
 import { resizeImage } from "../../shared/constants";
@@ -124,7 +125,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                 </div>
               ) : (
                 <button className="absolute right-[14px] top-1/2 -translate-y-1/2" type="submit">
-                  <i className="fas fa-paper-plane text-xl"></i>
+                  <FontAwesomeIcon icon={faPaperPlane} className="text-xl" />
                 </button>
               )}
             </form>
@@ -187,7 +188,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                             : ""
                         }`}
                       >
-                        <i className="fas fa-thumbs-up"></i>
+                        <FontAwesomeIcon icon={faThumbsUp} />
                         <span>
                           {Object.values(docData.reactions).filter((item) => item === 1).length}
                         </span>
@@ -214,7 +215,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                             : ""
                         }`}
                       >
-                        <i className="fas fa-thumbs-down"></i>
+                        <FontAwesomeIcon icon={faThumbsDown} />
                         <span>
                           {Object.values(docData.reactions).filter((item) => item === 2).length}
                         </span>

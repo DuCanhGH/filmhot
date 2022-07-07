@@ -2,6 +2,8 @@ import { DetailType } from "../../shared/types";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "../Skeleton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 
 interface MetaDataProps {
   data?: DetailType;
@@ -37,7 +39,15 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
               </Link>
             ))}
           </div>
-
+          <button
+            className="text-primary w-fit h-fit flex items-center gap-2"
+            onClick={() => {
+              window.location.reload();
+            }}
+          >
+            <FontAwesomeIcon icon={faRotateRight} aria-hidden className="text-xl w-[24px]" />
+            <p className="block">Refresh the page if the movie fails to load</p>
+          </button>
           <p>{data.introduction}</p>
 
           {data.episodeVo.length > 1 && (

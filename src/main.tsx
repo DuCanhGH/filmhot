@@ -4,7 +4,6 @@ import "swiper/css/navigation";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 import "react-tuby/css/main.css";
 import "./pwa";
-
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
