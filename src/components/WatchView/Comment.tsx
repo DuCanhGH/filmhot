@@ -19,7 +19,7 @@ import { db } from "../../shared/firebase";
 import { resizeImage } from "../../shared/constants";
 import { useCollectionQuery } from "../../hooks/useCollectionQuery";
 import { useStore } from "../../store";
-import { RHFInput } from "../../components/RHFInput";
+import { RHFTextArea } from "../../components/RHFInput";
 
 interface CommentProps {
   data: DetailType;
@@ -90,35 +90,36 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
           {currentUser ? (
             <form
               onSubmit={handleFormSubmit}
-              className="relative border border-gray-600 rounded-full my-6"
+              className="relative border border-gray-600 rounded-full my-6 w-full flex items-center justify-center"
             >
               <img
                 className="w-[30px] h-[30px] rounded-full absolute top-1/2 -translate-y-1/2 left-[10px]"
                 src={resizeImage(currentUser.photoURL, "30", "30")}
                 alt=""
               />
-              <RHFInput
+              <RHFTextArea
                 register={register}
                 id="comment-section-input"
                 name="commentInput"
-                className="w-full h-12 bg-transparent outline-none text-white px-12"
-                placeholder="Comment what you think... (max: 1000 characters)"
-                type="text"
-                autoComplete="off"
-                onKeyDown={(e) => e.stopPropagation()}
-                onKeyUp={(e) => e.stopPropagation()}
-                onKeyPress={(e) => e.stopPropagation()}
+                className="w-full min-h-[3rem] h-fit break-words bg-transparent outline-none text-white px-12 resize-none"
+                errors={errors}
+                errorClassName="px-12"
+                textareaProps={{
+                  placeholder: "Comment what you think...\n(max: 1000 characters)",
+                  onKeyDown: (e) => e.stopPropagation(),
+                  onKeyUp: (e) => e.stopPropagation(),
+                  onKeyPress: (e) => e.stopPropagation(),
+                  autoComplete: "off",
+                  maxLength: 1000,
+                  rows: 2,
+                }}
                 rules={{
                   maxLength: {
                     value: 1000,
                     message: "Maximum characters reached!",
                   },
                 }}
-                maxLength={1000}
-                errors={errors}
-                errorClassName="px-12"
               />
-
               {commentLoading ? (
                 <div className="absolute right-[14px] top-1/2 -translate-y-1/2">
                   <div className="w-[25px] h-[25px] rounded-full border-white border-t-transparent border-[3px] animate-spin"></div>
@@ -164,8 +165,9 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                           : "Just now"}
                       </p>
                     </div>
-                    <p style={{ wordWrap: "break-word" }}>{docData.value}</p>
-
+                    <p style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>
+                      {docData.value}
+                    </p>
                     <div className="flex gap-3 items-center">
                       <button
                         onClick={() =>

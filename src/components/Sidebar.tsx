@@ -13,7 +13,7 @@ import {
   faRightToBracket,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { IconDefinition, IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface SidebarProps {
@@ -24,7 +24,7 @@ interface SidebarProps {
 interface SidebarLinkType {
   label: string;
   link: string;
-  icon_class: IconDefinition;
+  icon_class: IconDefinition | IconProp;
 }
 
 const sidebar_links: SidebarLinkType[] = [
