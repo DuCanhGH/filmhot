@@ -1,9 +1,9 @@
-name: Test with Vitest & build app
+name: Test with ESLint, Typescript, Vitest & Build app
 on:
   push:
 jobs:
   test_n_build:
-    name: ⬣, 🔎, ⚡ Lint, Typecheck and Vitest
+    name: ⬣, 🔎, ⚡, 🔨 Lint, Typecheck, Vitest, and Build app
     runs-on: ubuntu-latest
     env:
       VITE_FIREBASE_CONFIG: ${{ secrets.VITE_FIREBASE_CONFIG }}
