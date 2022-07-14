@@ -11,6 +11,9 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
   },
+  server: {
+    port: 3000,
+  },
   plugins: [
     react(),
     VitePWA({
