@@ -6,8 +6,8 @@ import {
 } from "firebase/auth";
 import { FC, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { Navigate, Link } from "react-router-dom";
 
-import { Navigate } from "react-router-dom";
 import { auth } from "../shared/firebase";
 import { useQueryParams } from "../hooks/useQueryParams";
 import { useStore } from "../store";
@@ -72,6 +72,9 @@ const SignIn: FC = () => {
 
               <span>Sign in with Facebook</span>
             </button>
+            <Link className="text-primary" to="/">
+              Return home
+            </Link>
           </div>
         </div>
       </div>

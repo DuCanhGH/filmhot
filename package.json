@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev:typecheck": "tsc -b -w --preserveWatchOutput",
     "dev:vite": "vite",
     "dev": "cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ run-p dev:*",
-    "build": "tsc && cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ vite build",
+    "build": "cross-env DEBUG=vite-plugin-pwa:* BASE_URL=/ vite build",
     "preview": "vite preview",
     "format": "prettier --write --embedded-language-formatting=auto .",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "typecheck": "tsc",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
-    "codetest": "pnpm lint && pnpm typecheck && pnpm test",
+    "codetest": "npm run lint && npm run typecheck && npm run test",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -67,7 +66,7 @@
     "tailwindcss": "3.1.6",
     "typescript": "4.7.4",
     "vite": "3.0.2",
-    "vite-plugin-eslint": "1.7.0",
+    "vite-plugin-checker": "0.4.9",
     "vite-plugin-pwa": "0.12.3",
     "vitest": "0.18.1",
     "workbox-cacheable-response": "6.5.3",

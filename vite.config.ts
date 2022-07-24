@@ -3,7 +3,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
-import eslint from "vite-plugin-eslint";
+import checker from "vite-plugin-checker";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -50,9 +50,11 @@ export default defineConfig({
       filename: "sw.ts",
       strategies: "injectManifest",
     }),
-    eslint({
-      cache: true,
-      cacheLocation: "./node_modules/.cache/eslint",
+    checker({
+      typescript: true,
+      eslint: {
+        lintCommand: "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+      },
     }),
   ],
 });
