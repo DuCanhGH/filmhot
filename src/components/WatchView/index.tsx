@@ -4,7 +4,7 @@ import { subtitleProxy } from "../../shared/constants";
 
 import Comment from "./Comment";
 import { DetailType } from "../../shared/types";
-import HlsPlayer from "react-hls-player";
+import { ReactHlsPlayer } from "./ReactHlsPlayer";
 import MetaData from "./MetaData";
 import NavBar from "../NavBar";
 import { Player } from "react-tuby";
@@ -86,7 +86,7 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
                   >
                     {(ref, props) => {
                       const { src, ...others } = props;
-                      return <HlsPlayer playerRef={ref} src={src} {...others} />;
+                      return <ReactHlsPlayer playerRef={ref} src={src} {...others} />;
                     }}
                   </Player>
                 ) : (

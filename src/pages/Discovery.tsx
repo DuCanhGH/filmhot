@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faHeart, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 import Error from "../components/Error";
-import HlsPlayer from "react-hls-player";
+import { ReactHlsPlayer } from "../components/WatchView/ReactHlsPlayer";
 import ImageFade from "../components/ImageFade";
 import { InView } from "react-intersection-observer";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -86,7 +86,7 @@ const Discovery: FC = () => {
                         {({ ref, inView }) => (
                           <div ref={ref} className="h-0 relative pb-[100%]">
                             {/* @ts-ignore */}
-                            <HlsPlayer
+                            <ReactHlsPlayer
                               controls
                               muted
                               autoPlay={inView}
