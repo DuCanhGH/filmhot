@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faHeart, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 import Error from "../components/Error";
-import { ReactHlsPlayer } from "../components/WatchView/ReactHlsPlayer";
+import ReactHlsPlayer from "@ducanh2912/react-hls-player";
 import ImageFade from "../components/ImageFade";
 import { InView } from "react-intersection-observer";
 import InfiniteScroll from "react-infinite-scroll-component";

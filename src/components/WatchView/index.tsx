@@ -4,7 +4,7 @@ import { subtitleProxy } from "../../shared/constants";
 
 import Comment from "./Comment";
 import { DetailType } from "../../shared/types";
-import { ReactHlsPlayer } from "./ReactHlsPlayer";
+import ReactHlsPlayer from "@ducanh2912/react-hls-player";
 import MetaData from "./MetaData";
 import NavBar from "../NavBar";
 import { Player } from "react-tuby";
