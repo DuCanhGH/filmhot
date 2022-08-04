@@ -4,7 +4,7 @@ specifiers:
   '@babel/core': 7.18.10
   '@babel/plugin-syntax-flow': 7.18.6
   '@babel/plugin-transform-react-jsx': 7.18.10
-  '@ducanh2912/react-hls-player': 3.1.2
+  '@ducanh2912/react-hls-player': 3.2.1
   '@fortawesome/fontawesome-common-types': 6.1.2
   '@fortawesome/fontawesome-svg-core': 6.1.2
   '@fortawesome/free-solid-svg-icons': 6.1.2
@@ -61,7 +61,7 @@ specifiers:
   zustand: 4.0.0
 
 dependencies:
-  '@ducanh2912/react-hls-player': 3.1.2_react@18.2.0
+  '@ducanh2912/react-hls-player': 3.2.1_react@18.2.0
   '@fortawesome/fontawesome-svg-core': 6.1.2
   '@fortawesome/free-solid-svg-icons': 6.1.2
   '@fortawesome/react-fontawesome': 0.2.0_tebjjym7ugcdduvdrfbg7ugwxq
@@ -1534,9 +1534,8 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@ducanh2912/react-hls-player/3.1.2_react@18.2.0:
-    resolution: {integrity: sha512-s+256ujc2B+dvQyr2Sq8U4wdZQzH/Dco2BItlmig7ztGhng6B4Br1xbwCTvAOCsVssBMakn+q6bBP2CwwDQDww==}
-    engines: {node: '>=14.6'}
+  /@ducanh2912/react-hls-player/3.2.1_react@18.2.0:
+    resolution: {integrity: sha512-QMsIk72/uQlGsJw8zh/ZjDHx4wEVEv7klbofUaK7HSYLvIh0JpTf7X3Z+ftbP9wwFcpfsgUDEGng+QWdgL2wsA==}
     peerDependencies:
       react: '>=16'
     dependencies:
