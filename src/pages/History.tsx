@@ -2,8 +2,7 @@ import { FC, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FaTrash } from "react-icons/fa";
 
 import NavBar from "../components/NavBar";
 import { resizeImage } from "../shared/constants";
@@ -43,7 +42,7 @@ const History: FC = () => {
           <h1 className="text-3xl">Watch history</h1>
 
           <button onClick={clearHistory} className="text-primary">
-            <FontAwesomeIcon icon={faTrash} /> <span>Clear</span>
+            <FaTrash /> <span>Clear</span>
           </button>
         </div>
         {data.length === 0 ? (

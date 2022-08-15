@@ -1,7 +1,6 @@
 import { FC, Fragment, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FaBars } from "react-icons/fa";
 
 import BannerSlider from "../components/Home/BannerSlider";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -41,7 +40,7 @@ const Home: FC = () => {
         </Link>
 
         <button aria-label="Toggle sidebar" onClick={() => setSidebarActive(!sidebarActive)}>
-          <FontAwesomeIcon icon={faBars} className="text-2xl" />
+          <FaBars className="text-2xl" />
         </button>
       </div>
 

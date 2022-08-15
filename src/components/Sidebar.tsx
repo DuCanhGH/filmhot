@@ -5,16 +5,15 @@ import { resizeImage } from "../shared/constants";
 import { signOut } from "firebase/auth";
 import { useStore } from "../store";
 import {
-  faHouseChimney,
-  faCompass,
-  faDesktop,
-  faClockRotateLeft,
-  faMagnifyingGlass,
-  faRightToBracket,
-  faRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
-import { IconDefinition, IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  FaHome,
+  FaCompass,
+  FaDesktop,
+  FaSearch,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaHistory,
+} from "react-icons/fa";
+import type { IconType } from "react-icons";
 
 interface SidebarProps {
   sidebarActive: boolean;
@@ -24,29 +23,29 @@ interface SidebarProps {
 interface SidebarLinkType {
   label: string;
   link: string;
-  icon_class: IconDefinition | IconProp;
+  icon_class: IconType;
 }
 
 const sidebar_links: SidebarLinkType[] = [
   {
     label: "Home",
     link: "/",
-    icon_class: faHouseChimney,
+    icon_class: FaHome,
   },
   {
     label: "Discovery",
     link: "/discovery",
-    icon_class: faCompass,
+    icon_class: FaCompass,
   },
   {
     label: "Explore",
     link: "/explore",
-    icon_class: faDesktop,
+    icon_class: FaDesktop,
   },
   {
     label: "History",
     link: "/history",
-    icon_class: faClockRotateLeft,
+    icon_class: FaHistory,
   },
 ];
 
@@ -77,23 +76,26 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
           <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">Menu</p>
 
           <div className="flex flex-col items-stretch gap-3">
-            {sidebar_links.map((link) => (
-              <Link
-                to={link.link}
-                className={`flex items-center gap-2 transition ${
-                  location.pathname === link.link
-                    ? "text-primary border-r-4 border-primary hover:brightness-125"
-                    : "text-gray-400 hover:text-gray-300"
-                }`}
-                aria-label={link.label}
-                key={`${link.label}-link-sidebar-component`}
-              >
-                <FontAwesomeIcon icon={link.icon_class} className="text-xl w-[24px]" />
-                <p className="block sm:hidden xl:block" aria-hidden>
-                  {link.label}
-                </p>
-              </Link>
-            ))}
+            {sidebar_links.map((link) => {
+              const Component = link.icon_class;
+              return (
+                <Link
+                  to={link.link}
+                  className={`flex items-center gap-2 transition ${
+                    location.pathname === link.link
+                      ? "text-primary border-r-4 border-primary hover:brightness-125"
+                      : "text-gray-400 hover:text-gray-300"
+                  }`}
+                  aria-label={link.label}
+                  key={`${link.label}-link-sidebar-component`}
+                >
+                  <Component className="text-xl w-[24px]" />
+                  <p className="block sm:hidden xl:block" aria-hidden>
+                    {link.label}
+                  </p>
+                </Link>
+              );
+            })}
             <Link
               to="/search"
               className={`md:!hidden flex items-center gap-2 transition ${
@@ -103,7 +105,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
               }`}
               aria-label="Search"
             >
-              <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xl w-[24px]" />
+              <FaSearch className="text-xl w-[24px]" />
               <p className="block sm:hidden xl:block" aria-hidden>
                 Search
               </p>
@@ -118,7 +120,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
               className="flex items-center cursor-pointer gap-2 transition text-gray-400 hover:text-gray-300"
               aria-label="Sign in"
             >
-              <FontAwesomeIcon icon={faRightToBracket} className="text-xl w-[24px]" />
+              <FaSignInAlt className="text-xl w-[24px]" />
               <p className="block sm:hidden xl:block" aria-hidden>
                 Sign in
               </p>
@@ -138,7 +140,7 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
                 onClick={handleSignOut}
                 className="flex items-center cursor-pointer gap-2 transition text-gray-400 hover:text-gray-300"
               >
-                <FontAwesomeIcon icon={faRightFromBracket} className="text-xl w-[24px]" />
+                <FaSignOutAlt className="text-xl w-[24px]" />
                 <p className="block sm:hidden xl:block">Sign out</p>
               </button>
             </div>

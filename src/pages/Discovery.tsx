@@ -1,8 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faHeart, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { FaBars, FaHeart, FaExternalLinkAlt } from "react-icons/fa";
 
 import Error from "../components/Error";
 import ReactHlsPlayer from "@ducanh2912/react-hls-player";
@@ -47,7 +46,7 @@ const Discovery: FC = () => {
         </Link>
 
         <button aria-label="Toggle sidebar" onClick={() => setSidebarActive(!sidebarActive)}>
-          <FontAwesomeIcon icon={faBars} className="text-2xl" />
+          <FaBars className="text-2xl" />
         </button>
       </div>
 
@@ -105,7 +104,7 @@ const Discovery: FC = () => {
                           className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
                           aria-label="Likes"
                         >
-                          <FontAwesomeIcon icon={faHeart} className="text-red-500" />
+                          <FaHeart className="text-red-500" />
                         </div>
                         <span>{item.likeCount}</span>
                       </div>
@@ -120,7 +119,7 @@ const Discovery: FC = () => {
                             }
                             className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
                           >
-                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                            <FaExternalLinkAlt />
                           </Link>
                           <span>Open</span>
                         </div>
