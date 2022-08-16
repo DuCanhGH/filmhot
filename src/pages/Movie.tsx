@@ -8,7 +8,7 @@ import useSWR from "swr";
 const Info: FC = () => {
   const { id } = useParams();
 
-  const { data, error } = useSWR(`movie-${id}`, () => getMovieDetail(id as string));
+  const { data, error } = useSWR(`movie-${id}`, () => getMovieDetail(id as string, 0));
 
   if (error) return <Error />;
 

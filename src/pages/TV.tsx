@@ -1,7 +1,7 @@
 import Error from "../components/Error";
 import { FC } from "react";
 import WatchView from "../components/WatchView";
-import { getTVDetail } from "../services/tv";
+import { getMovieDetail } from "../services/movie";
 import { useParams } from "react-router-dom";
 import { useQueryParams } from "../hooks/useQueryParams";
 import useSWR from "swr";
@@ -14,7 +14,7 @@ const TV: FC = () => {
   const episodeIndex = Number(queryParams.get("episode")) || 0;
 
   const { data, error } = useSWR(`tv-${id}-${episodeIndex}`, () =>
-    getTVDetail(id as string, episodeIndex),
+    getMovieDetail(id as string, 1, +episodeIndex),
   );
 
   if (error) return <Error />;
