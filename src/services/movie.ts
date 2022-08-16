@@ -62,7 +62,10 @@ export const getMovieDetail = async (
     }, []);
 
   return {
-    data,
+    data: {
+      ...data,
+      episodeVo: data.episodeVo.length,
+    },
     sources,
     subtitles,
   };

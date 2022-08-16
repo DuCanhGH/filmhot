@@ -61,7 +61,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
           </button>
           <p>{data.introduction}</p>
 
-          {data.episodeVo.length > 1 && (
+          {data.episodeVo > 1 && (
             <>
               <h1 className="text-xl my-3">Episodes</h1>
               <div
@@ -70,19 +70,19 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
                     showLoadMoreButton && !isExpanded,
                 })}
               >
-                {new Array(data.episodeVo.length).fill("").map((_, index) => (
-                  <Link to={`/tv/${data.id}/${index}`} key={index}>
-                    <a
-                      {...(index === data.episodeVo.length - 1 ? { ref: lastEpisodeRef } : {})}
-                      className={classNames(
-                        "px-4 h-[42px] flex items-center bg-dark-lighten rounded hover:brightness-125 transition duration-300",
-                        {
-                          "!bg-primary text-white": index === episodeIndex,
-                        },
-                      )}
-                    >
-                      {index + 1}
-                    </a>
+                {new Array(data.episodeVo).fill("").map((_, index) => (
+                  <Link
+                    to={`/tv/${data.id}?episode=${index}`}
+                    key={index}
+                    {...(index === data.episodeVo - 1 ? { ref: lastEpisodeRef } : {})}
+                    className={classNames(
+                      "px-4 h-[42px] flex items-center bg-dark-lighten rounded hover:brightness-125 transition duration-300",
+                      {
+                        "!bg-primary text-white": index === episodeIndex,
+                      },
+                    )}
+                  >
+                    {index + 1}
                   </Link>
                 ))}
               </div>

@@ -40,24 +40,7 @@ export interface DetailType {
     drameType: string;
   };
   episodeCount?: any;
-  episodeVo: {
-    definitionList: {
-      code: string;
-      description: string;
-      fullDescription: string;
-    }[];
-    id: number;
-    name: string;
-    resourceType: number;
-    seriesNo: number;
-    subtitlingList: {
-      language: string;
-      languageAbbr: string;
-      subtitlingUrl: string;
-      translateType: number;
-    }[];
-    vid: string;
-  }[];
+  episodeVo: number;
   id: string;
   introduction: string;
   likeList: {
