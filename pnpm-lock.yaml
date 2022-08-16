@@ -18,6 +18,7 @@ specifiers:
   autoprefixer: 10.4.8
   axios: 0.27.2
   c8: 7.12.0
+  classnames: 2.3.1
   cross-env: 7.0.3
   eslint: 8.22.0
   eslint-config-prettier: 8.5.0
@@ -60,6 +61,7 @@ specifiers:
 dependencies:
   '@ducanh2912/react-hls-player': 3.2.4_react@18.2.0
   axios: 0.27.2
+  classnames: 2.3.1
   cross-env: 7.0.3
   firebase: 9.9.2
   lodash-es: 4.17.21
@@ -3039,6 +3041,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /classnames/2.3.1:
+    resolution: {integrity: sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==}
+    dev: false
 
   /cliui/7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
