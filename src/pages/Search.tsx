@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Helmet } from "react-helmet-async";
 
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Shared/NavBar";
 import SearchBox from "../components/Search/SearchBox";
 import SearchResult from "../components/Search/SearchResult";
 import TopSearches from "../components/Home/TopSearches";

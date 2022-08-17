@@ -3,7 +3,7 @@ import { FC, useState, useCallback, RefCallback } from "react";
 import { Link } from "react-router-dom";
 import { FaRedoAlt } from "react-icons/fa";
 
-import Skeleton from "../Skeleton";
+import Skeleton from "../Shared/Skeleton";
 import { DetailType } from "../../shared/types";
 
 interface MetaDataProps {

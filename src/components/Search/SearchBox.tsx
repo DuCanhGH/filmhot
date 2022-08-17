@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
 
-import { RHFInput } from "../RHFInput";
+import { RHFInput } from "../Shared/RHFInput";
 import { htmlToText } from "../../shared/utils";
 import { searchKeywords } from "../../services/search";
 

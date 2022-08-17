@@ -1,4 +1,4 @@
-import Error from "../Error";
+import Error from "../Shared/Error";
 import { FC } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";

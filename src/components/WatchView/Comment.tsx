@@ -18,7 +18,7 @@ import { db } from "../../shared/firebase";
 import { resizeImage } from "../../shared/constants";
 import { useCollectionQuery } from "../../hooks/useCollectionQuery";
 import { useStore } from "../../store";
-import { RHFTextArea } from "../../components/RHFInput";
+import { RHFTextArea } from "../Shared/RHFInput";
 
 interface CommentProps {
   data: DetailType;

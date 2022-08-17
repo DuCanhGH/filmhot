@@ -1,8 +1,8 @@
 import { DetailType } from "../../shared/types";
 import { FC } from "react";
-import ImageFade from "../ImageFade";
+import ImageFade from "../Shared/ImageFade";
 import { Link } from "react-router-dom";
-import Skeleton from "../Skeleton";
+import Skeleton from "../Shared/Skeleton";
 import { resizeImage } from "../../shared/constants";
 
 interface SimilarProps {

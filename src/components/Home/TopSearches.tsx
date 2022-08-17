@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import Skeleton from "../Skeleton";
+import Skeleton from "../Shared/Skeleton";
 import { getTopSearched } from "../../services/home";
 import { resizeImage } from "../../shared/constants";
 import useSWR from "swr";

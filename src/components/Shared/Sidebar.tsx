@@ -1,9 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { FC } from "react";
-import { auth } from "../shared/firebase";
-import { resizeImage } from "../shared/constants";
+import { auth } from "../../shared/firebase";
+import { resizeImage } from "../../shared/constants";
 import { signOut } from "firebase/auth";
-import { useStore } from "../store";
+import { useStore } from "../../store";
 import {
   FaHome,
   FaCompass,

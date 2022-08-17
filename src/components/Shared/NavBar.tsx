@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import SearchBox from "./Search/SearchBox";
+import SearchBox from "../Search/SearchBox";
 import { FaSearch } from "react-icons/fa";
 
 const NavBar: FC = () => {

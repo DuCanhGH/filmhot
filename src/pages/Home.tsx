@@ -6,8 +6,8 @@ import BannerSlider from "../components/Home/BannerSlider";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SearchBox from "../components/Search/SearchBox";
 import SectionSlider from "../components/Home/SectionSlider";
-import SideBar from "../components/Sidebar";
-import Skeleton from "../components/Skeleton";
+import Sidebar from "../components/Shared/Sidebar";
+import Skeleton from "../components/Shared/Skeleton";
 import SkeletonSlider from "../components/Home/SkeletonSlider";
 import TopSearches from "../components/Home/TopSearches";
 import { getHome } from "../services/home";
@@ -45,7 +45,7 @@ const Home: FC = () => {
       </div>
 
       <div className="flex">
-        <SideBar sidebarActive={sidebarActive} setSidebarActive={setSidebarActive} />
+        <Sidebar sidebarActive={sidebarActive} setSidebarActive={setSidebarActive} />
 
         <div className="flex-grow px-[4vw] md:px-8 pb-8 pt-0 overflow-hidden flex flex-col items-stretch">
           {!data || error ? (

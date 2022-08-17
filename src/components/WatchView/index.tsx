@@ -6,10 +6,10 @@ import Comment from "./Comment";
 import { DetailType } from "../../shared/types";
 import ReactHlsPlayer from "@ducanh2912/react-hls-player";
 import MetaData from "./MetaData";
-import NavBar from "../NavBar";
+import NavBar from "../Shared/NavBar";
 import { Player } from "react-tuby";
 import Similar from "./Similar";
-import Skeleton from "../Skeleton";
+import Skeleton from "../Shared/Skeleton";
 
 interface WatchViewProps {
   data?: DetailType;

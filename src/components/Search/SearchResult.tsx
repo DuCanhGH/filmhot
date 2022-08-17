@@ -1,8 +1,8 @@
-import Error from "../Error";
+import Error from "../Shared/Error";
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import Skeleton from "../Skeleton";
+import Skeleton from "../Shared/Skeleton";
 import { resizeImage } from "../../shared/constants";
 import { searchWithKeyword } from "../../services/search";
 import useSWR from "swr";

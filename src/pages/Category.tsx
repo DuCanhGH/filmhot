@@ -1,7 +1,7 @@
 import CategoryResult from "../components/Category/CategoryResult";
-import Error from "../components/Error";
+import Error from "../components/Shared/Error";
 import { FC } from "react";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Shared/NavBar";
 import { getSearchConfig } from "../services/explore";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";

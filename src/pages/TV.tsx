@@ -1,4 +1,4 @@
-import Error from "../components/Error";
+import Error from "../components/Shared/Error";
 import { FC } from "react";
 import WatchView from "../components/WatchView";
 import { getMovieDetail } from "../services/movie";

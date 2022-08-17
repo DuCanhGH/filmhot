@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { FC } from "react";
 import { Navigation } from "swiper";
-import Skeleton from "../Skeleton";
+import Skeleton from "../Shared/Skeleton";
 
 const Slider: FC = () => {
   return (

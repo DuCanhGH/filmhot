@@ -3,12 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { FaBars, FaHeart, FaExternalLinkAlt } from "react-icons/fa";
 
-import Error from "../components/Error";
+import Error from "../components/Shared/Error";
 import ReactHlsPlayer from "@ducanh2912/react-hls-player";
-import ImageFade from "../components/ImageFade";
+import ImageFade from "../components/Shared/ImageFade";
 import { InView } from "react-intersection-observer";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/Shared/Sidebar";
 import { getDiscoveryItems } from "../services/discovery";
 import { resizeImage } from "../shared/constants";
 import useSWRInfinite from "swr/infinite";

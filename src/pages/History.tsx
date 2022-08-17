@@ -4,7 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 
-import NavBar from "../components/NavBar";
+import NavBar from "../components/Shared/NavBar";
 import { resizeImage } from "../shared/constants";
 
 interface DataType {
