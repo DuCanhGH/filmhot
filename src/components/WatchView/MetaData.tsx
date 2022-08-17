@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaRedoAlt } from "react-icons/fa";
 

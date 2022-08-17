@@ -50,4 +50,4 @@
 
 ## Summary
 
-- This repo is a fork of the now archived `https://github.com/napthedev/filmhot`, with support for PWA.
+- This repo is a fork of the previously archived `https://github.com/napthedev/filmhot`, with support for PWA.
