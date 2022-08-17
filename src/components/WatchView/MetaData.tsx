@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, useState, useRef } from "react";
+import { FC, useState, useCallback, RefCallback } from "react";
 import { Link } from "react-router-dom";
 import { FaRedoAlt } from "react-icons/fa";
 
@@ -12,8 +12,15 @@ interface MetaDataProps {
 }
 
 const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
-  const lastEpisodeRef = useRef<HTMLAnchorElement | null>(null);
+  const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const lastEpisodeRef: RefCallback<HTMLAnchorElement> = useCallback((node) => {
+    if (node != null) {
+      if (node.offsetTop > 0) {
+        setShowLoadMoreButton(true);
+      }
+    }
+  }, []);
   return (
     <>
       {data ? (
@@ -59,7 +66,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
               <div
                 className={classNames("flex flex-wrap gap-3 relative", {
                   "before:absolute before:bg-gradient-to-b before:from-[#00000000] before:to-dark before:top-10 before:w-full before:left-0 before:h-8 max-h-[68px] overflow-hidden":
-                    !isExpanded,
+                    showLoadMoreButton && !isExpanded,
                 })}
               >
                 {new Array(data.episodeVo).fill("").map((_, index) => (
@@ -78,11 +85,13 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
                   </Link>
                 ))}
               </div>
-              <div>
-                <button className="text-primary" onClick={() => setIsExpanded(!isExpanded)}>
-                  {isExpanded ? "Show less" : "Show more"}
-                </button>
-              </div>
+              {showLoadMoreButton && (
+                <div>
+                  <button className="text-primary" onClick={() => setIsExpanded(!isExpanded)}>
+                    {isExpanded ? "Show less" : "Show more"}
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>
