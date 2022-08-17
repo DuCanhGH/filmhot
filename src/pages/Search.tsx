@@ -36,12 +36,12 @@ const Search: FC = () => {
   return (
     <>
       <Helmet>
-        <title>{`Search for ${query}`}</title>
+        <title>{`Search for '${query}'`}</title>
       </Helmet>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">
         <NavBar />
         <div>
-          <h1 className="mb-6 text-3xl">Search result for {query}</h1>
+          <h1 className="mb-6 text-3xl">Search result for {`'${query}'`}</h1>
         </div>
         <SearchResult query={query} />
       </div>
