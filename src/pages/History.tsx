@@ -41,7 +41,7 @@ const History: FC = () => {
         <div className="flex justify-between mb-6">
           <h1 className="text-3xl">Watch history</h1>
 
-          <button onClick={clearHistory} className="text-primary flex items-center gap-2">
+          <button onClick={clearHistory} className="text-primary flex items-center gap-1">
             <FaTrash /> <span>Clear</span>
           </button>
         </div>
