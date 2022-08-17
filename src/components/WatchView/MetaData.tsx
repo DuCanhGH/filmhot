@@ -13,15 +13,7 @@ interface MetaDataProps {
 
 const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
   const lastEpisodeRef = useRef<HTMLAnchorElement | null>(null);
-  const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  useEffect(() => {
-    if (lastEpisodeRef.current) {
-      if (lastEpisodeRef.current.offsetTop > 0) {
-        setShowLoadMoreButton(true);
-      }
-    }
-  }, []);
   return (
     <>
       {data ? (
@@ -67,7 +59,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
               <div
                 className={classNames("flex flex-wrap gap-3 relative", {
                   "before:absolute before:bg-gradient-to-b before:from-[#00000000] before:to-dark before:top-10 before:w-full before:left-0 before:h-8 max-h-[68px] overflow-hidden":
-                    showLoadMoreButton && !isExpanded,
+                    !isExpanded,
                 })}
               >
                 {new Array(data.episodeVo).fill("").map((_, index) => (
@@ -86,13 +78,11 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
                   </Link>
                 ))}
               </div>
-              {showLoadMoreButton && (
-                <div>
-                  <button className="text-primary" onClick={() => setIsExpanded(!isExpanded)}>
-                    {isExpanded ? "Show less" : "Show more"}
-                  </button>
-                </div>
-              )}
+              <div>
+                <button className="text-primary" onClick={() => setIsExpanded(!isExpanded)}>
+                  {isExpanded ? "Show less" : "Show more"}
+                </button>
+              </div>
             </>
           )}
         </div>
