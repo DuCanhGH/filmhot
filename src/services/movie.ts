@@ -26,7 +26,7 @@ export const getMovieDetail = async (
           (
             await axios.get("media/previewInfo", {
               params: {
-                category: 0,
+                category,
                 contentId: id,
                 episodeId: data.episodeVo[0].id,
                 definition: quality.code,

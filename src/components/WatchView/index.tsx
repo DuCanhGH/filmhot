@@ -68,32 +68,33 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
       <div className="flex justify-center">
         <div className="mx-[4vw] lg:mx-[6vw] flex-1">
           <NavBar />
-
           <div className="flex flex-col md:flex-row gap-10 my-7">
             <div className="flex flex-col items-stretch flex-grow">
-              <div key={episodeIndex} className="w-full">
-                {data && sources && subtitles ? (
-                  <Player
-                    playerKey={playerKey}
-                    primaryColor="#0D90F3"
-                    src={sources}
-                    subtitles={
-                      subtitles?.map((subtitle) => ({
-                        ...subtitle,
-                        url: subtitleProxy(subtitle.url),
-                      })) || []
-                    }
-                  >
-                    {(ref, props) => {
-                      const { src, ...others } = props;
-                      return <ReactHlsPlayer playerRef={ref} src={src} {...others} />;
-                    }}
-                  </Player>
-                ) : (
-                  <div className="w-full h-0 pb-[56.25%] relative">
-                    <Skeleton className="absolute top-0 left-0 w-full h-full" />
-                  </div>
-                )}
+              <div className="w-full h-0 pb-[56.25%] relative">
+                <div className="absolute inset-0 w-full h-full bg-black">
+                  {data && sources && subtitles ? (
+                    <Player
+                      playerKey={playerKey}
+                      primaryColor="#0D90F3"
+                      src={sources}
+                      subtitles={
+                        subtitles?.map((subtitle) => ({
+                          ...subtitle,
+                          url: subtitleProxy(subtitle.url),
+                        })) || []
+                      }
+                    >
+                      {(ref, props) => {
+                        const { src, ...others } = props;
+                        return <ReactHlsPlayer playerRef={ref} src={src} {...others} />;
+                      }}
+                    </Player>
+                  ) : (
+                    <div className="w-full h-0 pb-[56.25%] relative">
+                      <Skeleton className="absolute top-0 left-0 w-full h-full" />
+                    </div>
+                  )}
+                </div>
               </div>
 
               <MetaData data={data} episodeIndex={episodeIndex} />
