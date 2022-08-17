@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC, useState, useCallback, RefCallback } from "react";
+import { FC, useState, useCallback, RefCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaRedoAlt } from "react-icons/fa";
 
@@ -21,6 +21,9 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
       }
     }
   }, []);
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [episodeIndex]);
   return (
     <>
       {data ? (
