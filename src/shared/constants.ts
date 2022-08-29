@@ -4,7 +4,7 @@ export const resizeImage = (url: string, width = "", height = "") =>
     : `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${width}&h=${height}&fit=outside`;
 
 export const subtitleProxy = (url: string) =>
-  `https://srt-to-vtt.vercel.app?url=${encodeURIComponent(url)}`;
+  `https://ducanh-filmhot-api.vercel.app/api/subtitles?url=${encodeURIComponent(url)}`;
 
 export const IMAGE_CARD_SIZE: {
   [key: number]: {
