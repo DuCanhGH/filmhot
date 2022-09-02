@@ -10,7 +10,7 @@ import { InView } from "react-intersection-observer";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Sidebar from "../components/Shared/Sidebar";
 import { getDiscoveryItems } from "../services/discovery";
-import { resizeImage } from "../shared/constants";
+import { resizeImage, convertWebp } from "../shared/constants";
 import useSWRInfinite from "swr/infinite";
 
 const Discovery: FC = () => {
@@ -72,7 +72,7 @@ const Discovery: FC = () => {
                   <div key={item.id} className="w-full max-w-[600px] flex gap-2">
                     <ImageFade
                       className="w-12 h-12 rounded-full flex-shrink-0 bg-gray-500"
-                      src={resizeImage(item.upInfo.upImgUrl)}
+                      src={convertWebp(resizeImage(item.upInfo.upImgUrl))}
                       alt=""
                     />
 

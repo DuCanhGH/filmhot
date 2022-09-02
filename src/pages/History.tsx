@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 
 import NavBar from "../components/Shared/NavBar";
-import { resizeImage } from "../shared/constants";
+import { resizeImage, convertWebp } from "../shared/constants";
 
 interface DataType {
   id: string;
@@ -69,7 +69,7 @@ const History: FC = () => {
                     <LazyLoadImage
                       effect="opacity"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      src={resizeImage(item.coverVerticalUrl, "250")}
+                      src={convertWebp(resizeImage(item.coverVerticalUrl, "250"))}
                       alt=""
                     />
                   </div>

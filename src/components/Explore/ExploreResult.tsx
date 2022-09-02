@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { advanceSearch } from "../../services/explore";
-import { resizeImage } from "../../shared/constants";
+import { resizeImage, convertWebp } from "../../shared/constants";
 import useSWRInfinite from "swr/infinite";
 
 interface ExploreResultProps {
@@ -61,7 +61,7 @@ const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }
                   <LazyLoadImage
                     effect="opacity"
                     className="absolute top-0 left-0 w-full h-full object-cover"
-                    src={resizeImage(item.coverVerticalUrl, "250")}
+                    src={convertWebp(resizeImage(item.coverVerticalUrl, "250"))}
                     alt=""
                   />
                 </div>

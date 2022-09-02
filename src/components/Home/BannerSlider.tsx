@@ -4,7 +4,7 @@ import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Navigation } from "swiper";
-import { resizeImage } from "../../shared/constants";
+import { resizeImage, convertWebp } from "../../shared/constants";
 
 interface SliderProps {
   images: {
@@ -29,7 +29,7 @@ const BannerSlider: FC<SliderProps> = ({ images }) => {
             <div className="w-full h-0 pb-[42%] relative">
               <LazyLoadImage
                 className="absolute top-0 left-0 w-full h-full object-cover opacity-75"
-                src={resizeImage(item.image, "900")}
+                src={convertWebp(resizeImage(item.image, "900"))}
                 alt=""
                 effect="opacity"
               />

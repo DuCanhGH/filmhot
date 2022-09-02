@@ -1,14 +1,13 @@
+export const apiUrl = "https://ducanh-filmhot-api.vercel.app/api";
+
+export const convertWebp = (url: string) => `${apiUrl}/webp?url=${encodeURIComponent(url)}`;
+
 export const resizeImage = (url: string, width = "", height = "") =>
   url.startsWith("https://graph.facebook.com/")
     ? url
-    : `https://ducanh-filmhot-api.vercel.app/api/webp?url=${encodeURIComponent(
-        `https://images.weserv.nl/?url=${encodeURIComponent(
-          url,
-        )}&w=${width}&h=${height}&fit=outside`,
-      )}`;
+    : `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${width}&h=${height}&fit=outside`;
 
-export const subtitleProxy = (url: string) =>
-  `https://ducanh-filmhot-api.vercel.app/api/subtitles?url=${encodeURIComponent(url)}`;
+export const subtitleProxy = (url: string) => `${apiUrl}/subtitles?url=${encodeURIComponent(url)}`;
 
 export const IMAGE_CARD_SIZE: {
   [key: number]: {

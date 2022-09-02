@@ -3,7 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import Skeleton from "../Shared/Skeleton";
 import { getTopSearched } from "../../services/home";
-import { resizeImage } from "../../shared/constants";
+import { resizeImage, convertWebp } from "../../shared/constants";
 import useSWR from "swr";
 
 const TopSearches: FC = () => {
@@ -33,7 +33,7 @@ const TopSearches: FC = () => {
           <div className="w-[100px] h-[60px] flex-shrink-0">
             <LazyLoadImage
               className="w-[100px] h-[60px] object-cover rounded-lg"
-              src={resizeImage(top.cover, "100")}
+              src={convertWebp(resizeImage(top.cover, "100"))}
               width={100}
               height={60}
               effect="opacity"

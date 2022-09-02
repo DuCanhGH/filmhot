@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { FC } from "react";
-import { IMAGE_CARD_SIZE } from "../../shared/constants";
+import { IMAGE_CARD_SIZE, convertWebp } from "../../shared/constants";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Navigation } from "swiper";
@@ -34,7 +34,7 @@ const Slider: FC<SliderProps> = ({ images, coverType }) => {
                   height: IMAGE_CARD_SIZE[coverType || 1].height,
                 }}
                 className="group-hover:brightness-75 transition duration-300 object-cover"
-                src={item.image}
+                src={convertWebp(item.image)}
                 width={IMAGE_CARD_SIZE[coverType || 1].width}
                 height={IMAGE_CARD_SIZE[coverType || 1].height}
                 effect="opacity"

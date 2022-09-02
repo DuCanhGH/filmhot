@@ -4,7 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { getCategoryItems } from "../../services/category";
-import { resizeImage } from "../../shared/constants";
+import { resizeImage, convertWebp } from "../../shared/constants";
 import useInfiniteSWR from "swr/infinite";
 import { Helmet } from "react-helmet-async";
 
@@ -68,7 +68,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
                       <LazyLoadImage
                         effect="opacity"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        src={resizeImage(item.coverVerticalUrl, "250")}
+                        src={convertWebp(resizeImage(item.coverVerticalUrl, "250"))}
                         alt=""
                       />
                     </div>
