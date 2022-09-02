@@ -1,7 +1,9 @@
 export const resizeImage = (url: string, width = "", height = "") =>
   url.startsWith("https://graph.facebook.com/")
     ? url
-    : `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${width}&h=${height}&fit=outside`;
+    : `https://images.weserv.nl/?url=${encodeURIComponent(
+        `https://ducanh-filmhot-api.vercel.app/api/webp?url=${encodeURIComponent(url)}`,
+      )}&w=${width}&h=${height}&fit=outside`;
 
 export const subtitleProxy = (url: string) =>
   `https://ducanh-filmhot-api.vercel.app/api/subtitles?url=${encodeURIComponent(url)}`;
