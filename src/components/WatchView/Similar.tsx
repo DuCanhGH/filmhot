@@ -3,7 +3,7 @@ import { FC } from "react";
 import ImageFade from "../Shared/ImageFade";
 import { Link } from "react-router-dom";
 import Skeleton from "../Shared/Skeleton";
-import { resizeImage, convertWebp } from "../../shared/constants";
+import { resizeImage } from "../../shared/constants";
 
 interface SimilarProps {
   data: DetailType | undefined;
@@ -29,7 +29,7 @@ const Similar: FC<SimilarProps> = ({ data }) => {
                       <div className="flex-shrink-0 h-[100px] w-[70px]">
                         <ImageFade
                           className="h-full w-full object-cover"
-                          src={convertWebp(resizeImage(ref.coverVerticalUrl, "", "100"))}
+                          src={resizeImage(ref.coverVerticalUrl, "", "100")}
                           alt=""
                         />
                       </div>
@@ -55,7 +55,7 @@ const Similar: FC<SimilarProps> = ({ data }) => {
                     <div className="flex-shrink-0 h-[100px] w-[70px]">
                       <ImageFade
                         className="h-full w-full object-cover"
-                        src={convertWebp(resizeImage(like.coverVerticalUrl, "", "100"))}
+                        src={resizeImage(like.coverVerticalUrl, "", "100")}
                         alt=""
                       />
                     </div>

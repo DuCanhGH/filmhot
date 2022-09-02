@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import { FaPaperPlane, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { calculateCreatedTime } from "../../shared/utils";
 import { db } from "../../shared/firebase";
-import { resizeImage, convertWebp } from "../../shared/constants";
+import { resizeImage } from "../../shared/constants";
 import { useCollectionQuery } from "../../hooks/useCollectionQuery";
 import { useStore } from "../../store";
 import { RHFTextArea } from "../Shared/RHFInput";
@@ -93,7 +93,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
             >
               <img
                 className="w-[30px] h-[30px] rounded-full absolute top-1/2 -translate-y-1/2 left-[10px]"
-                src={convertWebp(resizeImage(currentUser.photoURL, "30", "30"))}
+                src={resizeImage(currentUser.photoURL, "30", "30")}
                 alt=""
               />
               <RHFTextArea
@@ -152,7 +152,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                 <div key={doc.id} className="flex gap-2 w-full">
                   <img
                     className="w-[50px] h-[50px] rounded-full flex-shrink-0"
-                    src={convertWebp(resizeImage(docData.user.photoURL, "50", "50"))}
+                    src={resizeImage(docData.user.photoURL, "50", "50")}
                     alt=""
                   />
                   <div className="flex-1 min-w-0">

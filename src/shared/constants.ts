@@ -2,12 +2,15 @@ export const apiUrl = import.meta.env.PROD
   ? "https://ducanh-filmhot-api.vercel.app/api"
   : `http://localhost:${import.meta.env.VITE_API_PORT}/api`;
 
-export const convertWebp = (url: string) => `${apiUrl}/webp?url=${encodeURIComponent(url)}`;
+export const convertWebp = (url: string) =>
+  `https://images.weserv.nl/?url=${encodeURIComponent(url)}&output=webp`;
 
 export const resizeImage = (url: string, width = "", height = "") =>
   url.startsWith("https://graph.facebook.com/")
     ? url
-    : `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=${width}&h=${height}&fit=outside`;
+    : `https://images.weserv.nl/?url=${encodeURIComponent(
+        url,
+      )}&w=${width}&h=${height}&fit=outside&output=webp`;
 
 export const subtitleProxy = (url: string) => `${apiUrl}/subtitles?url=${encodeURIComponent(url)}`;
 

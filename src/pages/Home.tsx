@@ -11,7 +11,7 @@ import Skeleton from "../components/Shared/Skeleton";
 import SkeletonSlider from "../components/Home/SkeletonSlider";
 import TopSearches from "../components/Home/TopSearches";
 import { getHome } from "../services/home";
-import { resizeImage, convertWebp } from "../shared/constants";
+import { resizeImage } from "../shared/constants";
 import useSWRInfinite from "swr/infinite";
 
 const Home: FC = () => {
@@ -94,7 +94,7 @@ const Home: FC = () => {
 
                               return {
                                 title: item.title,
-                                image: convertWebp(item.imageUrl),
+                                image: item.imageUrl,
                                 link:
                                   searchParams.get("type") === "0"
                                     ? `/movie/${searchParams.get("id")}`
@@ -123,7 +123,7 @@ const Home: FC = () => {
 
                           return {
                             title: item.title,
-                            image: convertWebp(resizeImage(item.imageUrl, "200")),
+                            image: resizeImage(item.imageUrl, "200"),
                             link:
                               searchParams.get("type") === "0"
                                 ? `/movie/${searchParams.get("id")}`

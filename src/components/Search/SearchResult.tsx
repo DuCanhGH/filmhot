@@ -3,7 +3,7 @@ import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import Skeleton from "../Shared/Skeleton";
-import { resizeImage, convertWebp } from "../../shared/constants";
+import { resizeImage } from "../../shared/constants";
 import { searchWithKeyword } from "../../services/search";
 import useSWR from "swr";
 
@@ -42,7 +42,7 @@ const SearchResult: FC<SearchResultProps> = ({ query }) => {
                   <LazyLoadImage
                     effect="opacity"
                     className="absolute top-0 left-0 w-full h-full object-cover"
-                    src={convertWebp(resizeImage(item.coverVerticalUrl, "250"))}
+                    src={resizeImage(item.coverVerticalUrl, "250")}
                     alt=""
                   />
                 </div>
