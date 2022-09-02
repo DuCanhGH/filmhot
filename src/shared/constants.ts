@@ -1,4 +1,6 @@
-export const apiUrl = "https://ducanh-filmhot-api.vercel.app/api";
+export const apiUrl = import.meta.env.PROD
+  ? "https://ducanh-filmhot-api.vercel.app/api"
+  : `http://localhost:${import.meta.env.VITE_API_PORT}/api`;
 
 export const convertWebp = (url: string) => `${apiUrl}/webp?url=${encodeURIComponent(url)}`;
 
