@@ -23,7 +23,7 @@ specifiers:
   eslint: 8.23.0
   eslint-config-prettier: 8.5.0
   eslint-config-react-app: 7.0.1
-  eslint-plugin-simple-import-sort: 7.0.0
+  eslint-plugin-simple-import-sort: 8.0.0
   firebase: 9.9.4
   husky: 8.0.1
   jsdom: 20.0.0
@@ -48,7 +48,7 @@ specifiers:
   typescript: 4.8.2
   vite: 3.0.9
   vite-plugin-checker: 0.5.0
-  vite-plugin-pwa: 0.12.4
+  vite-plugin-pwa: 0.12.6
   vitest: 0.22.1
   workbox-cacheable-response: 6.5.4
   workbox-core: 6.5.4
@@ -100,7 +100,7 @@ devDependencies:
   eslint: 8.23.0
   eslint-config-prettier: 8.5.0_eslint@8.23.0
   eslint-config-react-app: 7.0.1_j2dbjqxyzvzithathogtgf7aly
-  eslint-plugin-simple-import-sort: 7.0.0_eslint@8.23.0
+  eslint-plugin-simple-import-sort: 8.0.0_eslint@8.23.0
   husky: 8.0.1
   jsdom: 20.0.0
   npm-run-all: 4.1.5
@@ -110,7 +110,7 @@ devDependencies:
   typescript: 4.8.2
   vite: 3.0.9
   vite-plugin-checker: 0.5.0_o4lnnexq5fnys4zvralpfce24i
-  vite-plugin-pwa: 0.12.4_f7se6o6eqkwcix4u3svh6mkvda
+  vite-plugin-pwa: 0.12.6_f7se6o6eqkwcix4u3svh6mkvda
   vitest: 0.22.1_jsdom@20.0.0
   workbox-cacheable-response: 6.5.4
   workbox-core: 6.5.4
@@ -3814,8 +3814,8 @@ packages:
       string.prototype.matchall: 4.0.7
     dev: true
 
-  /eslint-plugin-simple-import-sort/7.0.0_eslint@8.23.0:
-    resolution: {integrity: sha512-U3vEDB5zhYPNfxT5TYR7u01dboFZp+HNpnGhkDB2g/2E4wZ/g1Q9Ton8UwCLfRV9yAKyYqDh62oHOamvkFxsvw==}
+  /eslint-plugin-simple-import-sort/8.0.0_eslint@8.23.0:
+    resolution: {integrity: sha512-bXgJQ+lqhtQBCuWY/FUWdB27j4+lqcvXv5rUARkzbeWLwea+S5eBZEQrhnO+WgX3ZoJHVj0cn943iyXwByHHQw==}
     peerDependencies:
       eslint: '>=5.0.0'
     dependencies:
@@ -6303,8 +6303,8 @@ packages:
       vscode-uri: 3.0.3
     dev: true
 
-  /vite-plugin-pwa/0.12.4_f7se6o6eqkwcix4u3svh6mkvda:
-    resolution: {integrity: sha512-ONHS2OcMMWdOOIPG8JBet2BTssZC1FSjY34f9t5byM3H6RKgu5qbv6p809OlfYkg8bFi58oEhNDxDB5UE4vkfQ==}
+  /vite-plugin-pwa/0.12.6_f7se6o6eqkwcix4u3svh6mkvda:
+    resolution: {integrity: sha512-qRxx1zUlwKq2QD20nDZVL449wV+dflRVeDMLa2k4LZiHfWRfHWwmdhnDZOlMEgni0Zss1DkhyTmuzLYuO6aO3A==}
     peerDependencies:
       vite: ^2.0.0 || ^3.0.0-0
       workbox-window: ^6.4.0
