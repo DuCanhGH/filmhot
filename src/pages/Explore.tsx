@@ -18,6 +18,7 @@ const Explore: FC = () => {
     <>
       <Helmet>
         <title>Explore</title>
+        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/explore`} />
       </Helmet>
       <div className="flex flex-col items-stretch min-h-screen mx-[7vw]">
         <NavBar />

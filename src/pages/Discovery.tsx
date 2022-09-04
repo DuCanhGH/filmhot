@@ -38,6 +38,7 @@ const Discovery: FC = () => {
     <>
       <Helmet>
         <title>Discovery</title>
+        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/discovery`} />
       </Helmet>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
         <Link to="/" className="flex items-center gap-2">
@@ -72,8 +73,8 @@ const Discovery: FC = () => {
                   <div key={item.id} className="w-full max-w-[600px] flex gap-2">
                     <ImageFade
                       className="w-12 h-12 rounded-full flex-shrink-0 bg-gray-500"
-                      src={resizeImage(item.upInfo.upImgUrl)}
-                      alt=""
+                      src={resizeImage(item.upInfo.upImgUrl, "48", "48")}
+                      alt="OP's profile picture"
                     />
 
                     <div className="flex flex-col items-stretch flex-grow gap-3">
@@ -103,6 +104,7 @@ const Discovery: FC = () => {
                         <div
                           className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
                           aria-label="Likes"
+                          role="img"
                         >
                           <FaHeart className="text-red-500" />
                         </div>
@@ -118,6 +120,7 @@ const Discovery: FC = () => {
                                 : `/tv/${item.refList[0].id}`
                             }
                             className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
+                            aria-label="Visit movie / TV page for this post"
                           >
                             <FaExternalLinkAlt />
                           </Link>

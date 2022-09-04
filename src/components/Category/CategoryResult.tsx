@@ -36,7 +36,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   return (
     <>
       <Helmet>
-        <title>{`Category ${categoryName}`}</title>
+        <title>{`Category: ${categoryName}`}</title>
       </Helmet>
       <InfiniteScroll
         dataLength={data?.length || 0}

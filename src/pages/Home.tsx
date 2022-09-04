@@ -1,6 +1,7 @@
 import { FC, Fragment, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 import BannerSlider from "../components/Home/BannerSlider";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -33,6 +34,9 @@ const Home: FC = () => {
 
   return (
     <>
+      <Helmet>
+        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/`} />
+      </Helmet>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
         <Link to="/" className="flex items-center gap-2">
           <img className="w-8 h-8" src="/icon.png" alt="" />

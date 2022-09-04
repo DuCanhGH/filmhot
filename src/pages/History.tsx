@@ -35,6 +35,7 @@ const History: FC = () => {
     <>
       <Helmet>
         <title>Watch history</title>
+        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/history`} />
       </Helmet>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">
         <NavBar />
