@@ -7,7 +7,7 @@ import { DetailType } from "../../shared/types";
 import ReactHlsPlayer from "@ducanh2912/react-hls-player";
 import MetaData from "./MetaData";
 import NavBar from "../Shared/NavBar";
-import { Player } from "react-tuby";
+import { Player } from "@ducanh2912/react-tuby";
 import Similar from "./Similar";
 import Skeleton from "../Shared/Skeleton";
 
