@@ -5,7 +5,7 @@ specifiers:
   '@babel/plugin-syntax-flow': 7.18.6
   '@babel/plugin-transform-react-jsx': 7.18.10
   '@ducanh2912/react-hls-player': 3.2.5
-  '@ducanh2912/react-tuby': 0.3.1
+  '@ducanh2912/react-tuby': 0.3.2
   '@testing-library/react': 13.3.0
   '@types/eslint': 8.4.6
   '@types/lodash-es': 4.17.6
@@ -61,7 +61,7 @@ specifiers:
 
 dependencies:
   '@ducanh2912/react-hls-player': 3.2.5_react@18.2.0
-  '@ducanh2912/react-tuby': 0.3.1_react@18.2.0
+  '@ducanh2912/react-tuby': 0.3.2_react@18.2.0
   axios: 0.27.2
   classnames: 2.3.1
   cross-env: 7.0.3
@@ -1518,8 +1518,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@ducanh2912/react-tuby/0.3.1_react@18.2.0:
-    resolution: {integrity: sha512-aPrOf7lDorobHd2LvsVi574F9VxyTtvlVbjAIteuTue/t5TbTG50CDITbYvznRY7Cl1EGYgdsvz/yewqxCHctw==}
+  /@ducanh2912/react-tuby/0.3.2_react@18.2.0:
+    resolution: {integrity: sha512-xJovtjEDfhCSOb9veoERwPFaDibfboDc0MIcwLjImiRMo5VIbJenNMV8oawZH3bdbFrT0LvsXPhHSo9xAkbfgQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16.8.0'
