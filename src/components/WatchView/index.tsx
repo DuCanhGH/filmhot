@@ -31,7 +31,9 @@ interface WatchViewProps {
 
 const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex }) => {
   const mediaType = typeof episodeIndex === "undefined" ? "movie" : "tv";
-  const playerKey = `${mediaType}-${data?.id}${episodeIndex ? `-${episodeIndex}` : ""}`;
+  const playerKey = `ducanh-filmhot-${mediaType}-${data?.id}${
+    episodeIndex ? `-${episodeIndex}` : ""
+  }`;
 
   useEffect(() => {
     if (!data) return;

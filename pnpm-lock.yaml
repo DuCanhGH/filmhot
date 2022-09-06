@@ -4,8 +4,8 @@ specifiers:
   '@babel/core': 7.19.0
   '@babel/plugin-syntax-flow': 7.18.6
   '@babel/plugin-transform-react-jsx': 7.19.0
-  '@ducanh2912/react-hls-player': 3.2.7
-  '@ducanh2912/react-tuby': 0.3.5
+  '@ducanh2912/react-hls-player': 3.2.8
+  '@ducanh2912/react-tuby': 0.3.6
   '@testing-library/react': 13.4.0
   '@types/eslint': 8.4.6
   '@types/lodash-es': 4.17.6
@@ -60,8 +60,8 @@ specifiers:
   zustand: 4.1.1
 
 dependencies:
-  '@ducanh2912/react-hls-player': 3.2.7_react@18.2.0
-  '@ducanh2912/react-tuby': 0.3.5_react@18.2.0
+  '@ducanh2912/react-hls-player': 3.2.8_react@18.2.0
+  '@ducanh2912/react-tuby': 0.3.6_react@18.2.0
   axios: 0.27.2
   classnames: 2.3.1
   cross-env: 7.0.3
@@ -1495,8 +1495,8 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@ducanh2912/react-hls-player/3.2.7_react@18.2.0:
-    resolution: {integrity: sha512-2YI6KRfS8DNmT4unvLVthnCWZtzMRtpDz/SrrA/deEEvpOhUfTZXgVwbGfZZUCmFtlgsPbcI0MF82QYRNAC3gw==}
+  /@ducanh2912/react-hls-player/3.2.8_react@18.2.0:
+    resolution: {integrity: sha512-J9BNzkXBuVeqaEGwO/Qx/BfHbTh7/NS1/S4QzNTAv23dcwnGEhZKMaKopuoXSbyfflyMeZZhzWx4VmKhpJpTew==}
     peerDependencies:
       react: '>=16.8.0'
     dependencies:
@@ -1504,8 +1504,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@ducanh2912/react-tuby/0.3.5_react@18.2.0:
-    resolution: {integrity: sha512-PEPpnK7vKMDLQdPCmQWhI44bHo1Lm+q35n99DMe50XLvLmdCtDaXsf6mYCHo64puBb6Ioq5yXu2av8DejCWgIQ==}
+  /@ducanh2912/react-tuby/0.3.6_react@18.2.0:
+    resolution: {integrity: sha512-qxyUMH2u/pW/GrRgx6DyKaIN5ZNOIHCorQX9I/hwZrENnCzv1SPywIDwCAfF45f8KgCx71M475PitEbc58A4Rg==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16.8.0'
