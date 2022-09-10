@@ -10,9 +10,7 @@ export const getHome = async (page = 0): Promise<HomeSection[]> => {
           page,
         },
       })
-    ).data.data.recommendItems.filter(
-      (section: any) => section.homeSectionType !== "BLOCK_GROUP" && !section.bannerProportion,
-    );
+    ).data.data.recommendItems.filter((section: any) => section.homeSectionType !== "BLOCK_GROUP");
     if (!data) {
       return [];
     }

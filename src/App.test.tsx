@@ -1,4 +1,4 @@
-import { describe, test } from "vitest";
+import { describe, test, vi } from "vitest";
 import { render, act } from "@testing-library/react";
 import App from "./App";
 import { MemoryRouter } from "react-router-dom";
@@ -8,12 +8,25 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 
 describe("render <App />", () => {
   beforeAll(() => {
-    Object.defineProperty(window, "scrollTo", {
-      value: (x: number, y: number) => {
-        document.documentElement.scrollLeft = x;
-        document.documentElement.scrollTop = y;
+    const mock = function () {
+      return {
+        observe: vi.fn(),
+        disconnect: vi.fn(),
+        unobserve: vi.fn(),
+        takeRecords: vi.fn(),
+      };
+    };
+    Object.defineProperties(window, {
+      scrollTo: {
+        value: (x: number, y: number) => {
+          document.documentElement.scrollLeft = x;
+          document.documentElement.scrollTop = y;
+        },
+        writable: true,
       },
-      writable: true,
+      IntersectionObserver: {
+        value: mock,
+      },
     });
   });
   test("render without exploding", async () => {

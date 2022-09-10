@@ -19,7 +19,6 @@
 - SWR (data fetching)
 - Firebase (authentication, comments)
 - Swiper (slider)
-- react-infinite-scroll-component (infinite loading)
 
 ## Features
 
@@ -34,7 +33,7 @@
 
 ## How to use this repo
 
-- Clone the project first.
+- Clone the project.
 - Run `pnpm i`/`npm i`.
 - Create your own firebase project and add VITE_FIREBASE_CONFIG to .env (see .env.example).
 
