@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { KeyedMutator } from "swr";
+import { FaRedoAlt } from "react-icons/fa";
 
 const Error: FC = () => {
   const location = useLocation();
@@ -15,6 +17,30 @@ const Error: FC = () => {
           Return home
         </Link>
       )}
+    </div>
+  );
+};
+
+interface EWRProps<T = unknown> {
+  mutate: KeyedMutator<T>;
+}
+
+type EWRFCType<T = any> = FC<EWRProps<T>>;
+
+export const ErrorWithRetry: EWRFCType = (props) => {
+  const { mutate } = props;
+  return (
+    <div className="flex justify-center w-full gap-2">
+      <p className="text-center text-red-600">An error occurred</p>
+      <button
+        className="text-primary w-fit h-fit flex items-center"
+        onClick={() => {
+          mutate();
+        }}
+      >
+        <FaRedoAlt aria-hidden className="text-xl w-[24px]" />
+        <p className="block">Retry</p>
+      </button>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet-async";
 
 import { getCategoryItems } from "../../services/category";
 import { resizeImage } from "../../shared/constants";
+import { ErrorWithRetry } from "../Shared/Error";
 
 interface CategoryResultProps {
   id: string;
@@ -32,10 +33,11 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
     error,
     size,
     setSize,
+    mutate,
   } = useInfiniteSWR<DataType[]>(getKey, (limit) =>
     getCategoryItems(id, limit.split("-").slice(-1)[0]),
   );
-  const data = ogData && !error ? ogData.reduce((acc, current) => [...acc, ...current], []) : [];
+  const data = ogData ? ogData.reduce((acc, current) => [...acc, ...current], []) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
   const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {
@@ -104,7 +106,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
       ) : (
         <p className="text-center mt-6 mb-6">Nothing more to see</p>
       )}
-      {error && <p className="text-center mt-6 mb-6 text-red-600">An error occurred</p>}
+      {error && <ErrorWithRetry mutate={mutate} />}
     </>
   );
 };

@@ -10,6 +10,7 @@ import { getDiscoveryItems } from "../services/discovery";
 import { resizeImage } from "../shared/constants";
 import ImageFade from "../components/Shared/ImageFade";
 import DiscoveryPlayer from "../components/Discovery/Player";
+import { ErrorWithRetry } from "../components/Shared/Error";
 
 const Discovery: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -21,10 +22,11 @@ const Discovery: FC = () => {
     error,
     size,
     setSize,
+    mutate,
   } = useSWRInfinite(getKey, (key) => getDiscoveryItems(Number(key.split("-").slice(-1)[0])), {
     revalidateFirstPage: false,
   });
-  const data = ogData && !error ? ogData.reduce((acc, current) => [...acc, ...current], []) : [];
+  const data = ogData ? ogData.reduce((acc, current) => [...acc, ...current], []) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
   const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {
@@ -144,7 +146,7 @@ const Discovery: FC = () => {
           ) : (
             <p className="text-center mt-6 mb-6">Nothing more to see</p>
           )}
-          {error && <p className="text-center mt-6 mb-6 text-red-600">An error occurred</p>}
+          {error && <ErrorWithRetry mutate={mutate} />}
         </div>
       </div>
     </>
