@@ -53,7 +53,8 @@ export default defineConfig({
     checker({
       typescript: true,
       eslint: {
-        lintCommand: "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+        lintCommand:
+          "eslint src --cache --cache-location ./node_modules/.cache/eslint --ext ts,tsx,js,jsx,cjs,mjs",
       },
     }),
   ],

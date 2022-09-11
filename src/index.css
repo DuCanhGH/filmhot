@@ -53,3 +53,16 @@ body {
 
   @apply after:absolute after:top-[4px] hover:after:top-[-12px] after:border-8 after:border-transparent after:border-t-white after:transition-all after:opacity-0 hover:after:opacity-100 after:left-1/2 after:-translate-x-1/2 after:pointer-events-none;
 }
+
+@media (prefers-reduced-motion) {
+  html {
+    animation: none !important;
+    transition: none !important;
+  }
+  html *,
+  html *:before,
+  html *:after {
+    animation: inherit !important;
+    transition: inherit !important;
+  }
+}

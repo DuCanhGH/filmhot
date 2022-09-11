@@ -18,7 +18,6 @@ import { resizeImage } from "../shared/constants";
 
 const Home: FC = () => {
   const getKey = (index: number) => `home-${index || 0}`;
-
   const {
     data: ogData,
     error,

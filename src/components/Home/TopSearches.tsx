@@ -15,7 +15,6 @@ const TopSearches: FC = () => {
         {[...new Array(Math.round(window.innerHeight / 100))].map((_, index) => (
           <div className="flex gap-2" key={index}>
             <Skeleton className="w-[100px] h-[60px] flex-shrink-0 rounded-lg" />
-
             <Skeleton className="flex-grow h-4 rounded-md" />
           </div>
         ))}
