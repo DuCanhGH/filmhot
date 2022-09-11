@@ -26,6 +26,9 @@ const DiscoveryPlayer: FC<{
         playerRef={videoRef}
         primaryColor="#0D90F3"
         src={src}
+        preserve={{
+          watchTime: false,
+        }}
       >
         {(ref, props) => {
           const { src, ...others } = props;
