@@ -12,7 +12,7 @@ import {
   FaSignInAlt,
   FaSignOutAlt,
   FaHistory,
-  FaRegBookmark,
+  FaBookmark,
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
@@ -51,7 +51,7 @@ const sidebar_links: SidebarLinkType[] = [
   {
     label: "Bookmarks",
     link: "/bookmarks",
-    icon_class: FaRegBookmark,
+    icon_class: FaBookmark,
   },
 ];
 
