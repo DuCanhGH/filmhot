@@ -35,6 +35,8 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
     if (!Array.isArray(existing)) return;
     if (existing.some((a) => a.id === data.id)) {
       setIsMovieBookmarked(true);
+    } else {
+      setIsMovieBookmarked(false);
     }
   }, [data]);
 
