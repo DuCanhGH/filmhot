@@ -6,7 +6,6 @@ import {
   TextareaHTMLAttributes,
 } from "react";
 import { UseFormRegister, Path, FieldError, DeepMap, RegisterOptions } from "react-hook-form";
-import { get } from "lodash-es";
 
 interface ReactHookInputProps<TFormValues extends Record<string, unknown>>
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -45,7 +44,7 @@ export const RHFInput = <TFormValues extends Record<string, unknown>>(
     errorClassName,
     ...other
   } = props;
-  const errorMessages = get(errors, name);
+  const errorMessages = errors && errors[name];
   const hasError = !!(errors && errorMessages);
   return (
     <>
@@ -115,7 +114,7 @@ export const RHFTextArea = <TFormValues extends Record<string, unknown>>(
     textareaProps,
     ...other
   } = props;
-  const errorMessages = get(errors, name);
+  const errorMessages = errors && errors[name];
   const hasError = !!(errors && errorMessages);
   return (
     <>

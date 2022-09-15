@@ -118,7 +118,6 @@ const Home: FC = () => {
                     <SectionSlider
                       images={section.recommendContentVOList.map((item) => {
                         const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
-
                         return {
                           title: item.title,
                           image: resizeImage(item.imageUrl, "200"),
