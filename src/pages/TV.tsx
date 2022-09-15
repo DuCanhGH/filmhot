@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import useSWR from "swr";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 import { useQueryParams } from "../hooks/useQueryParams";
@@ -13,11 +13,26 @@ const TV: FC = () => {
 
   const queryParams = useQueryParams();
 
-  const episodeIndex = Number(queryParams.get("episode")) || 0;
+  const navigate = useNavigate();
 
-  const { data, error } = useSWR(`tv-${id}-${episodeIndex}`, () =>
+  const episodeIndex = Number(queryParams.get("episode"));
+
+  useEffect(() => {
+    if (!episodeIndex) {
+      navigate(`?episode=${localStorage.getItem(`tv-${id}-episode`) || 1}`, {
+        relative: "path",
+      });
+    }
+  }, [episodeIndex, id, navigate]);
+
+  const { data, error } = useSWR(episodeIndex ? `tv-${id}-${episodeIndex}` : null, () =>
     getMovieDetail(id as string, 1, +episodeIndex),
   );
+
+  useEffect(() => {
+    if (error || !data) return;
+    localStorage.setItem(`tv-${id}-episode`, `${episodeIndex}`);
+  }, [error, data, id, episodeIndex]);
 
   if (error) return <Error />;
 

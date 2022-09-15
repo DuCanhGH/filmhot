@@ -74,13 +74,13 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
               >
                 {new Array(data.episodeVo).fill("").map((_, index) => (
                   <Link
-                    to={`/tv/${data.id}?episode=${index}`}
+                    to={`/tv/${data.id}?episode=${index + 1}`}
                     key={index}
                     {...(index === data.episodeVo - 1 ? { ref: lastEpisodeRef } : {})}
                     className={classNames(
                       "px-4 h-[42px] flex items-center bg-dark-lighten rounded hover:brightness-125 transition duration-300",
                       {
-                        "!bg-primary text-white": index === episodeIndex,
+                        "!bg-primary text-white": episodeIndex && index === episodeIndex - 1,
                       },
                     )}
                   >

@@ -63,7 +63,7 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
       {data && (
         <Helmet>
           <title>{`Watch ${data.name}${
-            typeof episodeIndex !== "undefined" ? ` - Episode ${episodeIndex + 1}` : ""
+            typeof episodeIndex !== "undefined" ? ` - Episode ${episodeIndex}` : ""
           }`}</title>
         </Helmet>
       )}

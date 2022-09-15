@@ -75,7 +75,7 @@ const Discovery: FC = () => {
                 <div className="flex flex-col items-stretch flex-grow gap-3">
                   <p className="font-semibold">{item.refList[0]?.name || item.name}</p>
                   <p>{item.introduction}</p>
-                  <div className="w-full h-full relative bg-black">
+                  <div className="w-full h-full bg-black">
                     <InView threshold={0.5}>
                       {({ ref, inView }) => (
                         <DiscoveryPlayer

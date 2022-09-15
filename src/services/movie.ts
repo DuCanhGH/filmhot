@@ -4,7 +4,7 @@ import axios from "../shared/axios";
 export const getMovieDetail = async (
   id: string,
   category: 0 | 1,
-  episodeIndex = 0,
+  episodeIndex = 1,
 ): Promise<{
   data: DetailType;
   sources: { quality: number; url: string }[];
@@ -21,14 +21,14 @@ export const getMovieDetail = async (
 
   const sources = (
     await Promise.all(
-      data.episodeVo[episodeIndex].definitionList.map(
+      data.episodeVo[episodeIndex - 1].definitionList.map(
         async (quality: any) =>
           (
             await axios.get("media/previewInfo", {
               params: {
                 category,
                 contentId: id,
-                episodeId: data.episodeVo[episodeIndex].id,
+                episodeId: data.episodeVo[episodeIndex - 1].id,
                 definition: quality.code,
               },
             })
@@ -38,7 +38,7 @@ export const getMovieDetail = async (
   )
     .map((url, index) => ({
       quality: Number(
-        data.episodeVo[episodeIndex].definitionList[index].description
+        data.episodeVo[episodeIndex - 1].definitionList[index].description
           .toLowerCase()
           .replace("p", ""),
       ),
@@ -50,7 +50,7 @@ export const getMovieDetail = async (
     return await getMovieDetail(id, category, episodeIndex);
   }
 
-  const subtitles = data.episodeVo[episodeIndex].subtitlingList
+  const subtitles = data.episodeVo[episodeIndex - 1].subtitlingList
     .map((sub: any) => ({
       language: `${sub.language}${sub.translateType ? " (Auto)" : ""}`,
       url: sub.subtitlingUrl,
