@@ -6,37 +6,39 @@ import { FaTrash } from "react-icons/fa";
 
 import NavBar from "../components/Shared/NavBar";
 import { resizeImage } from "../shared/constants";
-import type { HistoryType } from "../shared/types";
+import type { BookmarkType } from "../shared/types";
 
-const getHistory = () => {
+const getBookmarks = () => {
   try {
-    const existing = JSON.parse(localStorage.getItem("filmhot-recent") || "[]") as HistoryType[];
+    const existing = JSON.parse(
+      localStorage.getItem("filmhot-favorites") || "[]",
+    ) as BookmarkType[];
     return existing;
   } catch {
     return [];
   }
 };
 
-const History: FC = () => {
-  const [data, setData] = useState<HistoryType[]>(getHistory());
+const Bookmarks: FC = () => {
+  const [data, setData] = useState<BookmarkType[]>(getBookmarks());
 
-  const clearHistory = () => {
-    localStorage.removeItem("filmhot-recent");
-    setData(getHistory());
+  const clearFavorites = () => {
+    localStorage.removeItem("filmhot-favorites");
+    setData(getBookmarks());
   };
 
   return (
     <>
       <Helmet>
-        <title>Watch history</title>
-        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/history`} />
+        <title>Bookmarks</title>
+        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/bookmarks`} />
       </Helmet>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">
         <NavBar />
         <div className="flex justify-between mb-6">
-          <h1 className="text-3xl">Watch history</h1>
+          <h1 className="text-3xl">Bookmarks</h1>
 
-          <button onClick={clearHistory} className="text-primary flex items-center gap-1">
+          <button onClick={clearFavorites} className="text-primary flex items-center gap-1">
             <FaTrash /> <span>Clear</span>
           </button>
         </div>
@@ -44,7 +46,7 @@ const History: FC = () => {
           <div className="flex flex-col items-center my-10 gap-6">
             <img className="w-40 h-40 object-cover" src="/cinema.svg" alt="" />
 
-            <p className="text-xl">No Watch history found</p>
+            <p className="text-xl">No Bookmarks found</p>
 
             <Link className="text-xl text-primary" to="/">
               Discover more
@@ -84,4 +86,4 @@ const History: FC = () => {
   );
 };
 
-export default History;
+export default Bookmarks;

@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { subtitleProxy } from "../../shared/constants";
 
 import Comment from "./Comment";
-import { DetailType } from "../../shared/types";
+import type { DetailType, HistoryType } from "../../shared/types";
 import ReactHlsPlayer from "@ducanh2912/react-hls-player";
 import MetaData from "./MetaData";
 import NavBar from "../Shared/NavBar";
@@ -37,12 +37,7 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
 
   useEffect(() => {
     if (!data) return;
-    let existing = JSON.parse(localStorage.getItem("filmhot-recent") || "[]") as {
-      id: string;
-      category: number;
-      coverVerticalUrl: string;
-      name: string;
-    }[];
+    let existing = JSON.parse(localStorage.getItem("filmhot-recent") || "[]") as HistoryType[];
 
     if (!Array.isArray(existing)) return;
 

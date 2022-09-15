@@ -213,3 +213,17 @@ export interface AdvanceSearchItem {
   name: string;
   sort: string;
 }
+
+export interface HistoryType {
+  id: string;
+  name: string;
+  coverVerticalUrl: string;
+  category: number;
+}
+
+export interface BookmarkType {
+  id: string;
+  name: string;
+  coverVerticalUrl: string;
+  category: number;
+}

@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { FC, useState, useCallback, RefCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaRedoAlt } from "react-icons/fa";
+import { FaRedoAlt, FaBookmark, FaRegBookmark } from "react-icons/fa";
 
 import Skeleton from "../Shared/Skeleton";
-import { DetailType } from "../../shared/types";
+import type { DetailType, BookmarkType } from "../../shared/types";
 
 interface MetaDataProps {
   data?: DetailType;
@@ -14,6 +14,7 @@ interface MetaDataProps {
 const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
   const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isMovieBookmarked, setIsMovieBookmarked] = useState(false);
   const lastEpisodeRef: RefCallback<HTMLAnchorElement> = useCallback((node) => {
     if (node != null) {
       if (node.offsetTop > 0) {
@@ -21,9 +22,39 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
       }
     }
   }, []);
+
   useEffect(() => {
     setIsExpanded(false);
   }, [episodeIndex]);
+
+  useEffect(() => {
+    if (!data) return;
+    const existing = JSON.parse(
+      localStorage.getItem("filmhot-favorites") || "[]",
+    ) as BookmarkType[];
+    if (!Array.isArray(existing)) return;
+    if (existing.some((a) => a.id === data.id)) {
+      setIsMovieBookmarked(true);
+    }
+  }, [data]);
+
+  const bookmarkMovie = () => {
+    if (!data) return;
+    let existing = JSON.parse(localStorage.getItem("filmhot-favorites") || "[]") as BookmarkType[];
+    if (!Array.isArray(existing)) return;
+    existing = existing.filter((item) => item.id !== data.id);
+    if (!isMovieBookmarked) {
+      existing.unshift({
+        id: data.id,
+        category: data.category,
+        coverVerticalUrl: data.coverVerticalUrl,
+        name: data.name,
+      });
+    }
+    setIsMovieBookmarked(!isMovieBookmarked);
+    localStorage.setItem("filmhot-favorites", JSON.stringify(existing));
+  };
+
   return (
     <>
       {data ? (
@@ -52,6 +83,22 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex }) => {
               </Link>
             ))}
           </div>
+          <button
+            className="text-primary w-fit h-fit flex items-center gap-2"
+            onClick={bookmarkMovie}
+          >
+            {isMovieBookmarked ? (
+              <>
+                <FaBookmark aria-hidden className="text-xl w-[24px]" />
+                <p className="block">Movie bookmarked!</p>
+              </>
+            ) : (
+              <>
+                <FaRegBookmark aria-hidden className="text-xl w-[24px]" />
+                <p className="block">Bookmark movie</p>
+              </>
+            )}
+          </button>
           <button
             className="text-primary w-fit h-fit flex items-center gap-2"
             onClick={() => {

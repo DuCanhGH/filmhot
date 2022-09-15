@@ -3,6 +3,7 @@ import Category from "./pages/Category";
 import Discovery from "./pages/Discovery";
 import Explore from "./pages/Explore";
 import History from "./pages/History";
+import Bookmarks from "./pages/Bookmarks";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
 import Search from "./pages/Search";
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "history",
         element: <History />,
+      },
+      {
+        path: "bookmarks",
+        element: <Bookmarks />,
       },
       {
         path: "category/:id",
