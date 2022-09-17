@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
@@ -19,7 +19,11 @@ const getBookmarks = () => {
 };
 
 const Bookmarks: FC = () => {
-  const [data, setData] = useState<BookmarkType[]>(getBookmarks());
+  const [data, setData] = useState<BookmarkType[]>([]);
+
+  useEffect(() => {
+    setData(getBookmarks());
+  }, []);
 
   const clearFavorites = () => {
     localStorage.removeItem("filmhot-favorites");

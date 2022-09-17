@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
@@ -17,7 +17,11 @@ const getHistory = () => {
 };
 
 const History: FC = () => {
-  const [data, setData] = useState<HistoryType[]>(getHistory());
+  const [data, setData] = useState<HistoryType[]>([]);
+
+  useEffect(() => {
+    setData(getHistory());
+  }, []);
 
   const clearHistory = () => {
     localStorage.removeItem("filmhot-recent");

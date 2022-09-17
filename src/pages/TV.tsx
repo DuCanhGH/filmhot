@@ -21,6 +21,7 @@ const TV: FC = () => {
     if (!episodeIndex) {
       navigate(`?episode=${localStorage.getItem(`tv-${id}-episode`) || 1}`, {
         relative: "path",
+        replace: true,
       });
     }
   }, [episodeIndex, id, navigate]);
