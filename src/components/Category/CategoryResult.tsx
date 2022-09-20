@@ -1,9 +1,9 @@
 import { FC, startTransition } from "react";
+import { Helmet } from "react-helmet-async";
+import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import { InView } from "react-intersection-observer";
 import useInfiniteSWR from "swr/infinite";
-import { Helmet } from "react-helmet-async";
 
 import { getCategoryItems } from "../../services/category";
 import { resizeImage } from "../../shared/constants";

@@ -1,5 +1,5 @@
-import { SearchResultItem } from "../shared/types";
 import axios from "../shared/axios";
+import { SearchResultItem } from "../shared/types";
 
 export const searchKeywords = async (keyword: string): Promise<string[]> =>
   (

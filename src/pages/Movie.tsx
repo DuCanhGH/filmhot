@@ -1,10 +1,11 @@
-import Error from "../components/Shared/Error";
 import { FC } from "react";
-import WatchView from "../components/WatchView";
-import { getMovieDetail } from "../services/movie";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { Helmet } from "react-helmet-async";
+
+import Error from "../components/Shared/Error";
+import WatchView from "../components/WatchView";
+import { getMovieDetail } from "../services/movie";
 
 const Info: FC = () => {
   const { id } = useParams();

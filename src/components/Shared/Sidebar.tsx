@@ -1,20 +1,21 @@
-import { Link, useLocation } from "react-router-dom";
-import { FC } from "react";
-import { auth } from "../../shared/firebase";
-import { resizeImage } from "../../shared/constants";
 import { signOut } from "firebase/auth";
-import { useStore } from "../../store";
+import { FC } from "react";
+import type { IconType } from "react-icons";
 import {
-  FaHome,
+  FaBookmark,
   FaCompass,
   FaDesktop,
+  FaHistory,
+  FaHome,
   FaSearch,
   FaSignInAlt,
   FaSignOutAlt,
-  FaHistory,
-  FaBookmark,
 } from "react-icons/fa";
-import type { IconType } from "react-icons";
+import { Link, useLocation } from "react-router-dom";
+
+import { resizeImage } from "../../shared/constants";
+import { auth } from "../../shared/firebase";
+import { useStore } from "../../store";
 
 interface SidebarProps {
   sidebarActive: boolean;

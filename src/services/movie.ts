@@ -1,5 +1,5 @@
-import { DetailType } from "../shared/types";
 import axios from "../shared/axios";
+import { DetailType } from "../shared/types";
 
 export const getMovieDetail = async (
   id: string,

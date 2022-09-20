@@ -1,6 +1,6 @@
-import { FC, Ref, useRef, useEffect } from "react";
 import ReactHlsPlayer from "@ducanh2912/react-hls-player";
 import { Player } from "@ducanh2912/react-tuby";
+import { FC, Ref, useEffect, useRef } from "react";
 
 const DiscoveryPlayer: FC<{
   forwardedRef: Ref<HTMLDivElement>;

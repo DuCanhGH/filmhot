@@ -1,7 +1,7 @@
 import { FC } from "react";
+import { FaRedoAlt } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import { KeyedMutator } from "swr";
-import { FaRedoAlt } from "react-icons/fa";
 
 const Error: FC = () => {
   const location = useLocation();

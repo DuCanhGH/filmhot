@@ -1,12 +1,12 @@
 import { FC, useEffect } from "react";
-import useSWR from "swr";
-import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useNavigate, useParams } from "react-router-dom";
+import useSWR from "swr";
 
-import { useQueryParams } from "../hooks/useQueryParams";
-import WatchView from "../components/WatchView";
-import { getMovieDetail } from "../services/movie";
 import Error from "../components/Shared/Error";
+import WatchView from "../components/WatchView";
+import { useQueryParams } from "../hooks/useQueryParams";
+import { getMovieDetail } from "../services/movie";
 
 const TV: FC = () => {
   const { id } = useParams();

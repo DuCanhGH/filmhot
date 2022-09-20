@@ -1,7 +1,7 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import classNames from "classnames";
 import { FC } from "react";
 import { Navigation } from "swiper";
-import classNames from "classnames";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import Skeleton from "../Shared/Skeleton";
 

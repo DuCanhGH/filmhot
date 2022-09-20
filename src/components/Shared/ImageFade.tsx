@@ -1,5 +1,5 @@
-import { FC, HTMLProps, useState } from "react";
 import classNames from "classnames";
+import { FC, HTMLProps, useState } from "react";
 
 const ImageFade: FC<HTMLProps<HTMLImageElement>> = (props) => {
   const { className, onLoad, onLoadCapture, crossOrigin, alt, ...others } = props;

@@ -1,10 +1,11 @@
-import { describe, test, vi } from "vitest";
-import { render, act } from "@testing-library/react";
-import App from "./App";
-import { MemoryRouter } from "react-router-dom";
-import { SWRConfig } from "swr";
+import { act, render } from "@testing-library/react";
 import { StrictMode } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { MemoryRouter } from "react-router-dom";
+import { SWRConfig } from "swr";
+import { describe, test, vi } from "vitest";
+
+import App from "./App";
 
 describe("render <App />", () => {
   beforeAll(() => {

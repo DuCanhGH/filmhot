@@ -1,18 +1,18 @@
-import { FC, Fragment, useEffect, useState, startTransition } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FC, Fragment, startTransition, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import { FaBars } from "react-icons/fa";
 import { InView } from "react-intersection-observer";
+import { Link, useLocation } from "react-router-dom";
 import useSWRInfinite from "swr/infinite";
 
 import BannerSlider from "../components/Home/BannerSlider";
-import SearchBox from "../components/Search/SearchBox";
+import InfiniteLoader from "../components/Home/InfiniteLoader";
 import SectionSlider from "../components/Home/SectionSlider";
+import SkeletonSlider from "../components/Home/SkeletonSlider";
+import TopSearches from "../components/Home/TopSearches";
+import SearchBox from "../components/Search/SearchBox";
 import Sidebar from "../components/Shared/Sidebar";
 import Skeleton from "../components/Shared/Skeleton";
-import SkeletonSlider from "../components/Home/SkeletonSlider";
-import InfiniteLoader from "../components/Home/InfiniteLoader";
-import TopSearches from "../components/Home/TopSearches";
 import { getHome } from "../services/home";
 import { resizeImage } from "../shared/constants";
 

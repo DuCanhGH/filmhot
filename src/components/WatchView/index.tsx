@@ -1,15 +1,15 @@
+import ReactHlsPlayer from "@ducanh2912/react-hls-player";
+import { Player } from "@ducanh2912/react-tuby";
 import { FC, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { subtitleProxy } from "../../shared/constants";
 
-import Comment from "./Comment";
+import { subtitleProxy } from "../../shared/constants";
 import type { DetailType, HistoryType } from "../../shared/types";
-import ReactHlsPlayer from "@ducanh2912/react-hls-player";
-import MetaData from "./MetaData";
 import NavBar from "../Shared/NavBar";
-import { Player } from "@ducanh2912/react-tuby";
-import Similar from "./Similar";
 import Skeleton from "../Shared/Skeleton";
+import Comment from "./Comment";
+import MetaData from "./MetaData";
+import Similar from "./Similar";
 
 interface WatchViewProps {
   data?: DetailType;

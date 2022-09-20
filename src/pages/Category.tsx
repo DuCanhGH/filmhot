@@ -1,11 +1,12 @@
+import { FC } from "react";
+import { Helmet } from "react-helmet-async";
+import { useParams } from "react-router-dom";
+import useSWR from "swr";
+
 import CategoryResult from "../components/Category/CategoryResult";
 import Error from "../components/Shared/Error";
 import NavBar from "../components/Shared/NavBar";
-import { FC } from "react";
 import { getSearchConfig } from "../services/explore";
-import { useParams } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
-import useSWR from "swr";
 
 const Category: FC = () => {
   const { id } = useParams() as { id: string };

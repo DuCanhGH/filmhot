@@ -1,10 +1,10 @@
 import classNames from "classnames";
-import { FC, useState, useCallback, RefCallback, useEffect } from "react";
+import { FC, RefCallback, useCallback, useEffect, useState } from "react";
+import { FaBookmark, FaRedoAlt, FaRegBookmark } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FaRedoAlt, FaBookmark, FaRegBookmark } from "react-icons/fa";
 
+import type { BookmarkType, DetailType } from "../../shared/types";
 import Skeleton from "../Shared/Skeleton";
-import type { DetailType, BookmarkType } from "../../shared/types";
 
 interface MetaDataProps {
   data?: DetailType;

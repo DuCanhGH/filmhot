@@ -1,10 +1,10 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-import NavBar from "../components/Shared/NavBar";
 import { FilmItem } from "../components/Shared/FilmItem";
+import NavBar from "../components/Shared/NavBar";
 import type { BookmarkType } from "../shared/types";
 
 const getBookmarks = () => {

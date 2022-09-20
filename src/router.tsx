@@ -1,18 +1,18 @@
+import { createBrowserRouter } from "react-router-dom";
+
 import App from "./App";
+import Error from "./components/Shared/Error";
+import Bookmarks from "./pages/Bookmarks";
 import Category from "./pages/Category";
 import Discovery from "./pages/Discovery";
 import Explore from "./pages/Explore";
 import History from "./pages/History";
-import Bookmarks from "./pages/Bookmarks";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
+import NonExistentPage from "./pages/NonExistent";
 import Search from "./pages/Search";
 import SignIn from "./pages/SignIn";
 import TV from "./pages/TV";
-import NonExistentPage from "./pages/NonExistent";
-import Error from "./components/Shared/Error";
-
-import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
   {

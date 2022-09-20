@@ -6,10 +6,10 @@ import {
 } from "firebase/auth";
 import { FC, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Navigate, Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
-import { auth } from "../shared/firebase";
 import { useQueryParams } from "../hooks/useQueryParams";
+import { auth } from "../shared/firebase";
 import { useStore } from "../store";
 
 const SignIn: FC = () => {

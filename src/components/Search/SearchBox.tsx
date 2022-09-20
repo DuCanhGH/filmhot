@@ -1,11 +1,11 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
-import { RHFInput } from "../Shared/RHFInput";
-import { htmlToText } from "../../shared/utils";
 import { searchKeywords } from "../../services/search";
+import { htmlToText } from "../../shared/utils";
+import { RHFInput } from "../Shared/RHFInput";
 
 const SearchBox: FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);

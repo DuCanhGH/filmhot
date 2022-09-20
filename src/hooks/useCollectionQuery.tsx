@@ -1,9 +1,9 @@
 import {
   CollectionReference,
   DocumentData,
+  onSnapshot,
   Query,
   QuerySnapshot,
-  onSnapshot,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 

@@ -1,9 +1,10 @@
-import { DetailType } from "../../shared/types";
 import { FC } from "react";
-import ImageFade from "../Shared/ImageFade";
 import { Link } from "react-router-dom";
-import Skeleton from "../Shared/Skeleton";
+
 import { resizeImage } from "../../shared/constants";
+import { DetailType } from "../../shared/types";
+import ImageFade from "../Shared/ImageFade";
+import Skeleton from "../Shared/Skeleton";
 
 interface SimilarProps {
   data: DetailType | undefined;

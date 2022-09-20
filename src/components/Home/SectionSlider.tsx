@@ -1,10 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-
 import { FC } from "react";
-import { IMAGE_CARD_SIZE, convertWebp } from "../../shared/constants";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { convertWebp, IMAGE_CARD_SIZE } from "../../shared/constants";
 
 interface SliderProps {
   images: {

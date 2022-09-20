@@ -1,10 +1,11 @@
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import Skeleton from "../Shared/Skeleton";
+import useSWR from "swr";
+
 import { getTopSearched } from "../../services/home";
 import { resizeImage } from "../../shared/constants";
-import useSWR from "swr";
+import Skeleton from "../Shared/Skeleton";
 
 const TopSearches: FC = () => {
   const { data, error } = useSWR("home-top-searches", () => getTopSearched());

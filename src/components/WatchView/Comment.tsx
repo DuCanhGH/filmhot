@@ -1,6 +1,3 @@
-import { CommentType, DetailType } from "../../shared/types";
-import { FC, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import {
   addDoc,
   collection,
@@ -11,12 +8,16 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaPaperPlane, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { calculateCreatedTime } from "../../shared/utils";
-import { db } from "../../shared/firebase";
-import { resizeImage } from "../../shared/constants";
+import { FaPaperPlane, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
+
 import { useCollectionQuery } from "../../hooks/useCollectionQuery";
+import { resizeImage } from "../../shared/constants";
+import { db } from "../../shared/firebase";
+import { CommentType, DetailType } from "../../shared/types";
+import { calculateCreatedTime } from "../../shared/utils";
 import { useStore } from "../../store";
 import { RHFTextArea } from "../Shared/RHFInput";
 

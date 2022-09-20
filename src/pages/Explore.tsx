@@ -1,11 +1,11 @@
 import { FC, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import useSWR from "swr";
 
-import Error from "../components/Shared/Error";
 import ExploreConfig from "../components/Explore/ExploreConfig";
+import Error from "../components/Shared/Error";
 import NavBar from "../components/Shared/NavBar";
 import { getSearchConfig } from "../services/explore";
-import useSWR from "swr";
 
 const Explore: FC = () => {
   const { data: searchConfig, error } = useSWR("search-config", () => getSearchConfig());

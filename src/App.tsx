@@ -1,7 +1,8 @@
+import { onAuthStateChanged } from "firebase/auth";
 import { FC, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+
 import { auth } from "./shared/firebase";
-import { onAuthStateChanged } from "firebase/auth";
 import { useStore } from "./store";
 
 const App: FC = () => {

@@ -1,16 +1,16 @@
-import { FC, useEffect, useState, startTransition } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { FC, startTransition, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { FaBars, FaHeart, FaExternalLinkAlt } from "react-icons/fa";
+import { FaBars, FaExternalLinkAlt, FaHeart } from "react-icons/fa";
 import { InView } from "react-intersection-observer";
+import { Link, useLocation } from "react-router-dom";
 import useSWRInfinite from "swr/infinite";
 
+import DiscoveryPlayer from "../components/Discovery/Player";
+import { ErrorWithRetry } from "../components/Shared/Error";
+import ImageFade from "../components/Shared/ImageFade";
 import Sidebar from "../components/Shared/Sidebar";
 import { getDiscoveryItems } from "../services/discovery";
 import { resizeImage } from "../shared/constants";
-import ImageFade from "../components/Shared/ImageFade";
-import DiscoveryPlayer from "../components/Discovery/Player";
-import { ErrorWithRetry } from "../components/Shared/Error";
 
 const Discovery: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);

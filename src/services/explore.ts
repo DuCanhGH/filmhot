@@ -1,6 +1,5 @@
-import { AdvanceSearchItem, SearchConfig } from "../shared/types";
-
 import axios from "../shared/axios";
+import { AdvanceSearchItem, SearchConfig } from "../shared/types";
 
 export const getSearchConfig = async (): Promise<SearchConfig[]> =>
   (await axios.get("search/list")).data.data;

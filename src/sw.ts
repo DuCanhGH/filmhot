@@ -1,13 +1,13 @@
+import { CacheableResponsePlugin } from "workbox-cacheable-response";
+import { clientsClaim } from "workbox-core";
+import { ExpirationPlugin } from "workbox-expiration";
 import {
   cleanupOutdatedCaches,
   createHandlerBoundToURL,
   precacheAndRoute,
 } from "workbox-precaching";
-import { clientsClaim } from "workbox-core";
 import { NavigationRoute, registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
-import { CacheableResponsePlugin } from "workbox-cacheable-response";
-import { ExpirationPlugin } from "workbox-expiration";
 
 declare let self: ServiceWorkerGlobalScope;
 

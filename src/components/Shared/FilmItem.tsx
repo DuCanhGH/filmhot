@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 
 import { resizeImage } from "../../shared/constants";
 
