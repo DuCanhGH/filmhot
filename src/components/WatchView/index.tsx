@@ -1,6 +1,4 @@
-import ReactHlsPlayer from "@ducanh2912/react-hls-player";
-import { Player } from "@ducanh2912/react-tuby";
-import { FC, useEffect } from "react";
+import { type FC, lazy, Suspense, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 import { subtitleProxy } from "../../shared/constants";
@@ -10,6 +8,9 @@ import Skeleton from "../Shared/Skeleton";
 import Comment from "./Comment";
 import MetaData from "./MetaData";
 import Similar from "./Similar";
+
+const Player = lazy(() => import("./player"));
+const ReactHlsPlayer = lazy(() => import("@ducanh2912/react-hls-player"));
 
 interface WatchViewProps {
   data?: DetailType;
@@ -70,22 +71,24 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
               <div className="w-full h-0 pb-[56.25%] relative">
                 <div className="absolute inset-0 w-full h-full bg-black">
                   {data && sources && subtitles ? (
-                    <Player
-                      playerKey={playerKey}
-                      primaryColor="#0D90F3"
-                      src={sources}
-                      subtitles={
-                        subtitles?.map((subtitle) => ({
-                          ...subtitle,
-                          url: subtitleProxy(subtitle.url),
-                        })) || []
-                      }
-                    >
-                      {(ref, props) => {
-                        const { src, ...others } = props;
-                        return <ReactHlsPlayer playerRef={ref} src={src} {...others} />;
-                      }}
-                    </Player>
+                    <Suspense fallback={<></>}>
+                      <Player
+                        playerKey={playerKey}
+                        primaryColor="#0D90F3"
+                        src={sources}
+                        subtitles={
+                          subtitles?.map((subtitle) => ({
+                            ...subtitle,
+                            url: subtitleProxy(subtitle.url),
+                          })) || []
+                        }
+                      >
+                        {(ref, props) => {
+                          const { src, ...others } = props;
+                          return <ReactHlsPlayer playerRef={ref} src={src} {...others} />;
+                        }}
+                      </Player>
+                    </Suspense>
                   ) : (
                     <div className="w-full h-0 pb-[56.25%] relative">
                       <Skeleton className="absolute top-0 left-0 w-full h-full" />
