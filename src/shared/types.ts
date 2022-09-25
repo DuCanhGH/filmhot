@@ -123,12 +123,12 @@ export interface SearchResultItem {
   };
 }
 
-export interface ScreeningItems {
+export interface ScreeningItems extends Record<string, any> {
   id?: number;
   items: {
     name: string;
     params: string;
-    screeningType: string;
+    screeningType: keyof ScreeningItems;
   }[];
   name: string;
 }

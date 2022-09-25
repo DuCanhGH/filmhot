@@ -37,7 +37,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   } = useInfiniteSWR<DataType[]>(getKey, (limit) =>
     getCategoryItems(id, limit.split("-").slice(-1)[0]),
   );
-  const data = ogData ? ogData.reduce((acc, current) => [...acc, ...current], []) : [];
+  const data = ogData ? ([] as DataType[]).concat(...ogData) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
   const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {

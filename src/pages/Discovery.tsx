@@ -11,6 +11,7 @@ import ImageFade from "../components/Shared/ImageFade";
 import Sidebar from "../components/Shared/Sidebar";
 import { getDiscoveryItems } from "../services/discovery";
 import { resizeImage } from "../shared/constants";
+import type { DiscoveryItem } from "../shared/types";
 
 const Discovery: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -23,10 +24,14 @@ const Discovery: FC = () => {
     size,
     setSize,
     mutate,
-  } = useSWRInfinite(getKey, (key) => getDiscoveryItems(Number(key.split("-").slice(-1)[0])), {
-    revalidateFirstPage: false,
-  });
-  const data = ogData ? ogData.reduce((acc, current) => [...acc, ...current], []) : [];
+  } = useSWRInfinite<DiscoveryItem[]>(
+    getKey,
+    (key) => getDiscoveryItems(Number(key.split("-").slice(-1)[0])),
+    {
+      revalidateFirstPage: false,
+    },
+  );
+  const data = ogData ? ([] as DiscoveryItem[]).concat(...ogData) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
   const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {

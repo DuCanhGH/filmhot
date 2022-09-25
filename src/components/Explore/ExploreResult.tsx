@@ -6,6 +6,7 @@ import useSWRInfinite from "swr/infinite";
 
 import { advanceSearch } from "../../services/explore";
 import { resizeImage } from "../../shared/constants";
+import type { AdvanceSearchItem } from "../../shared/types";
 import { ErrorWithRetry } from "../Shared/Error";
 
 interface ExploreResultProps {
@@ -31,10 +32,14 @@ const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }
     size,
     setSize,
     mutate,
-  } = useSWRInfinite(getKey, (key) => advanceSearch(params, configs, key.split("-").slice(-1)[0]), {
-    revalidateFirstPage: false,
-  });
-  const data = ogData ? ogData.reduce((acc, current) => [...acc, ...current], []) : [];
+  } = useSWRInfinite<AdvanceSearchItem[]>(
+    getKey,
+    (key) => advanceSearch(params, configs, key.split("-").slice(-1)[0]),
+    {
+      revalidateFirstPage: false,
+    },
+  );
+  const data = ogData ? ([] as AdvanceSearchItem[]).concat(...ogData) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
   const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {
