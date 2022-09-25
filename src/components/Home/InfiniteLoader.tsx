@@ -1,17 +1,17 @@
-import { FC, Ref } from "react";
+import { forwardRef } from "react";
 
 import Skeleton from "../Shared/Skeleton";
 import Slider from "./SkeletonSlider";
 
-const InfiniteLoader: FC<{ forwardedRef: Ref<HTMLDivElement> }> = ({ forwardedRef }) => {
+const InfiniteLoader = forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <>
       <Skeleton className="my-8 h-6 w-full max-w-[200px]" />
-      <div ref={forwardedRef} className="overflow-hidden">
+      <div ref={ref} className="overflow-hidden">
         <Slider />
       </div>
     </>
   );
-};
+});
 
 export default InfiniteLoader;
