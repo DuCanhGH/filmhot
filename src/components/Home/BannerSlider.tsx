@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import { Navigation } from "swiper";

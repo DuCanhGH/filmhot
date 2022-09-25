@@ -1,6 +1,10 @@
 import { type FC, lazy, Ref, Suspense, useEffect, useRef } from "react";
 
-const Player = lazy(() => import("../WatchView/player"));
+const Player = lazy(() =>
+  import("@ducanh2912/react-tuby").then((a) => ({
+    default: a.Player,
+  })),
+);
 const ReactHlsPlayer = lazy(() => import("@ducanh2912/react-hls-player"));
 
 const DiscoveryPlayer: FC<{

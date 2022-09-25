@@ -37,7 +37,6 @@ const SearchBox: FC = () => {
           name="searchInput"
           onKeyDown={(e) => e.stopPropagation()}
           onKeyUp={(e) => e.stopPropagation()}
-          onKeyPress={(e) => e.stopPropagation()}
           className="bg-transparent outline-none border border-gray-600 w-full rounded-full py-2 pl-4 pr-8"
           type="text"
           placeholder="Search..."

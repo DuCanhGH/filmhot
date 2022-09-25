@@ -108,7 +108,6 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                   placeholder: "Comment what you think...\n(max: 1000 characters)",
                   onKeyDown: (e) => e.stopPropagation(),
                   onKeyUp: (e) => e.stopPropagation(),
-                  onKeyPress: (e) => e.stopPropagation(),
                   autoComplete: "off",
                   maxLength: 1000,
                   rows: 2,

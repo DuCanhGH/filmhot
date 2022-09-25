@@ -5,7 +5,7 @@ import {
   ReactElement,
   TextareaHTMLAttributes,
 } from "react";
-import { DeepMap, FieldError, Path, RegisterOptions, UseFormRegister } from "react-hook-form";
+import type { DeepMap, FieldError, Path, RegisterOptions, UseFormRegister } from "react-hook-form";
 
 interface ReactHookInputProps<TFormValues extends Record<string, unknown>>
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
