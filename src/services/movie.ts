@@ -1,4 +1,5 @@
 import axios from "../shared/axios";
+import { BANNED_IDS } from "../shared/constants";
 import { DetailType } from "../shared/types";
 
 export const getMovieDetail = async (
@@ -10,6 +11,9 @@ export const getMovieDetail = async (
   sources: { quality: number; url: string }[];
   subtitles: { language: string; url: string; lang: string }[];
 }> => {
+  if (BANNED_IDS.includes(+id)) {
+    throw new Error("Banned movie/tv series.");
+  }
   const data = (
     await axios.get("movieDrama/get", {
       params: {

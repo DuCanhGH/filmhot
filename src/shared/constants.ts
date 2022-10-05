@@ -29,3 +29,5 @@ export const IMAGE_CARD_SIZE: {
     height: 246,
   },
 };
+
+export const BANNED_IDS: number[] = [23842];

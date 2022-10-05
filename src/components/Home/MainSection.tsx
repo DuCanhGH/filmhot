@@ -3,7 +3,7 @@ import { InView } from "react-intersection-observer";
 import useSWRInfinite from "swr/infinite";
 
 import { getHome } from "../../services/home";
-import { resizeImage } from "../../shared/constants";
+import { BANNED_IDS, resizeImage } from "../../shared/constants";
 import type { HomeSection } from "../../shared/types";
 import BannerSlider from "./BannerSlider";
 import InfiniteLoader from "./InfiniteLoader";
@@ -36,6 +36,7 @@ const MainSection = () => {
             <BannerSlider
               images={
                 (section.recommendContentVOList
+                  .filter((a) => !BANNED_IDS.includes(a.id))
                   .map((item) => {
                     const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
 
@@ -65,17 +66,19 @@ const MainSection = () => {
             </h1>
 
             <SectionSlider
-              images={section.recommendContentVOList.map((item) => {
-                const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
-                return {
-                  title: item.title,
-                  image: resizeImage(item.imageUrl, "200"),
-                  link:
-                    searchParams.get("type") === "0"
-                      ? `/movie/${searchParams.get("id")}`
-                      : `/tv/${searchParams.get("id")}`,
-                };
-              })}
+              images={section.recommendContentVOList
+                .filter((a) => !BANNED_IDS.includes(a.id))
+                .map((item) => {
+                  const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
+                  return {
+                    title: item.title,
+                    image: resizeImage(item.imageUrl, "200"),
+                    link:
+                      searchParams.get("type") === "0"
+                        ? `/movie/${searchParams.get("id")}`
+                        : `/tv/${searchParams.get("id")}`,
+                  };
+                })}
               coverType={section.coverType}
             />
           </div>

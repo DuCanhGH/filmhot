@@ -26,7 +26,7 @@ const TV: FC = () => {
     }
   }, [episodeIndex, id, navigate]);
 
-  const { data, error } = useSWR(episodeIndex ? `tv-${id}-${episodeIndex}` : null, () =>
+  const { data, error } = useSWR(id && episodeIndex ? `tv-${id}-${episodeIndex}` : null, () =>
     getMovieDetail(id as string, 1, +episodeIndex),
   );
 

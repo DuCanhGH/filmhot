@@ -10,7 +10,7 @@ import { ErrorWithRetry } from "../components/Shared/Error";
 import ImageFade from "../components/Shared/ImageFade";
 import Sidebar from "../components/Shared/Sidebar";
 import { getDiscoveryItems } from "../services/discovery";
-import { resizeImage } from "../shared/constants";
+import { BANNED_IDS, resizeImage } from "../shared/constants";
 import type { DiscoveryItem } from "../shared/types";
 
 const Discovery: FC = () => {
@@ -104,7 +104,7 @@ const Discovery: FC = () => {
                     <span>{item.likeCount}</span>
                   </div>
 
-                  {item?.refList?.[0]?.id && (
+                  {item?.refList?.[0]?.id && !BANNED_IDS.includes(+item.refList[0].id) && (
                     <div className="flex flex-col items-center gap-2">
                       <Link
                         to={

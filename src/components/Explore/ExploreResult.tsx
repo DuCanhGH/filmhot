@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import useSWRInfinite from "swr/infinite";
 
 import { advanceSearch } from "../../services/explore";
-import { resizeImage } from "../../shared/constants";
+import { BANNED_IDS, resizeImage } from "../../shared/constants";
 import type { AdvanceSearchItem } from "../../shared/types";
 import { ErrorWithRetry } from "../Shared/Error";
 
@@ -51,31 +51,33 @@ const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }
   return (
     <>
       <div className="w-full grid grid-cols-sm md:grid-cols-lg gap-6">
-        {data.map((item) => (
-          <Link
-            title={item.name}
-            to={item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
-            key={item.id}
-            className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
-          >
-            <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">
-              <div className="relative w-full h-0 pb-[140%] flex-shrink-0 group-hover:brightness-[80%] transition duration-300">
-                <LazyLoadImage
-                  effect="opacity"
-                  className="absolute top-0 left-0 w-full h-full object-cover"
-                  src={resizeImage(item.coverVerticalUrl, "250")}
-                  alt=""
-                />
-              </div>
+        {data
+          .filter((a) => !BANNED_IDS.includes(+a.id))
+          .map((item) => (
+            <Link
+              title={item.name}
+              to={item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
+              key={item.id}
+              className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
+            >
+              <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">
+                <div className="relative w-full h-0 pb-[140%] flex-shrink-0 group-hover:brightness-[80%] transition duration-300">
+                  <LazyLoadImage
+                    effect="opacity"
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                    src={resizeImage(item.coverVerticalUrl, "250")}
+                    alt=""
+                  />
+                </div>
 
-              <div className="flex-grow flex items-center">
-                <h1 className="w-full whitespace-nowrap overflow-hidden text-ellipsis px-2 group-hover:text-primary transition duration-300">
-                  {item.name}
-                </h1>
+                <div className="flex-grow flex items-center">
+                  <h1 className="w-full whitespace-nowrap overflow-hidden text-ellipsis px-2 group-hover:text-primary transition duration-300">
+                    {item.name}
+                  </h1>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
       </div>
       {!isReachingEnd ? (
         <InView
