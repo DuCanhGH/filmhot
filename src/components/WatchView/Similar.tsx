@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
-import { resizeImage } from "../../shared/constants";
+import { BANNED_IDS, resizeImage } from "../../shared/constants";
 import { DetailType } from "../../shared/types";
 import ImageFade from "../Shared/ImageFade";
 import Skeleton from "../Shared/Skeleton";
@@ -20,7 +20,7 @@ const Similar: FC<SimilarProps> = ({ data }) => {
               <h1 className="text-2xl my-3">In the series</h1>
               <div className="max-h-[60vh] overflow-x-hidden overflow-y-auto flex flex-col items-stretch gap-2">
                 {data?.refList
-                  .filter((item) => item.id !== data.id)
+                  .filter((item) => item.id !== data.id && !BANNED_IDS.includes(+item.id))
                   .map((ref) => (
                     <Link
                       key={ref.id}
@@ -47,29 +47,31 @@ const Similar: FC<SimilarProps> = ({ data }) => {
             <>
               <h1 className="text-2xl my-3">Similar to this</h1>
               <div className="max-h-[60vh] overflow-x-hidden overflow-y-auto flex flex-col items-stretch gap-2">
-                {data?.likeList.map((like) => (
-                  <Link
-                    key={like.id}
-                    to={`/${like.category === 0 ? "movie" : "tv"}/${like.id}`}
-                    className="flex gap-3 pr-2 hover:brightness-[85%] transition duration-300"
-                  >
-                    <div className="flex-shrink-0 h-[100px] w-[70px]">
-                      <ImageFade
-                        className="h-full w-full object-cover"
-                        src={resizeImage(like.coverVerticalUrl, "", "100")}
-                        alt=""
-                      />
-                    </div>
-                    <div className="my-2 flex-grow">
-                      <p>{like.name}</p>
-
-                      <div className="flex items-center gap-2">
-                        <img className="w-4 h-4" src="/star.png" alt="" />
-                        <p>{like.score?.toFixed(1)}</p>
+                {data?.likeList
+                  .filter((a) => !BANNED_IDS.includes(+a.id))
+                  .map((like) => (
+                    <Link
+                      key={like.id}
+                      to={`/${like.category === 0 ? "movie" : "tv"}/${like.id}`}
+                      className="flex gap-3 pr-2 hover:brightness-[85%] transition duration-300"
+                    >
+                      <div className="flex-shrink-0 h-[100px] w-[70px]">
+                        <ImageFade
+                          className="h-full w-full object-cover"
+                          src={resizeImage(like.coverVerticalUrl, "", "100")}
+                          alt=""
+                        />
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                      <div className="my-2 flex-grow">
+                        <p>{like.name}</p>
+
+                        <div className="flex items-center gap-2">
+                          <img className="w-4 h-4" src="/star.png" alt="" />
+                          <p>{like.score?.toFixed(1)}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
               </div>
             </>
           )}
