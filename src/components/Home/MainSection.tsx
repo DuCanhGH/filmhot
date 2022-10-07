@@ -30,60 +30,65 @@ const MainSection = () => {
   };
   return (
     <>
-      {data.map((section) =>
-        section.homeSectionType === "BANNER" ? (
-          <div key={section.homeSectionId} className="overflow-hidden w-full mt-8">
-            <BannerSlider
-              images={
-                (section.recommendContentVOList
+      {data
+        .filter(
+          (value, index, self) =>
+            self.findIndex((v) => v.homeSectionId === value.homeSectionId) === index,
+        )
+        .map((section) =>
+          section.homeSectionType === "BANNER" ? (
+            <div key={section.homeSectionId} className="overflow-hidden w-full mt-8">
+              <BannerSlider
+                images={
+                  (section.recommendContentVOList
+                    .filter((a) => !BANNED_IDS.includes(a.id))
+                    .map((item) => {
+                      const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
+
+                      if (!searchParams.get("id")) return null;
+
+                      return {
+                        title: item.title,
+                        image: item.imageUrl,
+                        link:
+                          searchParams.get("type") === "0"
+                            ? `/movie/${searchParams.get("id")}`
+                            : `/tv/${searchParams.get("id")}`,
+                      };
+                    })
+                    .filter(Boolean) as {
+                    title: string;
+                    image: string;
+                    link: string;
+                  }[]) || []
+                }
+              />
+            </div>
+          ) : (
+            <div key={section.homeSectionId}>
+              <h1 className="text-2xl mb-3 mt-8">
+                {section.homeSectionName.replace("on Loklok", "")}
+              </h1>
+
+              <SectionSlider
+                images={section.recommendContentVOList
                   .filter((a) => !BANNED_IDS.includes(a.id))
                   .map((item) => {
                     const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
-
-                    if (!searchParams.get("id")) return null;
-
                     return {
                       title: item.title,
-                      image: item.imageUrl,
+                      image: resizeImage(item.imageUrl, "200"),
                       link:
                         searchParams.get("type") === "0"
                           ? `/movie/${searchParams.get("id")}`
                           : `/tv/${searchParams.get("id")}`,
                     };
-                  })
-                  .filter(Boolean) as {
-                  title: string;
-                  image: string;
-                  link: string;
-                }[]) || []
-              }
-            />
-          </div>
-        ) : (
-          <div key={section.homeSectionId}>
-            <h1 className="text-2xl mb-3 mt-8">
-              {section.homeSectionName.replace("on Loklok", "")}
-            </h1>
-
-            <SectionSlider
-              images={section.recommendContentVOList
-                .filter((a) => !BANNED_IDS.includes(a.id))
-                .map((item) => {
-                  const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
-                  return {
-                    title: item.title,
-                    image: resizeImage(item.imageUrl, "200"),
-                    link:
-                      searchParams.get("type") === "0"
-                        ? `/movie/${searchParams.get("id")}`
-                        : `/tv/${searchParams.get("id")}`,
-                  };
-                })}
-              coverType={section.coverType}
-            />
-          </div>
-        ),
-      )}
+                  })}
+                coverType={section.coverType}
+              />
+            </div>
+          ),
+        )}
       {!isReachingEnd && (
         <InView
           onChange={(inView) => {
