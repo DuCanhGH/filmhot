@@ -7,6 +7,7 @@ import {
   query,
   serverTimestamp,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -43,7 +44,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
 
   const mediaType = typeof episodeIndex === "undefined" ? "movie" : "tv";
 
-  const collectionPath = `${mediaType}-${data.id}`;
+  const movieId = `${mediaType}-${data.id}`;
 
   const [commentLimit, setCommentLimit] = useState(10);
 
@@ -51,11 +52,12 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
     const { commentInput } = data;
     if (commentInput) {
       setCommentLoading(true);
-      addDoc(collection(db, collectionPath), {
+      addDoc(collection(db, "comments"), {
         user: currentUser,
         value: commentInput,
         reactions: {},
         createdAt: serverTimestamp(),
+        movieId,
       }).finally(() => setCommentLoading(false));
       reset({
         commentInput: "",
@@ -65,7 +67,7 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
 
   const addReaction = async (commentId: string, value: number) => {
     if (currentUser?.uid)
-      updateDoc(doc(db, collectionPath, commentId), {
+      updateDoc(doc(db, "comments", commentId), {
         [`reactions.${currentUser?.uid}`]: value,
       });
   };
@@ -75,8 +77,13 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
     error,
     loading,
   } = useCollectionQuery(
-    `${collectionPath}-${commentLimit}`,
-    query(collection(db, collectionPath), orderBy("createdAt", "desc"), limit(commentLimit)),
+    `${movieId}-${commentLimit}`,
+    query(
+      collection(db, "comments"),
+      where("movieId", "==", movieId),
+      orderBy("createdAt", "desc"),
+      limit(commentLimit),
+    ),
   );
 
   return (

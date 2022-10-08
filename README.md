@@ -35,8 +35,8 @@
 
 - Clone the project.
 - Run `pnpm i`/`npm i`.
-- Create your own firebase project and add VITE_FIREBASE_CONFIG to .env (see .env.example).
-
+- Create your own Firebase project and add VITE_FIREBASE_CONFIG to .env (see .env.example).
+- Create an index in your Firebase project for collection `comments` with two field paths: movieId (Ascending) and createdAt (Descending).
 - Run `pnpm build`/`npm run build`.
 - Run `pnpm preview`/`npm run preview`.
 
