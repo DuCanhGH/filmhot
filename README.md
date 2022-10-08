@@ -2,9 +2,9 @@
 
 <p align="center">
   <img alt="Stars" src="https://badgen.net/github/stars/DuCanhGH/filmhot">
-  <img alt="Forks" src="https://badgen.net/github/stars/DuCanhGH/filmhot">
-  <img alt="Issues" src="https://badgen.net/github/stars/DuCanhGH/filmhot">
-  <img alt="Commits" src="https://badgen.net/github/stars/DuCanhGH/filmhot">
+  <img alt="Forks" src="https://badgen.net/github/forks/DuCanhGH/filmhot">
+  <img alt="Issues" src="https://badgen.net/github/issues/DuCanhGH/filmhot">
+  <img alt="Commits" src="https://badgen.net/github/commits/DuCanhGH/filmhot">
 </p>
 
 ## Movie sources
