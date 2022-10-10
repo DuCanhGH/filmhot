@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 import checker from "vite-plugin-checker";
 import { visualizer } from "rollup-plugin-visualizer";
+import crossOriginIsolation from "./vite-plugins/cross-origin-isolation";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,6 +17,7 @@ export default defineConfig({
     port: 3000,
   },
   plugins: [
+    crossOriginIsolation(),
     react(),
     VitePWA({
       manifest: {

@@ -6,6 +6,8 @@ specifiers:
   '@babel/plugin-transform-react-jsx': 7.19.0
   '@ducanh2912/react-hls-player': 3.3.3
   '@ducanh2912/react-tuby': 1.0.0
+  '@ffmpeg/core': 0.11.0
+  '@ffmpeg/ffmpeg': 0.11.5
   '@testing-library/react': 13.4.0
   '@types/eslint': 8.4.6
   '@types/node': 18.8.3
@@ -31,6 +33,7 @@ specifiers:
   npm-run-all: 4.1.5
   postcss: 8.4.17
   prettier: 2.7.1
+  radash: 7.1.0
   react: 18.2.0
   react-dom: 18.2.0
   react-helmet-async: 1.3.0
@@ -61,11 +64,14 @@ specifiers:
 dependencies:
   '@ducanh2912/react-hls-player': 3.3.3_hls.js@1.2.4+react@18.2.0
   '@ducanh2912/react-tuby': 1.0.0_react@18.2.0
+  '@ffmpeg/core': 0.11.0
+  '@ffmpeg/ffmpeg': 0.11.5
   axios: 1.1.2
   classnames: 2.3.2
   cross-env: 7.0.3
   firebase: 9.11.0
   hls.js: 1.2.4
+  radash: 7.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-helmet-async: 1.3.0_biqbaboplfbrettd7655fr4n2y
@@ -1560,6 +1566,22 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@ffmpeg/core/0.11.0:
+    resolution: {integrity: sha512-9Tt/+2PMpkGPXUK8n6He9G8Y+qR6qmCPSCw9iEKZxHHOvJ9BE/r0Fccj+YgDZTlyu6rXxc9x6EqCaFBIt7qzjA==}
+    dev: false
+
+  /@ffmpeg/ffmpeg/0.11.5:
+    resolution: {integrity: sha512-btdfI4bJ7Whqi10GJPcvvIfg22sN9LU5qw7Dbmpqts12enYEWWym+i1TBj1emvwIkDa2yxr61P2HECaELQWjGA==}
+    engines: {node: '>=12.16.1'}
+    dependencies:
+      is-url: 1.2.4
+      node-fetch: 2.6.7
+      regenerator-runtime: 0.13.9
+      resolve-url: 0.2.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /@firebase/analytics-compat/0.1.14_67sdrriteebqftxaivs76j2npy:
     resolution: {integrity: sha512-HNuXTm+EYSf0T9N69UMmy9eVUipxxV8BhkCDPOdmUaa4syO4CtYk5qZt2k1qLygJI9wVFdiZeTU00FAgWK1/6A==}
@@ -4539,6 +4561,10 @@ packages:
       has-symbols: 1.0.3
     dev: true
 
+  /is-url/1.2.4:
+    resolution: {integrity: sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==}
+    dev: false
+
   /is-weakref/1.0.2:
     resolution: {integrity: sha512-qctsuLZmIQ0+vSSMfoVvyFe2+GSEvnmZ2ezTup1SBse9+twCCeial6EEi3Nc2KFcf6+qz2FBPnjXsk8xhKSaPQ==}
     dependencies:
@@ -5415,6 +5441,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /radash/7.1.0:
+    resolution: {integrity: sha512-NOWTaF5YMY3mCgrNq9Fw9fK8yvJv92uqRb2StcVq5W8kcJ6949EbV2vk6nLJKAocYs29rzJafZZP1lFkEkoVGw==}
+    dev: false
+
   /randombytes/2.1.0:
     resolution: {integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==}
     dependencies:
@@ -5635,6 +5665,11 @@ packages:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
     dev: true
+
+  /resolve-url/0.2.1:
+    resolution: {integrity: sha512-ZuF55hVUQaaczgOIwqWzkEcEidmlD/xl44x1UZnhOXcYuFN2S6+rcxpG+C1N3So0wvNI3DmJICUFfu2SxhBmvg==}
+    deprecated: https://github.com/lydell/resolve-url#deprecated
+    dev: false
 
   /resolve/1.22.1:
     resolution: {integrity: sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==}

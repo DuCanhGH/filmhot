@@ -6,6 +6,7 @@ module.exports = {
         dark: "#191A1F",
         "dark-lighten": "#27282e",
         primary: "#0D90F3",
+        secondary: "#0564C8",
       },
       gridTemplateColumns: {
         lg: "repeat(auto-fill, minmax(160px, 1fr))",

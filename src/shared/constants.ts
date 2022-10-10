@@ -14,6 +14,8 @@ export const resizeImage = (url: string, width = "", height = "") =>
 
 export const subtitleProxy = (url: string) => `${apiUrl}/subtitles?url=${encodeURIComponent(url)}`;
 
+export const urlWithProxy = (url: string) => `https://corsproxy.io/?${encodeURIComponent(url)}`;
+
 export const IMAGE_CARD_SIZE: {
   [key: number]: {
     width: number;
