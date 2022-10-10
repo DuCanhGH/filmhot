@@ -1,8 +1,8 @@
+import Head from "next/head";
+import Link from "next/link";
 import { FC, startTransition } from "react";
-import { Helmet } from "react-helmet-async";
 import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
 import useInfiniteSWR from "swr/infinite";
 
 import { getCategoryItems } from "../../services/category";
@@ -35,11 +35,12 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
     setSize,
     mutate,
   } = useInfiniteSWR<DataType[]>(getKey, (limit) =>
-    getCategoryItems(id, limit.split("-").slice(-1)[0]),
+    getCategoryItems(id, limit.split("-").slice(-1)[0])
   );
   const data = ogData ? ([] as DataType[]).concat(...ogData) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
-  const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
+  const isLoadingMore =
+    size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {
     startTransition(() => {
       setSize((prev) => prev + 1);
@@ -47,9 +48,9 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   };
   return (
     <>
-      <Helmet>
+      <Head>
         <title>{`Category: ${categoryName}`}</title>
-      </Helmet>
+      </Head>
       <div className="flex justify-center mx-[7vw]">
         <div className="w-full grid grid-cols-sm md:grid-cols-lg gap-6">
           {data
@@ -57,7 +58,9 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
             .map((item) => (
               <Link
                 title={item.name}
-                to={item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
+                href={
+                  item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
+                }
                 key={item.id}
                 className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
               >

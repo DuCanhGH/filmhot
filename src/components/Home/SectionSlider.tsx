@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -25,8 +25,11 @@ const Slider: FC<SliderProps> = ({ images, coverType }) => {
       spaceBetween={30}
     >
       {images.map((item) => (
-        <SwiperSlide style={{ width: IMAGE_CARD_SIZE[coverType || 1].width }} key={item.image}>
-          <Link to={item.link}>
+        <SwiperSlide
+          style={{ width: IMAGE_CARD_SIZE[coverType || 1].width }}
+          key={item.image}
+        >
+          <Link href={item.link}>
             <div className="rounded-lg overflow-hidden bg-dark-lighten group">
               <LazyLoadImage
                 style={{

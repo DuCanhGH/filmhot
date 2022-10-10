@@ -1,22 +1,22 @@
+import Head from "next/head";
+import { useRouter } from "next/router";
 import { FC } from "react";
-import { Helmet } from "react-helmet-async";
 
 import TopSearches from "../components/Home/TopSearches";
 import SearchBox from "../components/Search/SearchBox";
 import SearchResult from "../components/Search/SearchResult";
 import NavBar from "../components/Shared/NavBar";
-import { useQueryParams } from "../hooks/useQueryParams";
 
 const Search: FC = () => {
-  const queryParams = useQueryParams();
-  const query = queryParams.get("q");
+  const router = useRouter();
+  const { q: query } = router.query;
 
-  if (!query?.trim())
+  if (!query || typeof query !== "string")
     return (
       <>
-        <Helmet>
+        <Head>
           <title>Search</title>
-        </Helmet>
+        </Head>
         <div className="flex justify-center my-[100px] mx-6">
           <div className="w-full max-w-[400px] flex flex-col items-center gap-4">
             <div className="flex flex-col items-stretch gap-3">
@@ -35,10 +35,13 @@ const Search: FC = () => {
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>{`Search for '${query}'`}</title>
-        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/search`} />
-      </Helmet>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/search`}
+        />
+      </Head>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">
         <NavBar />
         <div>

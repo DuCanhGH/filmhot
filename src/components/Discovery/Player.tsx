@@ -1,11 +1,10 @@
-import { type FC, lazy, Ref, Suspense, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+import { type FC, Ref, Suspense, useEffect, useRef } from "react";
 
-const Player = lazy(() =>
-  import("@ducanh2912/react-tuby").then((a) => ({
-    default: a.Player,
-  })),
+const Player = dynamic(() =>
+  import("@ducanh2912/react-tuby").then((a) => a.Player)
 );
-const ReactHlsPlayer = lazy(() => import("@ducanh2912/react-hls-player"));
+const ReactHlsPlayer = dynamic(() => import("@ducanh2912/react-hls-player"));
 
 const DiscoveryPlayer: FC<{
   forwardedRef: Ref<HTMLDivElement>;
@@ -38,7 +37,9 @@ const DiscoveryPlayer: FC<{
         >
           {(ref, props) => {
             const { src, ...others } = props;
-            return <ReactHlsPlayer playerRef={ref} src={src} loop {...others} />;
+            return (
+              <ReactHlsPlayer playerRef={ref} src={src} loop {...others} />
+            );
           }}
         </Player>
       </Suspense>

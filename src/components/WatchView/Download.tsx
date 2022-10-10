@@ -17,7 +17,7 @@ const Download: FC<DownloadProps> = ({ segments, proxy }) => {
   const startDownloadVideo = async () => {
     setMessage("Loading video rendering library...");
     const ffmpeg = createFFmpeg({
-      log: !import.meta.env.PROD,
+      log: !process.env.PROD,
       corePath: "https://unpkg.com/@ffmpeg/core/dist/ffmpeg-core.js",
     });
 
@@ -35,11 +35,11 @@ const Download: FC<DownloadProps> = ({ segments, proxy }) => {
         ffmpeg.FS(
           "writeFile",
           `${index + 1}.ts`,
-          await fetchFile(proxy ? urlWithProxy(segment) : segment),
+          await fetchFile(proxy ? urlWithProxy(segment) : segment)
         );
         setMessage(`Downloading segments (${count} / ${segments.length})...`);
         count++;
-      },
+      }
     );
 
     setMessage("Rendering video...");
@@ -50,14 +50,24 @@ const Download: FC<DownloadProps> = ({ segments, proxy }) => {
       new Array(segments.length)
         .fill("")
         .map((_, index) => `file '${index + 1}.ts'`)
-        .join("\n"),
+        .join("\n")
     );
 
     await ffmpeg.run("-f", "concat", "-i", "list.txt", "-c", "copy", "all.ts");
-    await ffmpeg.run("-i", "all.ts", "-acodec", "copy", "-vcodec", "copy", "all.mp4");
+    await ffmpeg.run(
+      "-i",
+      "all.ts",
+      "-acodec",
+      "copy",
+      "-vcodec",
+      "copy",
+      "all.mp4"
+    );
     const data = ffmpeg.FS("readFile", "all.mp4");
 
-    const objectURL = URL.createObjectURL(new Blob([data.buffer], { type: "video/mp4" }));
+    const objectURL = URL.createObjectURL(
+      new Blob([data.buffer], { type: "video/mp4" })
+    );
 
     setFilePreview(objectURL);
     setMessage("Conversion completed.");

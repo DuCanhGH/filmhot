@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { FC, startTransition } from "react";
 import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
 import useSWRInfinite from "swr/infinite";
 
 import { advanceSearch } from "../../services/explore";
@@ -17,7 +17,11 @@ interface ExploreResultProps {
   sectionIndex: number;
 }
 
-const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }) => {
+const ExploreResult: FC<ExploreResultProps> = ({
+  params,
+  configs,
+  sectionIndex,
+}) => {
   const getKey = (_: unknown, previousPageData: any) => {
     if (previousPageData && previousPageData.length === 0) return null;
 
@@ -37,11 +41,12 @@ const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }
     (key) => advanceSearch(params, configs, key.split("-").slice(-1)[0]),
     {
       revalidateFirstPage: false,
-    },
+    }
   );
   const data = ogData ? ([] as AdvanceSearchItem[]).concat(...ogData) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
-  const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
+  const isLoadingMore =
+    size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {
     startTransition(() => {
       setSize((prev) => prev + 1);
@@ -56,7 +61,9 @@ const ExploreResult: FC<ExploreResultProps> = ({ params, configs, sectionIndex }
           .map((item) => (
             <Link
               title={item.name}
-              to={item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
+              href={
+                item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
+              }
               key={item.id}
               className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
             >

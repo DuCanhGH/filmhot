@@ -1,6 +1,6 @@
+import Link from "next/link";
 import type { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -25,7 +25,7 @@ const BannerSlider: FC<SliderProps> = ({ images }) => {
     >
       {images.map((item) => (
         <SwiperSlide key={item.image}>
-          <Link to={item.link}>
+          <Link href={item.link}>
             <div className="w-full h-0 pb-[42%] relative">
               <LazyLoadImage
                 className="absolute top-0 left-0 w-full h-full object-cover opacity-75"

@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
 
 import { resizeImage } from "../../shared/constants";
 
@@ -18,8 +18,7 @@ export const FilmItem: FC<Props> = (props) => {
   return (
     <Link
       title={item.name}
-      to={item.category === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
-      key={item.id}
+      href={item.category === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
       className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
     >
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">

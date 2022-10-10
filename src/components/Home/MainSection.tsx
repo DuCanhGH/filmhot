@@ -16,13 +16,18 @@ const MainSection = () => {
     error,
     size,
     setSize,
-  } = useSWRInfinite(getKey, (key) => getHome(Number(key.split("-").slice(-1)[0])), {
-    revalidateFirstPage: false,
-    suspense: true,
-  });
+  } = useSWRInfinite(
+    getKey,
+    (key) => getHome(Number(key.split("-").slice(-1)[0])),
+    {
+      revalidateFirstPage: false,
+      suspense: true,
+    }
+  );
   const data = ogData ? ([] as HomeSection[]).concat(...ogData) : [];
   const isReachingEnd = !!error || ogData?.slice(-1)?.[0]?.length === 0;
-  const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
+  const isLoadingMore =
+    size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {
     startTransition(() => {
       setSize((prev) => prev + 1);
@@ -33,17 +38,23 @@ const MainSection = () => {
       {data
         .filter(
           (value, index, self) =>
-            self.findIndex((v) => v.homeSectionId === value.homeSectionId) === index,
+            self.findIndex((v) => v.homeSectionId === value.homeSectionId) ===
+            index
         )
         .map((section) =>
           section.homeSectionType === "BANNER" ? (
-            <div key={section.homeSectionId} className="overflow-hidden w-full mt-8">
+            <div
+              key={section.homeSectionId}
+              className="overflow-hidden w-full mt-8"
+            >
               <BannerSlider
                 images={
                   (section.recommendContentVOList
                     .filter((a) => !BANNED_IDS.includes(a.id))
                     .map((item) => {
-                      const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
+                      const searchParams = new URLSearchParams(
+                        new URL(item.jumpAddress).search
+                      );
 
                       if (!searchParams.get("id")) return null;
 
@@ -74,7 +85,9 @@ const MainSection = () => {
                 images={section.recommendContentVOList
                   .filter((a) => !BANNED_IDS.includes(a.id))
                   .map((item) => {
-                    const searchParams = new URLSearchParams(new URL(item.jumpAddress).search);
+                    const searchParams = new URLSearchParams(
+                      new URL(item.jumpAddress).search
+                    );
                     return {
                       title: item.title,
                       image: resizeImage(item.imageUrl, "200"),
@@ -87,7 +100,7 @@ const MainSection = () => {
                 coverType={section.coverType}
               />
             </div>
-          ),
+          )
         )}
       {!isReachingEnd && (
         <InView

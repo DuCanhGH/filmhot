@@ -227,3 +227,66 @@ export interface BookmarkType {
   coverVerticalUrl: string;
   category: number;
 }
+
+export interface M3U8Manifest {
+  allowCache: boolean;
+  endList: boolean;
+  mediaSequence: number;
+  discontinuitySequence: number;
+  playlistType: string;
+  custom: Record<string, never>;
+  playlists: {
+    uri: string;
+    attributes: Record<string, string | string[]>;
+  }[];
+  mediaGroups: {
+    AUDIO: {
+      "GROUP-ID": {
+        NAME: {
+          default: boolean;
+          autoselect: boolean;
+          language: string;
+          uri: string;
+          instreamId: string;
+          characteristics: string;
+          forced: boolean;
+        };
+      };
+    };
+    VIDEO: Record<string, never>;
+    "CLOSED-CAPTIONS": Record<string, never>;
+    SUBTITLES: Record<string, never>;
+  };
+  dateTimeString: string;
+  dateTimeObject: Date;
+  targetDuration: number;
+  totalDuration: number;
+  discontinuityStarts: [number];
+  segments: {
+    byterange: {
+      length: number;
+      offset: number;
+    };
+    duration: number;
+    attributes: Record<string, never>;
+    discontinuity: number;
+    uri: string;
+    timeline: number;
+    key: {
+      method: string;
+      uri: string;
+      iv: string;
+    };
+    map: {
+      uri: string;
+      byterange: {
+        length: number;
+        offset: number;
+      };
+    };
+    "cue-out": string;
+    "cue-out-cont": string;
+    "cue-in": string;
+    custom: Record<string, never>;
+  }[];
+}

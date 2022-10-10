@@ -1,18 +1,25 @@
+import Image from "next/future/image";
+import Link from "next/link";
 import { FC } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 import SearchBox from "../Search/SearchBox";
 
 const NavBar: FC = () => {
   return (
     <div className="flex justify-between items-center my-7">
-      <Link to="/" className="flex items-center gap-2">
-        <img className="w-8 h-8" src="/icon.png" alt="" />
+      <Link href="/" className="flex items-center gap-2">
+        <Image
+          width={32}
+          height={32}
+          className="w-8 h-8"
+          src="/icon.png"
+          alt=""
+        />
         <span className="text-xl font-medium">FilmHot</span>
       </Link>
 
-      <Link className="block md:hidden" to="/search">
+      <Link className="block md:hidden" href="/search">
         <FaSearch className="text-2xl" />
       </Link>
 

@@ -1,14 +1,15 @@
 import { useState } from "react";
 
 import { getInfo } from "../services/download-movie";
+import { M3U8Manifest } from "../shared/types";
 
 export const useDownloadVideo = (url: string) => {
   const [disabled, setDisabled] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [data, setData] = useState<any>(null);
-  const [segments, setSegments] = useState([]);
-  const [playListSource, setPlayListSource] = useState([]);
+  const [data, setData] = useState<M3U8Manifest | null>(null);
+  const [segments, setSegments] = useState<string[]>([]);
+  const [playListSource, setPlayListSource] = useState<string[][]>([]);
   const [proxy, setProxy] = useState(false);
   const downloadVideo = async () => {
     setDisabled(true);
@@ -21,15 +22,21 @@ export const useDownloadVideo = (url: string) => {
       if (data?.playlists?.length) {
         const result = await Promise.all(
           data.playlists.map(async (playlist: any) => {
-            const { data } = await getInfo(new URL(playlist.uri, url.trim()).href);
-            return data.segments.map(
-              (segment: any) => new URL(segment.uri, new URL(playlist.uri, url.trim()).href).href,
+            const { data } = await getInfo(
+              new URL(playlist.uri, url.trim()).href
             );
-          }),
+            return data.segments.map(
+              (segment) =>
+                new URL(segment.uri, new URL(playlist.uri, url.trim()).href)
+                  .href
+            );
+          })
         );
-        setPlayListSource(result as any);
+        setPlayListSource(result);
       } else {
-        setSegments(data?.segments.map((segment: any) => new URL(segment.uri, url.trim()).href));
+        setSegments(
+          data?.segments.map((segment) => new URL(segment.uri, url.trim()).href)
+        );
       }
       setData(data);
       setLoading(false);

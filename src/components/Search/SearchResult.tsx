@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
 import useSWR from "swr";
 
 import { searchWithKeyword } from "../../services/search";
@@ -13,7 +13,9 @@ interface SearchResultProps {
 }
 
 const SearchResult: FC<SearchResultProps> = ({ query }) => {
-  const { data, error } = useSWR(`search-${query}`, () => searchWithKeyword(query));
+  const { data, error } = useSWR(`search-${query}`, () =>
+    searchWithKeyword(query)
+  );
 
   if (error) return <Error />;
 
@@ -36,7 +38,9 @@ const SearchResult: FC<SearchResultProps> = ({ query }) => {
             .map((item) => (
               <Link
                 title={item.name}
-                to={item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
+                href={
+                  item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
+                }
                 key={item.id}
                 className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
               >

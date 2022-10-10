@@ -4,18 +4,21 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import Image from "next/future/image";
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC, useState } from "react";
-import { Helmet } from "react-helmet-async";
-import { Link, Navigate } from "react-router-dom";
 
-import { useQueryParams } from "../hooks/useQueryParams";
+import Navigate from "../components/Shared/Navigate";
 import { auth } from "../shared/firebase";
 import { useStore } from "../store";
 
 const SignIn: FC = () => {
   const currentUser = useStore((state) => state.currentUser);
 
-  const queryParams = useQueryParams();
+  const router = useRouter();
+  const { redirect } = router.query;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -35,14 +38,18 @@ const SignIn: FC = () => {
       });
   };
 
-  if (currentUser) return <Navigate to={queryParams.get("redirect") || "/"} />;
+  if (currentUser)
+    return <Navigate to={typeof redirect === "string" ? redirect : "/"} />;
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>Sign in</title>
-        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/sign-in`} />
-      </Helmet>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/sign-in`}
+        />
+      </Head>
       <div className="min-h-screen w-screen bg-[url('/bg.png')] bg-no-repeat bg-cover bg-center">
         <div className="w-full min-h-screen flex justify-center items-center bg-[#00000056]">
           <div className="w-[90vw] max-w-[350px] bg-black p-10 flex flex-col items-center gap-6 rounded-xl">
@@ -59,7 +66,13 @@ const SignIn: FC = () => {
               onClick={() => handleSignIn(new GoogleAuthProvider())}
               className="flex items-center bg-white text-black p-3 gap-3 rounded-md cursor-pointer hover:brightness-90 disabled:!brightness-75 disabled:!cursor-default transition duration-300 w-full"
             >
-              <img className="w-6 h-6" src="/google.svg" alt="" />
+              <Image
+                width={24}
+                height={24}
+                className="w-6 h-6"
+                src="/google.svg"
+                alt=""
+              />
 
               <span>Sign in with Google</span>
             </button>
@@ -69,11 +82,17 @@ const SignIn: FC = () => {
               onClick={() => handleSignIn(new FacebookAuthProvider())}
               className="flex items-center bg-primary text-white p-3 gap-3 rounded-md cursor-pointer hover:brightness-90 disabled:!brightness-75 disabled:!cursor-default transition duration-300 w-full"
             >
-              <img className="w-6 h-6" src="/facebook.svg" alt="" />
+              <Image
+                width={24}
+                height={24}
+                className="w-6 h-6"
+                src="/facebook.svg"
+                alt=""
+              />
 
               <span>Sign in with Facebook</span>
             </button>
-            <Link className="text-primary" to="/">
+            <Link className="text-primary" href="/">
               Return home
             </Link>
           </div>

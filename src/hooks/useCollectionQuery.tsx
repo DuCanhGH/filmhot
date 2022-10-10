@@ -9,8 +9,11 @@ import { useEffect, useState } from "react";
 
 export const useCollectionQuery: (
   key: string,
-  collection: CollectionReference | Query<DocumentData>,
-) => { loading: boolean; error: boolean; data: QuerySnapshot | null } = (key, collection) => {
+  collection: CollectionReference | Query<DocumentData>
+) => { loading: boolean; error: boolean; data: QuerySnapshot | null } = (
+  key,
+  collection
+) => {
   const [data, setData] = useState<QuerySnapshot<DocumentData> | null>(null);
 
   //eslint-ignore-next-line
@@ -29,7 +32,7 @@ export const useCollectionQuery: (
         setData(null);
         setLoading(false);
         setError(true);
-      },
+      }
     );
 
     return () => {

@@ -5,10 +5,19 @@ import {
   ReactElement,
   TextareaHTMLAttributes,
 } from "react";
-import type { DeepMap, FieldError, Path, RegisterOptions, UseFormRegister } from "react-hook-form";
+import type {
+  DeepMap,
+  FieldError,
+  Path,
+  RegisterOptions,
+  UseFormRegister,
+} from "react-hook-form";
 
 interface ReactHookInputProps<TFormValues extends Record<string, unknown>>
-  extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  extends DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
   id: string;
   type?: string;
   loading?: boolean;
@@ -27,7 +36,7 @@ interface ReactHookInputProps<TFormValues extends Record<string, unknown>>
 
 //You can use this input with react-hook-form
 export const RHFInput = <TFormValues extends Record<string, unknown>>(
-  props: ReactHookInputProps<TFormValues>,
+  props: ReactHookInputProps<TFormValues>
 ): ReactElement => {
   const {
     name,
@@ -65,7 +74,11 @@ export const RHFInput = <TFormValues extends Record<string, unknown>>(
         {...other}
       />
       {hasError && !disableErrorMessage && (
-        <p role="alert" id={`${id}-errortext`} className={`${errorClassName} text-red-500 block`}>
+        <p
+          role="alert"
+          id={`${id}-errortext`}
+          className={`${errorClassName} text-red-500 block`}
+        >
           {errorMessages.message}
         </p>
       )}
@@ -97,7 +110,7 @@ interface RHFTextAreaProps<TFormValues extends Record<string, unknown>> {
 
 //You can use this input with react-hook-form
 export const RHFTextArea = <TFormValues extends Record<string, unknown>>(
-  props: RHFTextAreaProps<TFormValues>,
+  props: RHFTextAreaProps<TFormValues>
 ): ReactElement => {
   const {
     name,
@@ -135,7 +148,11 @@ export const RHFTextArea = <TFormValues extends Record<string, unknown>>(
         {...other}
       />
       {hasError && !disableErrorMessage && (
-        <p role="alert" id={`${id}-errortext`} className={`${errorClassName} text-red-500 block`}>
+        <p
+          role="alert"
+          id={`${id}-errortext`}
+          className={`${errorClassName} text-red-500 block`}
+        >
           {errorMessages.message}
         </p>
       )}

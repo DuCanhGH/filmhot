@@ -9,10 +9,12 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
+import Image from "next/future/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaPaperPlane, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
 
 import { useCollectionQuery } from "../../hooks/useCollectionQuery";
 import { resizeImage } from "../../shared/constants";
@@ -30,7 +32,7 @@ interface CommentProps {
 const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
   const currentUser = useStore((state) => state.currentUser);
 
-  const location = useLocation();
+  const router = useRouter();
 
   const {
     register,
@@ -82,8 +84,8 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
       collection(db, "comments"),
       where("movieId", "==", movieId),
       orderBy("createdAt", "desc"),
-      limit(commentLimit),
-    ),
+      limit(commentLimit)
+    )
   );
 
   return (
@@ -99,7 +101,9 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
               onSubmit={handleFormSubmit}
               className="relative border border-gray-600 rounded-full my-6 w-full flex items-center justify-center"
             >
-              <img
+              <Image
+                width={30}
+                height={30}
                 className="w-[30px] h-[30px] rounded-full absolute top-1/2 -translate-y-1/2 left-[10px]"
                 src={resizeImage(currentUser.photoURL, "30", "30")}
                 alt=""
@@ -112,7 +116,8 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                 errors={errors}
                 errorClassName="px-12"
                 textareaProps={{
-                  placeholder: "Comment what you think...\n(max: 1000 characters)",
+                  placeholder:
+                    "Comment what you think...\n(max: 1000 characters)",
                   onKeyDown: (e) => e.stopPropagation(),
                   onKeyUp: (e) => e.stopPropagation(),
                   autoComplete: "off",
@@ -131,19 +136,30 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                   <div className="w-[25px] h-[25px] rounded-full border-white border-t-transparent border-[3px] animate-spin"></div>
                 </div>
               ) : (
-                <button className="absolute right-[14px] top-1/2 -translate-y-1/2" type="submit">
+                <button
+                  className="absolute right-[14px] top-1/2 -translate-y-1/2"
+                  type="submit"
+                >
                   <FaPaperPlane className="text-xl" />
                 </button>
               )}
             </form>
           ) : (
             <div className="flex items-center gap-3 h-12 border border-gray-600 rounded-full my-6 px-3">
-              <img className="w-[30px] h-[30px] rounded-full" src="/default-avatar.png" alt="" />
+              <Image
+                width={30}
+                height={30}
+                className="w-[30px] h-[30px] rounded-full"
+                src="/default-avatar.png"
+                alt=""
+              />
               <p>
                 You need to{" "}
                 <Link
                   className="text-primary"
-                  to={`/sign-in?redirect=${encodeURIComponent(location.pathname)}`}
+                  href={`/sign-in?redirect=${encodeURIComponent(
+                    router.pathname
+                  )}`}
                 >
                   sign in
                 </Link>{" "}
@@ -157,7 +173,9 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
               const docData = doc.data() as CommentType;
               return (
                 <div key={doc.id} className="flex gap-2 w-full">
-                  <img
+                  <Image
+                    width={50}
+                    height={50}
                     className="w-[50px] h-[50px] rounded-full flex-shrink-0"
                     src={resizeImage(docData.user.photoURL, "50", "50")}
                     alt=""
@@ -167,11 +185,15 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                       <p className="font-bold">{docData.user.displayName}</p>
                       <p className="text-gray-400 text-sm">
                         {docData?.createdAt?.seconds
-                          ? calculateCreatedTime(docData.createdAt.seconds * 1000)
+                          ? calculateCreatedTime(
+                              docData.createdAt.seconds * 1000
+                            )
                           : "Just now"}
                       </p>
                     </div>
-                    <p style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}>
+                    <p
+                      style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}
+                    >
                       {docData.value}
                     </p>
                     <div className="flex gap-3 items-center">
@@ -180,17 +202,19 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                           addReaction(
                             doc.id,
                             Object.entries(docData.reactions).find(
-                              (item) => item[0] === currentUser?.uid,
+                              (item) => item[0] === currentUser?.uid
                             )?.[1] === 1
                               ? 0
-                              : 1,
+                              : 1
                           )
                         }
                         className={`flex items-center gap-1 transition ${
-                          !currentUser ? "cursor-default" : "hover:brightness-75"
+                          !currentUser
+                            ? "cursor-default"
+                            : "hover:brightness-75"
                         } ${
                           Object.entries(docData.reactions).find(
-                            (item) => item[0] === currentUser?.uid,
+                            (item) => item[0] === currentUser?.uid
                           )?.[1] === 1
                             ? "text-primary"
                             : ""
@@ -198,7 +222,11 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                       >
                         <FaThumbsUp />
                         <span>
-                          {Object.values(docData.reactions).filter((item) => item === 1).length}
+                          {
+                            Object.values(docData.reactions).filter(
+                              (item) => item === 1
+                            ).length
+                          }
                         </span>
                       </button>
 
@@ -207,17 +235,19 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                           addReaction(
                             doc.id,
                             Object.entries(docData.reactions).find(
-                              (item) => item[0] === currentUser?.uid,
+                              (item) => item[0] === currentUser?.uid
                             )?.[1] === 2
                               ? 0
-                              : 2,
+                              : 2
                           )
                         }
                         className={`flex items-center gap-1 transition ${
-                          !currentUser ? "cursor-default" : "hover:brightness-75"
+                          !currentUser
+                            ? "cursor-default"
+                            : "hover:brightness-75"
                         } ${
                           Object.entries(docData.reactions).find(
-                            (item) => item[0] === currentUser?.uid,
+                            (item) => item[0] === currentUser?.uid
                           )?.[1] === 2
                             ? "text-primary"
                             : ""
@@ -225,7 +255,11 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
                       >
                         <FaThumbsDown />
                         <span>
-                          {Object.values(docData.reactions).filter((item) => item === 2).length}
+                          {
+                            Object.values(docData.reactions).filter(
+                              (item) => item === 2
+                            ).length
+                          }
                         </span>
                       </button>
                     </div>
@@ -239,16 +273,18 @@ const Comment: FC<CommentProps> = ({ data, episodeIndex }) => {
             <p className="text-center text-gray-400">No one has commented</p>
           )}
 
-          {!loading && Boolean(commentData?.size) && (commentData?.size as number) >= commentLimit && (
-            <div className="flex justify-center mt-8">
-              <button
-                onClick={() => setCommentLimit(commentLimit + 10)}
-                className="bg-primary text-white px-4 py-2 rounded hover:brightness-[115%] transition"
-              >
-                Load more
-              </button>
-            </div>
-          )}
+          {!loading &&
+            Boolean(commentData?.size) &&
+            (commentData?.size as number) >= commentLimit && (
+              <div className="flex justify-center mt-8">
+                <button
+                  onClick={() => setCommentLimit(commentLimit + 10)}
+                  className="bg-primary text-white px-4 py-2 rounded hover:brightness-[115%] transition"
+                >
+                  Load more
+                </button>
+              </div>
+            )}
         </>
       )}
     </div>

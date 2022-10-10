@@ -32,7 +32,7 @@ export const getDiscoveryItems = async (page = 0): Promise<DiscoveryItem[]> => {
         contentId: item.id,
         episodeId: item.mediaInfo.id,
         definition: item.mediaInfo.definitionList.slice(-1)[0].code,
-      })),
+      }))
     )
   ).data.data.map((item: any) => item.mediaUrl);
 

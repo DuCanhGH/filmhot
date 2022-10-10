@@ -1,8 +1,10 @@
+import Image from "next/future/image";
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC, startTransition, useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { FaBars, FaExternalLinkAlt, FaHeart } from "react-icons/fa";
 import { InView } from "react-intersection-observer";
-import { Link, useLocation } from "react-router-dom";
 import useSWRInfinite from "swr/infinite";
 
 import DiscoveryPlayer from "../components/Discovery/Player";
@@ -17,7 +19,11 @@ const Discovery: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const getKey = (index: number) => `discovery-${index || 0}`;
-  const location = useLocation();
+
+  const router = useRouter();
+
+  const location = router.pathname;
+
   const {
     data: ogData,
     error,
@@ -29,11 +35,12 @@ const Discovery: FC = () => {
     (key) => getDiscoveryItems(Number(key.split("-").slice(-1)[0])),
     {
       revalidateFirstPage: false,
-    },
+    }
   );
   const data = ogData ? ([] as DiscoveryItem[]).concat(...ogData) : [];
   const isReachingEnd = error || ogData?.slice(-1)?.[0]?.length === 0;
-  const isLoadingMore = size > 0 && ogData && typeof ogData[size - 1] === "undefined";
+  const isLoadingMore =
+    size > 0 && ogData && typeof ogData[size - 1] === "undefined";
   const loadMore = () => {
     startTransition(() => {
       setSize((prev) => prev + 1);
@@ -46,22 +53,37 @@ const Discovery: FC = () => {
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>Discovery</title>
-        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/discovery`} />
-      </Helmet>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/discovery`}
+        />
+      </Head>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
-        <Link to="/" className="flex items-center gap-2">
-          <img className="w-8 h-8" src="/icon.png" alt="" />
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            width={32}
+            height={32}
+            className="w-8 h-8"
+            src="/icon.png"
+            alt=""
+          />
           <span className="text-xl font-medium">FilmHot</span>
         </Link>
 
-        <button aria-label="Toggle sidebar" onClick={() => setSidebarActive(!sidebarActive)}>
+        <button
+          aria-label="Toggle sidebar"
+          onClick={() => setSidebarActive(!sidebarActive)}
+        >
           <FaBars className="text-2xl" />
         </button>
       </div>
       <div className="flex">
-        <Sidebar sidebarActive={sidebarActive} setSidebarActive={setSidebarActive} />
+        <Sidebar
+          sidebarActive={sidebarActive}
+          setSidebarActive={setSidebarActive}
+        />
         <div className="flex-grow py-10 px-[4vw]">
           {!ogData && !error && (
             <div className="h-screen w-full flex justify-center items-center">
@@ -78,7 +100,9 @@ const Discovery: FC = () => {
                 />
 
                 <div className="flex flex-col items-stretch flex-grow gap-3">
-                  <p className="font-semibold">{item.refList[0]?.name || item.name}</p>
+                  <p className="font-semibold">
+                    {item.refList[0]?.name || item.name}
+                  </p>
                   <p>{item.introduction}</p>
                   <div className="w-full h-full bg-black">
                     <InView threshold={0.5}>
@@ -104,22 +128,23 @@ const Discovery: FC = () => {
                     <span>{item.likeCount}</span>
                   </div>
 
-                  {item?.refList?.[0]?.id && !BANNED_IDS.includes(+item.refList[0].id) && (
-                    <div className="flex flex-col items-center gap-2">
-                      <Link
-                        to={
-                          item.refList[0].category === 0
-                            ? `/movie/${item.refList[0].id}`
-                            : `/tv/${item.refList[0].id}`
-                        }
-                        className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
-                        aria-label="Visit movie / TV page for this post"
-                      >
-                        <FaExternalLinkAlt />
-                      </Link>
-                      <span>Open</span>
-                    </div>
-                  )}
+                  {item?.refList?.[0]?.id &&
+                    !BANNED_IDS.includes(+item.refList[0].id) && (
+                      <div className="flex flex-col items-center gap-2">
+                        <Link
+                          href={
+                            item.refList[0].category === 0
+                              ? `/movie/${item.refList[0].id}`
+                              : `/tv/${item.refList[0].id}`
+                          }
+                          className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
+                          aria-label="Visit movie / TV page for this post"
+                        >
+                          <FaExternalLinkAlt />
+                        </Link>
+                        <span>Open</span>
+                      </div>
+                    )}
                 </div>
               </div>
             ))}

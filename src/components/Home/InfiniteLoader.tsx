@@ -14,4 +14,6 @@ const InfiniteLoader = forwardRef<HTMLDivElement>((_props, ref) => {
   );
 });
 
+InfiniteLoader.displayName = "InfiniteLoader";
+
 export default InfiniteLoader;

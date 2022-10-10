@@ -9,7 +9,9 @@ export const searchKeywords = async (keyword: string): Promise<string[]> =>
     })
   ).data.data.searchResults;
 
-export const searchWithKeyword = async (keyword: string): Promise<SearchResultItem[]> =>
+export const searchWithKeyword = async (
+  keyword: string
+): Promise<SearchResultItem[]> =>
   (
     await axios.post("search/v1/searchWithKeyWord", {
       searchKeyWord: keyword,

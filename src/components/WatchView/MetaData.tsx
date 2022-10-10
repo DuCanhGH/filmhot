@@ -1,14 +1,29 @@
 import classNames from "classnames";
+import dynamic from "next/dynamic";
+import Image from "next/future/image";
+import Link from "next/link";
 import { capitalize } from "radash";
-import { FC, Fragment, lazy, RefCallback, Suspense, useCallback, useEffect, useState } from "react";
-import { FaBookmark, FaDownload, FaRedoAlt, FaRegBookmark } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import {
+  FC,
+  Fragment,
+  RefCallback,
+  Suspense,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
+import {
+  FaBookmark,
+  FaDownload,
+  FaRedoAlt,
+  FaRegBookmark,
+} from "react-icons/fa";
 
 import { useDownloadVideo } from "../../hooks/useDownloadVideo";
 import type { BookmarkType, DetailType } from "../../shared/types";
 import Skeleton from "../Shared/Skeleton";
 
-const Download = lazy(() => import("./Download"));
+const Download = dynamic(() => import("./Download"));
 
 interface MetaDataProps {
   data?: DetailType;
@@ -50,7 +65,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
   useEffect(() => {
     if (!data) return;
     const existing = JSON.parse(
-      localStorage.getItem("filmhot-favorites") || "[]",
+      localStorage.getItem("filmhot-favorites") || "[]"
     ) as BookmarkType[];
     if (!Array.isArray(existing)) return;
     if (existing.some((a) => a.id === data.id)) {
@@ -62,7 +77,9 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
 
   const bookmarkMovie = () => {
     if (!data) return;
-    let existing = JSON.parse(localStorage.getItem("filmhot-favorites") || "[]") as BookmarkType[];
+    let existing = JSON.parse(
+      localStorage.getItem("filmhot-favorites") || "[]"
+    ) as BookmarkType[];
     if (!Array.isArray(existing)) return;
     existing = existing.filter((item) => item.id !== data.id);
     if (!isMovieBookmarked) {
@@ -85,11 +102,23 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
 
           <div className="flex gap-4">
             <div className="flex items-center gap-1">
-              <img className="w-4 h-4" src="/star.png" alt="" />
+              <Image
+                width={16}
+                height={16}
+                className="w-4 h-4"
+                src="/star.png"
+                alt=""
+              />
               <p>{data?.score?.toFixed(1)}</p>
             </div>
             <div className="flex items-center gap-1">
-              <img className="w-4 h-4" src="/calendar.png" alt="" />
+              <Image
+                width={16}
+                height={16}
+                className="w-4 h-4"
+                src="/calendar.png"
+                alt=""
+              />
               <p>{data?.year}</p>
             </div>
           </div>
@@ -97,7 +126,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
           <div className="flex gap-3 flex-wrap">
             {data.tagList.map((tag) => (
               <Link
-                to={`/category/${tag.id}`}
+                href={`/category/${tag.id}`}
                 key={tag.id}
                 className="bg-dark-lighten rounded-full px-3 py-1 hover:brightness-125 transition duration-300"
               >
@@ -153,13 +182,17 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                 <>
                   {playlistData?.playlists?.length ? (
                     <div className="w-full flex flex-col items-stretch gap-3">
-                      <h2 className="text-2xl mt-3 mb-1">Choose a resolution</h2>
-                      {playlistData.playlists.map((playlist: any, index: number) => (
+                      <h2 className="text-2xl mt-3 mb-1">
+                        Choose a resolution
+                      </h2>
+                      {playlistData.playlists.map((playlist, index: number) => (
                         <p key={playlist.uri}>
-                          <span className="font-semibold">{playlist.uri}: </span>
+                          <span className="font-semibold">
+                            {playlist.uri}:{" "}
+                          </span>
                           <span>
                             {Object.entries(playlist.attributes).map(
-                              ([key, value]: [key: any, value: any], index) => (
+                              ([key, value], index) => (
                                 <Fragment key={key}>
                                   {index !== 0 && <span>, </span>}
                                   <span>
@@ -169,13 +202,16 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                                         {typeof value !== "object"
                                           ? value
                                           : Object.entries(value)
-                                              .map(([key, value]) => `${key}: ${value}`)
+                                              .map(
+                                                ([key, value]) =>
+                                                  `${key}: ${value}`
+                                              )
                                               .join(",")}
                                       </span>
                                     </>
                                   </span>
                                 </Fragment>
-                              ),
+                              )
                             )}
                           </span>
                           <span> </span>
@@ -208,14 +244,17 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
               >
                 {new Array(data.episodeVo).fill("").map((_, index) => (
                   <Link
-                    to={`/tv/${data.id}?episode=${index + 1}`}
+                    href={`/tv/${data.id}?episode=${index + 1}`}
                     key={index}
-                    {...(index === data.episodeVo - 1 ? { ref: lastEpisodeRef } : {})}
+                    {...(index === data.episodeVo - 1
+                      ? { ref: lastEpisodeRef }
+                      : {})}
                     className={classNames(
                       "px-4 h-[42px] flex items-center bg-dark-lighten rounded hover:brightness-125 transition duration-300",
                       {
-                        "!bg-primary text-white": episodeIndex && index === episodeIndex - 1,
-                      },
+                        "!bg-primary text-white":
+                          episodeIndex && index === episodeIndex - 1,
+                      }
                     )}
                   >
                     {index + 1}
@@ -224,7 +263,10 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
               </div>
               {showLoadMoreButton && (
                 <div>
-                  <button className="text-primary" onClick={() => setIsExpanded(!isExpanded)}>
+                  <button
+                    className="text-primary"
+                    onClick={() => setIsExpanded(!isExpanded)}
+                  >
                     {isExpanded ? "Show less" : "Show more"}
                   </button>
                 </div>

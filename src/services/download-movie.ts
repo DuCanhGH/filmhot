@@ -1,15 +1,16 @@
 import axios from "axios";
 
-import { apiUrl, urlWithProxy } from "../shared/constants";
+import { urlWithProxy } from "../shared/constants";
+import { M3U8Manifest } from "../shared/types";
 
 export const getInfo = async (url: string) => {
   let isUseProxy = false;
   const { data } = await axios
-    .get(`${apiUrl}/info?url=${encodeURIComponent(url)}`)
+    .get<M3U8Manifest>(`/api/parse-m3u8?url=${encodeURIComponent(url)}`)
     .catch(async () => {
       isUseProxy = true;
-      const { data } = await axios.get(
-        `${apiUrl}/info?url=${encodeURIComponent(urlWithProxy(url))}`,
+      const { data } = await axios.get<M3U8Manifest>(
+        `/api/parse-m3u8?url=${encodeURIComponent(urlWithProxy(url))}`
       );
       return { data };
     });

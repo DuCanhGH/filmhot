@@ -1,4 +1,7 @@
 import { signOut } from "firebase/auth";
+import Image from "next/future/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC } from "react";
 import type { IconType } from "react-icons";
 import {
@@ -11,7 +14,6 @@ import {
   FaSignInAlt,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
 
 import { resizeImage } from "../../shared/constants";
 import { auth } from "../../shared/firebase";
@@ -57,7 +59,7 @@ const sidebar_links: SidebarLinkType[] = [
 ];
 
 const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
-  const location = useLocation();
+  const router = useRouter();
 
   const currentUser = useStore((state) => state.currentUser);
 
@@ -72,24 +74,35 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
           sidebarActive ? "translate-x-full" : "translate-x-0"
         }`}
       >
-        <Link to="/" className="flex gap-2 items-center" aria-label="Filmhot">
-          <img className="w-6 h-6" src="/icon.png" alt="" />
-          <p className="font-semibold text-xl block sm:hidden xl:block" aria-hidden>
+        <Link href="/" className="flex gap-2 items-center" aria-label="Filmhot">
+          <Image
+            width={24}
+            height={24}
+            className="w-6 h-6"
+            src="/icon.png"
+            alt=""
+          />
+          <p
+            className="font-semibold text-xl block sm:hidden xl:block"
+            aria-hidden
+          >
             FilmHot
           </p>
         </Link>
 
         <div className="mt-0 sm:mt-4 xl:mt-0 block sm:flex flex-col gap-0 sm:gap-4 xl:block xl:gap-0">
-          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">Menu</p>
+          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">
+            Menu
+          </p>
 
           <div className="flex flex-col items-stretch gap-3">
             {sidebar_links.map((link) => {
               const Component = link.icon_class;
               return (
                 <Link
-                  to={link.link}
+                  href={link.link}
                   className={`flex items-center gap-2 transition ${
-                    location.pathname === link.link
+                    router.pathname === link.link
                       ? "text-primary border-r-4 border-primary hover:brightness-125"
                       : "text-gray-400 hover:text-gray-300"
                   }`}
@@ -104,9 +117,9 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
               );
             })}
             <Link
-              to="/search"
+              href="/search"
               className={`md:!hidden flex items-center gap-2 transition ${
-                location.pathname === "/search"
+                router.pathname === "/search"
                   ? "text-primary border-r-4 border-primary hover:brightness-125"
                   : "text-gray-400 hover:text-gray-300"
               }`}
@@ -119,11 +132,13 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
             </Link>
           </div>
 
-          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">Personal</p>
+          <p className="text-gray-400 uppercase mt-10 mb-4 block sm:hidden xl:block">
+            Personal
+          </p>
 
           {!currentUser ? (
             <Link
-              to={`/sign-in?redirect=${encodeURIComponent(location.pathname)}`}
+              href={`/sign-in?redirect=${encodeURIComponent(router.pathname)}`}
               className="flex items-center cursor-pointer gap-2 transition text-gray-400 hover:text-gray-300"
               aria-label="Sign in"
             >
@@ -135,13 +150,17 @@ const Sidebar: FC<SidebarProps> = ({ sidebarActive, setSidebarActive }) => {
           ) : (
             <div className="flex flex-col items-stretch gap-3">
               <div className="flex gap-2 items-center">
-                <img
+                <Image
+                  width={24}
+                  height={24}
                   className="w-[24px] h-[24px] rounded-full"
                   src={resizeImage(currentUser.photoURL, "24", "24")}
                   alt=""
                 />
 
-                <p className="text-gray-400 block sm:hidden xl:block">{currentUser.displayName}</p>
+                <p className="text-gray-400 block sm:hidden xl:block">
+                  {currentUser.displayName}
+                </p>
               </div>
               <button
                 onClick={handleSignOut}

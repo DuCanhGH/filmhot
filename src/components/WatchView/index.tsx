@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
+import Head from "next/head";
 import { type FC, lazy, Suspense, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
 
 import { subtitleProxy } from "../../shared/constants";
 import type { DetailType, HistoryType } from "../../shared/types";
@@ -9,13 +10,10 @@ import Comment from "./Comment";
 import MetaData from "./MetaData";
 import Similar from "./Similar";
 
-const Player = lazy(() =>
-  import("@ducanh2912/react-tuby").then((a) => ({
-    default: a.Player,
-  })),
+const Player = dynamic(() =>
+  import("@ducanh2912/react-tuby").then((a) => a.Player)
 );
-
-const ReactHlsPlayer = lazy(() => import("@ducanh2912/react-hls-player"));
+const ReactHlsPlayer = dynamic(() => import("@ducanh2912/react-hls-player"));
 
 interface WatchViewProps {
   data?: DetailType;
@@ -35,7 +33,12 @@ interface WatchViewProps {
   episodeIndex?: number;
 }
 
-const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex }) => {
+const WatchView: FC<WatchViewProps> = ({
+  data,
+  sources,
+  subtitles,
+  episodeIndex,
+}) => {
   const mediaType = typeof episodeIndex === "undefined" ? "movie" : "tv";
   const playerKey = `ducanh-filmhot-${mediaType}-${data?.id}${
     episodeIndex ? `-${episodeIndex}` : ""
@@ -43,7 +46,9 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
 
   useEffect(() => {
     if (!data) return;
-    let existing = JSON.parse(localStorage.getItem("filmhot-recent") || "[]") as HistoryType[];
+    let existing = JSON.parse(
+      localStorage.getItem("filmhot-recent") || "[]"
+    ) as HistoryType[];
 
     if (!Array.isArray(existing)) return;
 
@@ -62,11 +67,13 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
   return (
     <>
       {data && (
-        <Helmet>
+        <Head>
           <title>{`Watch ${data.name}${
-            typeof episodeIndex !== "undefined" ? ` - Episode ${episodeIndex}` : ""
+            typeof episodeIndex !== "undefined"
+              ? ` - Episode ${episodeIndex}`
+              : ""
           }`}</title>
-        </Helmet>
+        </Head>
       )}
       <div className="flex justify-center">
         <div className="mx-[4vw] lg:mx-[6vw] flex-1">
@@ -90,7 +97,13 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
                       >
                         {(ref, props) => {
                           const { src, ...others } = props;
-                          return <ReactHlsPlayer playerRef={ref} src={src} {...others} />;
+                          return (
+                            <ReactHlsPlayer
+                              playerRef={ref}
+                              src={src}
+                              {...others}
+                            />
+                          );
                         }}
                       </Player>
                     </Suspense>
@@ -102,7 +115,11 @@ const WatchView: FC<WatchViewProps> = ({ data, sources, subtitles, episodeIndex 
                 </div>
               </div>
 
-              <MetaData data={data} episodeIndex={episodeIndex} sources={sources} />
+              <MetaData
+                data={data}
+                episodeIndex={episodeIndex}
+                sources={sources}
+              />
               {data && <Comment data={data} episodeIndex={episodeIndex} />}
             </div>
 

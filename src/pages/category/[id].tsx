@@ -1,17 +1,20 @@
+import Head from "next/head";
+import { useRouter } from "next/router";
 import { FC } from "react";
-import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
 import useSWR from "swr";
 
-import CategoryResult from "../components/Category/CategoryResult";
-import Error from "../components/Shared/Error";
-import NavBar from "../components/Shared/NavBar";
-import { getSearchConfig } from "../services/explore";
+import CategoryResult from "../../components/Category/CategoryResult";
+import Error from "../../components/Shared/Error";
+import NavBar from "../../components/Shared/NavBar";
+import { getSearchConfig } from "../../services/explore";
 
 const Category: FC = () => {
-  const { id } = useParams() as { id: string };
+  const router = useRouter();
+  const { id } = router.query as { id: string };
 
-  const { data: searchConfig, error } = useSWR(`search-config`, () => getSearchConfig());
+  const { data: searchConfig, error } = useSWR(`search-config`, () =>
+    getSearchConfig()
+  );
 
   if (error) return <Error />;
 
@@ -30,9 +33,12 @@ const Category: FC = () => {
 
   return (
     <>
-      <Helmet>
-        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/category/1`} />
-      </Helmet>
+      <Head>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/category/1`}
+        />
+      </Head>
       <div>
         <div className="mx-[7vw]">
           <NavBar />

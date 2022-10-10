@@ -1,7 +1,3 @@
-export const apiUrl = import.meta.env.PROD
-  ? "https://ducanh-filmhot-api.vercel.app/api"
-  : `http://localhost:${import.meta.env.VITE_API_PORT}/api`;
-
 export const convertWebp = (url: string) =>
   `https://images.weserv.nl/?url=${encodeURIComponent(url)}&output=webp`;
 
@@ -9,12 +5,14 @@ export const resizeImage = (url: string, width = "", height = "") =>
   url.startsWith("https://graph.facebook.com/")
     ? url
     : `https://images.weserv.nl/?url=${encodeURIComponent(
-        url,
+        url
       )}&w=${width}&h=${height}&fit=outside&output=webp`;
 
-export const subtitleProxy = (url: string) => `${apiUrl}/subtitles?url=${encodeURIComponent(url)}`;
+export const subtitleProxy = (url: string) =>
+  `/api/subtitles?url=${encodeURIComponent(url)}`;
 
-export const urlWithProxy = (url: string) => `https://corsproxy.io/?${encodeURIComponent(url)}`;
+export const urlWithProxy = (url: string) =>
+  `https://corsproxy.io/?${encodeURIComponent(url)}`;
 
 export const IMAGE_CARD_SIZE: {
   [key: number]: {

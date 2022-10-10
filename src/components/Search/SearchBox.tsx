@@ -1,7 +1,8 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { FC, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
 
 import { searchKeywords } from "../../services/search";
 import { htmlToText } from "../../shared/utils";
@@ -12,7 +13,7 @@ const SearchBox: FC = () => {
   const { register, handleSubmit, watch, getValues } = useForm();
   const watchSearchInput = watch("searchInput");
   const timeoutRef = useRef<any>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   useEffect(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setSuggestions([]);
@@ -25,7 +26,7 @@ const SearchBox: FC = () => {
   const handleFormSubmit = handleSubmit((data) => {
     const { searchInput } = data;
     if (searchInput) {
-      navigate(`/search?q=${encodeURIComponent(searchInput)}`);
+      router.push(`/search?q=${encodeURIComponent(searchInput)}`);
     }
   });
   return (
@@ -54,10 +55,15 @@ const SearchBox: FC = () => {
       {suggestions.length > 0 && (
         <div className="absolute z-10 top-full left-0 w-full bg-dark-lighten rounded overflow-x-hidden overflow-y-auto max-h-[200px] flex-col items-stretch hidden group-focus-within:flex">
           {suggestions.map((suggestion, index) => (
-            <Link key={index} to={`/search?q=${encodeURIComponent(suggestion)}`}>
+            <Link
+              key={index}
+              href={`/search?q=${encodeURIComponent(suggestion)}`}
+            >
               <button
                 className={`text-left p-2 w-full ${
-                  index !== suggestions.length - 1 ? "border-b border-gray-500" : ""
+                  index !== suggestions.length - 1
+                    ? "border-b border-gray-500"
+                    : ""
                 }`}
               >
                 {suggestion}

@@ -5,7 +5,7 @@ import { DetailType } from "../shared/types";
 export const getMovieDetail = async (
   id: string,
   category: 0 | 1,
-  episodeIndex = 1,
+  episodeIndex = 1
 ): Promise<{
   data: DetailType;
   sources: { quality: number; url: string }[];
@@ -36,15 +36,15 @@ export const getMovieDetail = async (
                 definition: quality.code,
               },
             })
-          ).data.data.mediaUrl,
-      ),
+          ).data.data.mediaUrl
+      )
     )
   )
     .map((url, index) => ({
       quality: Number(
         data.episodeVo[episodeIndex - 1].definitionList[index].description
           .toLowerCase()
-          .replace("p", ""),
+          .replace("p", "")
       ),
       url,
     }))

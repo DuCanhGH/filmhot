@@ -1,5 +1,5 @@
+import Head from "next/head";
 import { FC, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import useSWR from "swr";
 
 import ExploreConfig from "../components/Explore/ExploreConfig";
@@ -8,7 +8,9 @@ import NavBar from "../components/Shared/NavBar";
 import { getSearchConfig } from "../services/explore";
 
 const Explore: FC = () => {
-  const { data: searchConfig, error } = useSWR("search-config", () => getSearchConfig());
+  const { data: searchConfig, error } = useSWR("search-config", () =>
+    getSearchConfig()
+  );
 
   const [sectionIndex, setSectionIndex] = useState(0);
 
@@ -16,10 +18,13 @@ const Explore: FC = () => {
 
   return (
     <>
-      <Helmet>
+      <Head>
         <title>Explore</title>
-        <link rel="canonical" href={`${import.meta.env.VITE_CANONICAL_URL}/explore`} />
-      </Helmet>
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/explore`}
+        />
+      </Head>
       <div className="flex flex-col items-stretch min-h-screen mx-[7vw]">
         <NavBar />
 
@@ -34,7 +39,9 @@ const Explore: FC = () => {
                 <button
                   key={index}
                   className={`transition relative after:absolute after:top-[110%] after:left-0 after:w-full after:h-[2px] after:bg-transparent after:rounded after:transition ${
-                    sectionIndex === index ? "text-primary after:bg-primary" : ""
+                    sectionIndex === index
+                      ? "text-primary after:bg-primary"
+                      : ""
                   }`}
                   onClick={() => {
                     setSectionIndex(index);
@@ -44,7 +51,10 @@ const Explore: FC = () => {
                 </button>
               ))}
             </div>
-            <ExploreConfig config={searchConfig[sectionIndex]} sectionIndex={sectionIndex} />
+            <ExploreConfig
+              config={searchConfig[sectionIndex]}
+              sectionIndex={sectionIndex}
+            />
           </div>
         )}
       </div>
