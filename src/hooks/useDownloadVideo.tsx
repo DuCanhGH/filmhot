@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { getInfo } from "../services/download-movie";
-import { M3U8Manifest } from "../shared/types";
+import { getInfo } from "@/services/download-movie";
+import { M3U8Manifest } from "@/shared/types";
 
 export const useDownloadVideo = (url: string) => {
   const [disabled, setDisabled] = useState(false);

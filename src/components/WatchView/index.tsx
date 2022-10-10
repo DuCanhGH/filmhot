@@ -1,11 +1,12 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { type FC, lazy, Suspense, useEffect } from "react";
+import { type FC, Suspense, useEffect } from "react";
 
-import { subtitleProxy } from "../../shared/constants";
-import type { DetailType, HistoryType } from "../../shared/types";
-import NavBar from "../Shared/NavBar";
-import Skeleton from "../Shared/Skeleton";
+import NavBar from "@/components/Shared/NavBar";
+import Skeleton from "@/components/Shared/Skeleton";
+import { subtitleProxy } from "@/shared/constants";
+import type { DetailType, HistoryType } from "@/shared/types";
+
 import Comment from "./Comment";
 import MetaData from "./MetaData";
 import Similar from "./Similar";

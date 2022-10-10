@@ -2,9 +2,10 @@ import { startTransition } from "react";
 import { InView } from "react-intersection-observer";
 import useSWRInfinite from "swr/infinite";
 
-import { getHome } from "../../services/home";
-import { BANNED_IDS, resizeImage } from "../../shared/constants";
-import type { HomeSection } from "../../shared/types";
+import { getHome } from "@/services/home";
+import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import type { HomeSection } from "@/shared/types";
+
 import BannerSlider from "./BannerSlider";
 import InfiniteLoader from "./InfiniteLoader";
 import SectionSlider from "./SectionSlider";

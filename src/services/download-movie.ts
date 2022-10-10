@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { urlWithProxy } from "../shared/constants";
-import { M3U8Manifest } from "../shared/types";
+import { urlWithProxy } from "@/shared/constants";
+import { M3U8Manifest } from "@/shared/types";
 
 export const getInfo = async (url: string) => {
   let isUseProxy = false;

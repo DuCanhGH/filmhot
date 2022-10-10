@@ -19,9 +19,9 @@ import {
   FaRegBookmark,
 } from "react-icons/fa";
 
-import { useDownloadVideo } from "../../hooks/useDownloadVideo";
-import type { BookmarkType, DetailType } from "../../shared/types";
-import Skeleton from "../Shared/Skeleton";
+import Skeleton from "@/components/Shared/Skeleton";
+import { useDownloadVideo } from "@/hooks/useDownloadVideo";
+import type { BookmarkType, DetailType } from "@/shared/types";
 
 const Download = dynamic(() => import("./Download"));
 

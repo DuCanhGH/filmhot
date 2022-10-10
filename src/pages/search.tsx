@@ -2,10 +2,10 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { FC } from "react";
 
-import TopSearches from "../components/Home/TopSearches";
-import SearchBox from "../components/Search/SearchBox";
-import SearchResult from "../components/Search/SearchResult";
-import NavBar from "../components/Shared/NavBar";
+import TopSearches from "@/components/Home/TopSearches";
+import SearchBox from "@/components/Search/SearchBox";
+import SearchResult from "@/components/Search/SearchResult";
+import NavBar from "@/components/Shared/NavBar";
 
 const Search: FC = () => {
   const router = useRouter();

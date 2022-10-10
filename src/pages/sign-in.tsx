@@ -10,9 +10,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FC, useState } from "react";
 
-import Navigate from "../components/Shared/Navigate";
-import { auth } from "../shared/firebase";
-import { useStore } from "../store";
+import Navigate from "@/components/Shared/Navigate";
+import { auth } from "@/shared/firebase";
+import { useStore } from "@/store";
 
 const SignIn: FC = () => {
   const currentUser = useStore((state) => state.currentUser);

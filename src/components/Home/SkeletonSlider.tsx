@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import Skeleton from "../Shared/Skeleton";
+import Skeleton from "@/components/Shared/Skeleton";
 
 const Slider: FC = () => {
   const [width, setWidth] = useState(0);

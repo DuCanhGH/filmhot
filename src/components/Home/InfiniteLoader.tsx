@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 
-import Skeleton from "../Shared/Skeleton";
+import Skeleton from "@/components/Shared/Skeleton";
+
 import Slider from "./SkeletonSlider";
 
 const InfiniteLoader = forwardRef<HTMLDivElement>((_props, ref) => {

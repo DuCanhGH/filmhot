@@ -7,13 +7,13 @@ import { FaBars, FaExternalLinkAlt, FaHeart } from "react-icons/fa";
 import { InView } from "react-intersection-observer";
 import useSWRInfinite from "swr/infinite";
 
-import DiscoveryPlayer from "../components/Discovery/Player";
-import { ErrorWithRetry } from "../components/Shared/Error";
-import ImageFade from "../components/Shared/ImageFade";
-import Sidebar from "../components/Shared/Sidebar";
-import { getDiscoveryItems } from "../services/discovery";
-import { BANNED_IDS, resizeImage } from "../shared/constants";
-import type { DiscoveryItem } from "../shared/types";
+import DiscoveryPlayer from "@/components/Discovery/Player";
+import { ErrorWithRetry } from "@/components/Shared/Error";
+import ImageFade from "@/components/Shared/ImageFade";
+import Sidebar from "@/components/Shared/Sidebar";
+import { getDiscoveryItems } from "@/services/discovery";
+import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import type { DiscoveryItem } from "@/shared/types";
 
 const Discovery: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);

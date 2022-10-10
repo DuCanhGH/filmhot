@@ -15,9 +15,9 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 
-import { resizeImage } from "../../shared/constants";
-import { auth } from "../../shared/firebase";
-import { useStore } from "../../store";
+import { resizeImage } from "@/shared/constants";
+import { auth } from "@/shared/firebase";
+import { useStore } from "@/store";
 
 interface SidebarProps {
   sidebarActive: boolean;

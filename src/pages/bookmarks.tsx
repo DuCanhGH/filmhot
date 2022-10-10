@@ -4,9 +4,9 @@ import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
-import { FilmItem } from "../components/Shared/FilmItem";
-import NavBar from "../components/Shared/NavBar";
-import type { BookmarkType } from "../shared/types";
+import { FilmItem } from "@/components/Shared/FilmItem";
+import NavBar from "@/components/Shared/NavBar";
+import type { BookmarkType } from "@/shared/types";
 
 const getBookmarks = () => {
   try {

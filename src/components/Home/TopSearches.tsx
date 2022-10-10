@@ -3,9 +3,9 @@ import { FC, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSWR from "swr";
 
-import { getTopSearched } from "../../services/home";
-import { BANNED_IDS, resizeImage } from "../../shared/constants";
-import Skeleton from "../Shared/Skeleton";
+import Skeleton from "@/components/Shared/Skeleton";
+import { getTopSearched } from "@/services/home";
+import { BANNED_IDS, resizeImage } from "@/shared/constants";
 
 const TopSearches: FC = () => {
   const { data, error } = useSWR("home-top-searches", () => getTopSearched());

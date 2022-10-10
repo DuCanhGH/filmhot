@@ -16,13 +16,13 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaPaperPlane, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 
-import { useCollectionQuery } from "../../hooks/useCollectionQuery";
-import { resizeImage } from "../../shared/constants";
-import { db } from "../../shared/firebase";
-import { CommentType, DetailType } from "../../shared/types";
-import { calculateCreatedTime } from "../../shared/utils";
-import { useStore } from "../../store";
-import { RHFTextArea } from "../Shared/RHFInput";
+import { RHFTextArea } from "@/components/Shared/RHFInput";
+import { useCollectionQuery } from "@/hooks/useCollectionQuery";
+import { resizeImage } from "@/shared/constants";
+import { db } from "@/shared/firebase";
+import { CommentType, DetailType } from "@/shared/types";
+import { calculateCreatedTime } from "@/shared/utils";
+import { useStore } from "@/store";
 
 interface CommentProps {
   data: DetailType;

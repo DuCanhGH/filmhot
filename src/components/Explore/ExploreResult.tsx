@@ -4,10 +4,10 @@ import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSWRInfinite from "swr/infinite";
 
-import { advanceSearch } from "../../services/explore";
-import { BANNED_IDS, resizeImage } from "../../shared/constants";
-import type { AdvanceSearchItem } from "../../shared/types";
-import { ErrorWithRetry } from "../Shared/Error";
+import { ErrorWithRetry } from "@/components/Shared/Error";
+import { advanceSearch } from "@/services/explore";
+import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import type { AdvanceSearchItem } from "@/shared/types";
 
 interface ExploreResultProps {
   params: string;

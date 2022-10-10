@@ -1,4 +1,4 @@
-import "../index.css";
+import "@/index.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "react-lazy-load-image-component/src/effects/opacity.css";

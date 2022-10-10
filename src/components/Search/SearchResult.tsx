@@ -3,10 +3,10 @@ import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSWR from "swr";
 
-import { searchWithKeyword } from "../../services/search";
-import { BANNED_IDS, resizeImage } from "../../shared/constants";
-import Error from "../Shared/Error";
-import Skeleton from "../Shared/Skeleton";
+import Error from "@/components/Shared/Error";
+import Skeleton from "@/components/Shared/Skeleton";
+import { searchWithKeyword } from "@/services/search";
+import { BANNED_IDS, resizeImage } from "@/shared/constants";
 
 interface SearchResultProps {
   query: string;

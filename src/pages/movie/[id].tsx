@@ -3,9 +3,9 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import useSWR from "swr";
 
-import Error from "../../components/Shared/Error";
-import WatchView from "../../components/WatchView";
-import { getMovieDetail } from "../../services/movie";
+import Error from "@/components/Shared/Error";
+import WatchView from "@/components/WatchView";
+import { getMovieDetail } from "@/services/movie";
 
 const Info: FC = () => {
   const router = useRouter();

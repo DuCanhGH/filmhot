@@ -2,10 +2,10 @@ import Image from "next/future/image";
 import Link from "next/link";
 import { FC } from "react";
 
-import { BANNED_IDS, resizeImage } from "../../shared/constants";
-import { DetailType } from "../../shared/types";
-import ImageFade from "../Shared/ImageFade";
-import Skeleton from "../Shared/Skeleton";
+import ImageFade from "@/components/Shared/ImageFade";
+import Skeleton from "@/components/Shared/Skeleton";
+import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import { DetailType } from "@/shared/types";
 
 interface SimilarProps {
   data: DetailType | undefined;

@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 
-import { ScreeningItems, SearchConfig } from "../../shared/types";
+import { ScreeningItems, SearchConfig } from "@/shared/types";
+
 import ExploreResult from "./ExploreResult";
 
 interface ExploreConfigProps {

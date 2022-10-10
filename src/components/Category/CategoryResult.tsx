@@ -5,9 +5,9 @@ import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useInfiniteSWR from "swr/infinite";
 
-import { getCategoryItems } from "../../services/category";
-import { BANNED_IDS, resizeImage } from "../../shared/constants";
-import { ErrorWithRetry } from "../Shared/Error";
+import { ErrorWithRetry } from "@/components/Shared/Error";
+import { getCategoryItems } from "@/services/category";
+import { BANNED_IDS, resizeImage } from "@/shared/constants";
 
 interface CategoryResultProps {
   id: string;

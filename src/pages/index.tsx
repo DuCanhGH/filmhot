@@ -5,12 +5,12 @@ import { useRouter } from "next/router";
 import { FC, Fragment, Suspense, useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 
-import MainSection from "../components/Home/MainSection";
-import SkeletonSlider from "../components/Home/SkeletonSlider";
-import TopSearches from "../components/Home/TopSearches";
-import SearchBox from "../components/Search/SearchBox";
-import Sidebar from "../components/Shared/Sidebar";
-import Skeleton from "../components/Shared/Skeleton";
+import MainSection from "@/components/Home/MainSection";
+import SkeletonSlider from "@/components/Home/SkeletonSlider";
+import TopSearches from "@/components/Home/TopSearches";
+import SearchBox from "@/components/Search/SearchBox";
+import Sidebar from "@/components/Shared/Sidebar";
+import Skeleton from "@/components/Shared/Skeleton";
 
 const Home: FC = () => {
   const [sidebarActive, setSidebarActive] = useState(false);

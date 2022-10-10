@@ -1,4 +1,4 @@
-import axios from "../shared/axios";
+import axios from "@/shared/axios";
 
 export const getCategoryItems = async (categoryId: string, sort: string) =>
   (

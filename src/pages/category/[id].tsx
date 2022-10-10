@@ -3,10 +3,10 @@ import { useRouter } from "next/router";
 import { FC } from "react";
 import useSWR from "swr";
 
-import CategoryResult from "../../components/Category/CategoryResult";
-import Error from "../../components/Shared/Error";
-import NavBar from "../../components/Shared/NavBar";
-import { getSearchConfig } from "../../services/explore";
+import CategoryResult from "@/components/Category/CategoryResult";
+import Error from "@/components/Shared/Error";
+import NavBar from "@/components/Shared/NavBar";
+import { getSearchConfig } from "@/services/explore";
 
 const Category: FC = () => {
   const router = useRouter();

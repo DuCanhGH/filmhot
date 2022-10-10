@@ -2,7 +2,7 @@ import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 import { parallel } from "radash";
 import { FC, useState } from "react";
 
-import { urlWithProxy } from "../../shared/constants";
+import { urlWithProxy } from "@/shared/constants";
 
 interface DownloadProps {
   segments: string[];

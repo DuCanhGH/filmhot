@@ -1,6 +1,6 @@
-import axios from "../shared/axios";
-import { BANNED_IDS } from "../shared/constants";
-import { DetailType } from "../shared/types";
+import axios from "@/shared/axios";
+import { BANNED_IDS } from "@/shared/constants";
+import { DetailType } from "@/shared/types";
 
 export const getMovieDetail = async (
   id: string,

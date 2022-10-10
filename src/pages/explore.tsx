@@ -2,10 +2,10 @@ import Head from "next/head";
 import { FC, useState } from "react";
 import useSWR from "swr";
 
-import ExploreConfig from "../components/Explore/ExploreConfig";
-import Error from "../components/Shared/Error";
-import NavBar from "../components/Shared/NavBar";
-import { getSearchConfig } from "../services/explore";
+import ExploreConfig from "@/components/Explore/ExploreConfig";
+import Error from "@/components/Shared/Error";
+import NavBar from "@/components/Shared/NavBar";
+import { getSearchConfig } from "@/services/explore";
 
 const Explore: FC = () => {
   const { data: searchConfig, error } = useSWR("search-config", () =>

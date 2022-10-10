@@ -4,7 +4,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { resizeImage } from "../../shared/constants";
+import { resizeImage } from "@/shared/constants";
 
 interface SliderProps {
   images: {

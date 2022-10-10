@@ -4,9 +4,9 @@ import { FC, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
 
-import { searchKeywords } from "../../services/search";
-import { htmlToText } from "../../shared/utils";
-import { RHFInput } from "../Shared/RHFInput";
+import { RHFInput } from "@/components/Shared/RHFInput";
+import { searchKeywords } from "@/services/search";
+import { htmlToText } from "@/shared/utils";
 
 const SearchBox: FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
