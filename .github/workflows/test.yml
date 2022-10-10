@@ -6,7 +6,7 @@ jobs:
     name: ⬣, 🔎, ⚡, 🔨 Lint, Typecheck, and Build app
     runs-on: ubuntu-latest
     env:
-      VITE_FIREBASE_CONFIG: ${{ secrets.VITE_FIREBASE_CONFIG }}
+      NEXT_PUBLIC_FIREBASE_CONFIG: ${{ secrets.NEXT_PUBLIC_FIREBASE_CONFIG }}
     strategy:
       matrix:
         node-version: [16.x]
