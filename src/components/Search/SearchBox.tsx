@@ -58,7 +58,7 @@ const SearchBox: FC = () => {
             <Link
               key={index}
               href={`/search?q=${encodeURIComponent(suggestion)}`}
-              className="bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover transition-colors"
+              className="bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 transition-colors"
             >
               <button
                 className={`text-left p-2 w-full ${

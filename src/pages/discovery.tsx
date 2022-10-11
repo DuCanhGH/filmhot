@@ -119,7 +119,7 @@ const Discovery: FC = () => {
                 <div className="flex flex-col items-center justify-center w-20 gap-5">
                   <div className="flex flex-col items-center gap-2">
                     <div
-                      className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
+                      className="bg-dark-lighten-100 rounded-full h-10 w-10 flex justify-center items-center"
                       aria-label="Likes"
                       role="img"
                     >
@@ -137,7 +137,7 @@ const Discovery: FC = () => {
                               ? `/movie/${item.refList[0].id}`
                               : `/tv/${item.refList[0].id}`
                           }
-                          className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
+                          className="bg-dark-lighten-100 rounded-full h-10 w-10 flex justify-center items-center"
                           aria-label="Visit movie / TV page for this post"
                         >
                           <FaExternalLinkAlt />

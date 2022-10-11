@@ -19,7 +19,7 @@ export const FilmItem: FC<Props> = (props) => {
     <Link
       title={item.name}
       href={item.category === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
-      className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
+      className="relative h-0 pb-[163%] bg-dark-lighten-100 rounded overflow-hidden group"
     >
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">
         <div className="relative w-full h-0 pb-[140%] flex-shrink-0 group-hover:brightness-[80%] transition duration-300">

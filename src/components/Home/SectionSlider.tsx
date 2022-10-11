@@ -33,7 +33,7 @@ const Slider: FC<SliderProps> = ({ images, coverType }) => {
           })}
         >
           <Link href={item.link} prefetch={false}>
-            <div className="block rounded-lg overflow-hidden bg-dark-lighten group">
+            <div className="block rounded-lg overflow-hidden bg-dark-lighten-100 group">
               <LazyLoadImage
                 style={{
                   width: IMAGE_CARD_SIZE[coverType || 1].width,

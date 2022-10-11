@@ -62,7 +62,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
                   item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
                 }
                 key={item.id}
-                className="relative h-0 pb-[163%] bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover transition-colors rounded overflow-hidden group"
+                className="relative h-0 pb-[163%] bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 transition-colors rounded overflow-hidden group"
               >
                 <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">
                   <div className="relative w-full h-0 pb-[140%] flex-shrink-0 group-hover:brightness-[80%] transition duration-300">

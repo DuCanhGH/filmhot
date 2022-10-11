@@ -140,7 +140,7 @@ const MetaData: FC<MetaDataProps> = ({
               <Link
                 href={`/category/${tag.id}`}
                 key={tag.id}
-                className="bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover rounded-full px-3 py-1 transition-colors"
+                className="bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 rounded-full px-3 py-1 transition-colors"
               >
                 {tag.name}
               </Link>
@@ -264,7 +264,7 @@ const MetaData: FC<MetaDataProps> = ({
                       ? { ref: lastEpisodeRef }
                       : {})}
                     className={classNames(
-                      "px-4 h-[42px] flex items-center bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover rounded transition-colors",
+                      "px-4 h-[42px] flex items-center bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 rounded transition-colors",
                       {
                         "!bg-primary text-white":
                           episodeIndex && index === episodeIndex - 1,
