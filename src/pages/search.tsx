@@ -1,3 +1,4 @@
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { FC } from "react";
@@ -6,8 +7,26 @@ import TopSearches from "@/components/Home/TopSearches";
 import SearchBox from "@/components/Search/SearchBox";
 import SearchResult from "@/components/Search/SearchResult";
 import NavBar from "@/components/Shared/NavBar";
+import { getTopSearched } from "@/services/home";
+import type { TopSearched } from "@/shared/types";
 
-const Search: FC = () => {
+interface GSPProps {
+  topSearches: TopSearched[];
+}
+
+export const getStaticProps: GetStaticProps<GSPProps> = async () => {
+  const topSearches = await getTopSearched();
+  return {
+    props: {
+      topSearches,
+    },
+  };
+};
+
+type SearchProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Search: FC<SearchProps> = (props) => {
+  const { topSearches } = props;
   const router = useRouter();
   const { q: query } = router.query;
 
@@ -26,7 +45,7 @@ const Search: FC = () => {
 
             <div className="mt-8 w-full">
               <h1 className="text-lg mb-3">Popular Searches</h1>
-              <TopSearches />
+              <TopSearches fallbackData={topSearches} />
             </div>
           </div>
         </div>

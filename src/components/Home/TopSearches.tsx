@@ -6,9 +6,17 @@ import useSWR from "swr";
 import Skeleton from "@/components/Shared/Skeleton";
 import { getTopSearched } from "@/services/home";
 import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import type { TopSearched } from "@/shared/types";
 
-const TopSearches: FC = () => {
-  const { data, error } = useSWR("home-top-searches", () => getTopSearched());
+interface Props {
+  fallbackData: TopSearched[];
+}
+
+const TopSearches: FC<Props> = (props) => {
+  const { fallbackData } = props;
+  const { data, error } = useSWR("home-top-searches", () => getTopSearched(), {
+    fallbackData,
+  });
   const [width, setWidth] = useState(0);
   useEffect(() => {
     setWidth(window.innerWidth);

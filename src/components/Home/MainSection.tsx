@@ -1,16 +1,21 @@
-import { startTransition } from "react";
+import { FC, startTransition } from "react";
 import { InView } from "react-intersection-observer";
 import useSWRInfinite from "swr/infinite";
 
 import { getHome } from "@/services/home";
-import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import { BANNED_IDS, convertWebp, resizeImage } from "@/shared/constants";
 import type { HomeSection } from "@/shared/types";
 
 import BannerSlider from "./BannerSlider";
 import InfiniteLoader from "./InfiniteLoader";
 import SectionSlider from "./SectionSlider";
 
-const MainSection = () => {
+interface Props {
+  fallbackData: HomeSection[][];
+}
+
+const MainSection: FC<Props> = (props) => {
+  const { fallbackData } = props;
   const getKey = (index: number) => `home-${index || 0}`;
   const {
     data: ogData,
@@ -22,10 +27,18 @@ const MainSection = () => {
     (key) => getHome(Number(key.split("-").slice(-1)[0])),
     {
       revalidateFirstPage: false,
-      suspense: true,
+      fallbackData,
     }
   );
-  const data = ogData ? ([] as HomeSection[]).concat(...ogData) : [];
+  const data = ogData
+    ? ([] as HomeSection[])
+        .concat(...ogData)
+        .filter(
+          (value, index, self) =>
+            self.findIndex((v) => v.homeSectionId === value.homeSectionId) ===
+            index
+        )
+    : [];
   const isReachingEnd = !!error || ogData?.slice(-1)?.[0]?.length === 0;
   const isLoadingMore =
     size > 0 && ogData && typeof ogData[size - 1] === "undefined";
@@ -36,73 +49,67 @@ const MainSection = () => {
   };
   return (
     <>
-      {data
-        .filter(
-          (value, index, self) =>
-            self.findIndex((v) => v.homeSectionId === value.homeSectionId) ===
-            index
-        )
-        .map((section) =>
-          section.homeSectionType === "BANNER" ? (
-            <div
-              key={section.homeSectionId}
-              className="overflow-hidden w-full mt-8"
-            >
-              <BannerSlider
-                images={
-                  (section.recommendContentVOList
-                    .filter((a) => !BANNED_IDS.includes(a.id))
-                    .map((item) => {
-                      const searchParams = new URLSearchParams(
-                        new URL(item.jumpAddress).search
-                      );
-
-                      if (!searchParams.get("id")) return null;
-
-                      return {
-                        title: item.title,
-                        image: item.imageUrl,
-                        link:
-                          searchParams.get("type") === "0"
-                            ? `/movie/${searchParams.get("id")}`
-                            : `/tv/${searchParams.get("id")}`,
-                      };
-                    })
-                    .filter(Boolean) as {
-                    title: string;
-                    image: string;
-                    link: string;
-                  }[]) || []
-                }
-              />
-            </div>
-          ) : (
-            <div key={section.homeSectionId}>
-              <h1 className="text-2xl mb-3 mt-8">
-                {section.homeSectionName.replace("on Loklok", "")}
-              </h1>
-
-              <SectionSlider
-                images={section.recommendContentVOList
+      {data.map((section) =>
+        section.homeSectionType === "BANNER" ? (
+          <div
+            key={section.homeSectionId}
+            className="overflow-hidden w-full mt-8"
+          >
+            <BannerSlider
+              images={
+                (section.recommendContentVOList
                   .filter((a) => !BANNED_IDS.includes(a.id))
                   .map((item) => {
                     const searchParams = new URLSearchParams(
                       new URL(item.jumpAddress).search
                     );
+
+                    if (!searchParams.get("id")) return null;
+
                     return {
                       title: item.title,
-                      image: resizeImage(item.imageUrl, "200"),
+                      image: item.imageUrl,
                       link:
                         searchParams.get("type") === "0"
                           ? `/movie/${searchParams.get("id")}`
                           : `/tv/${searchParams.get("id")}`,
                     };
-                  })}
-                coverType={section.coverType}
-              />
-            </div>
-          )
-        )}
+                  })
+                  .filter(Boolean) as {
+                  title: string;
+                  image: string;
+                  link: string;
+                }[]) || []
+              }
+            />
+          </div>
+        ) : (
+          <div key={section.homeSectionId}>
+            <h1 className="text-2xl mb-3 mt-8">
+              {section.homeSectionName.replace("on Loklok", "")}
+            </h1>
+
+            <SectionSlider
+              images={section.recommendContentVOList
+                .filter((a) => !BANNED_IDS.includes(a.id))
+                .map((item) => {
+                  const searchParams = new URLSearchParams(
+                    new URL(item.jumpAddress).search
+                  );
+                  return {
+                    title: item.title,
+                    image: convertWebp(item.imageUrl),
+                    link:
+                      searchParams.get("type") === "0"
+                        ? `/movie/${searchParams.get("id")}`
+                        : `/tv/${searchParams.get("id")}`,
+                  };
+                })}
+              coverType={section.coverType}
+            />
+          </div>
+        )
+      )}
       {!isReachingEnd && (
         <InView
           onChange={(inView) => {

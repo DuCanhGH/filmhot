@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Link from "next/link";
 import { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -22,15 +23,17 @@ const Slider: FC<SliderProps> = ({ images, coverType }) => {
       navigation
       slidesPerView="auto"
       slidesPerGroupAuto
-      spaceBetween={30}
     >
-      {images.map((item) => (
+      {images.map((item, index) => (
         <SwiperSlide
           style={{ width: IMAGE_CARD_SIZE[coverType || 1].width }}
           key={item.image}
+          className={classNames({
+            "!ml-[30px]": index !== 0,
+          })}
         >
-          <Link href={item.link}>
-            <div className="rounded-lg overflow-hidden bg-dark-lighten group">
+          <Link href={item.link} prefetch={false}>
+            <div className="block rounded-lg overflow-hidden bg-dark-lighten group">
               <LazyLoadImage
                 style={{
                   width: IMAGE_CARD_SIZE[coverType || 1].width,
@@ -43,7 +46,7 @@ const Slider: FC<SliderProps> = ({ images, coverType }) => {
                 effect="opacity"
                 alt=""
               />
-              <h1 className="group-hover:text-primary transition duration-300 pb-1 px-2 m-0 text-lg max-w-full whitespace-nowrap overflow-hidden text-ellipsis">
+              <h1 className="group-hover:text-primary transition duration-300 py-1 px-2 m-0 text-lg max-w-full whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.title}
               </h1>
             </div>
