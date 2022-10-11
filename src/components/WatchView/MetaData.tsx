@@ -21,7 +21,7 @@ import {
 
 import Skeleton from "@/components/Shared/Skeleton";
 import { useDownloadVideo } from "@/hooks/useDownloadVideo";
-import type { BookmarkType, DetailType } from "@/shared/types";
+import type { BookmarkType, DetailType, M3U8Manifest } from "@/shared/types";
 
 const Download = dynamic(() => import("./Download"));
 
@@ -34,9 +34,21 @@ interface MetaDataProps {
         url: string;
       }[]
     | undefined;
+  subtitles:
+    | {
+        language: string;
+        url: string;
+        lang: string;
+      }[]
+    | undefined;
 }
 
-const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
+const MetaData: FC<MetaDataProps> = ({
+  data,
+  episodeIndex,
+  sources,
+  subtitles,
+}) => {
   const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMovieBookmarked, setIsMovieBookmarked] = useState(false);
@@ -128,7 +140,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
               <Link
                 href={`/category/${tag.id}`}
                 key={tag.id}
-                className="bg-dark-lighten rounded-full px-3 py-1 hover:brightness-125 transition duration-300"
+                className="bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover rounded-full px-3 py-1 transition-colors"
               >
                 {tag.name}
               </Link>
@@ -174,7 +186,11 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
           </button>
           {segments.length > 0 ? (
             <Suspense fallback={<></>}>
-              <Download segments={segments} proxy={proxy} />
+              <Download
+                segments={segments}
+                proxy={proxy}
+                subtitle={subtitles ? subtitles[0].url : undefined}
+              />
             </Suspense>
           ) : (
             <>
@@ -182,9 +198,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                 <>
                   {playlistData?.playlists?.length ? (
                     <div className="w-full flex flex-col items-stretch gap-3">
-                      <h2 className="text-2xl mt-3 mb-1">
-                        Choose a resolution
-                      </h2>
+                      <h2 className="text-2xl mt-3 mb-1">Choose a video</h2>
                       {playlistData.playlists.map((playlist, index: number) => (
                         <p key={playlist.uri}>
                           <span className="font-semibold">
@@ -217,7 +231,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                           <span> </span>
                           <button
                             onClick={() => setSegments(playListSource[index])}
-                            className="text-blue-500"
+                            className="text-primary w-fit h-fit flex items-center gap-2 disabled:text-secondary"
                           >
                             Download
                           </button>
@@ -250,7 +264,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                       ? { ref: lastEpisodeRef }
                       : {})}
                     className={classNames(
-                      "px-4 h-[42px] flex items-center bg-dark-lighten rounded hover:brightness-125 transition duration-300",
+                      "px-4 h-[42px] flex items-center bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover rounded transition-colors",
                       {
                         "!bg-primary text-white":
                           episodeIndex && index === episodeIndex - 1,

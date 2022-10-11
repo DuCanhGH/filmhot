@@ -38,7 +38,7 @@ const Explore: FC = () => {
               {searchConfig.map((config, index) => (
                 <button
                   key={index}
-                  className={`transition relative after:absolute after:top-[110%] after:left-0 after:w-full after:h-[2px] after:bg-transparent after:rounded after:transition ${
+                  className={`transition relative after:absolute after:top-[110%] after:left-0 after:w-full after:h-[2px] after:bg-transparent after:rounded after:transition hover:text-primary hover:after:bg-primary ${
                     sectionIndex === index
                       ? "text-primary after:bg-primary"
                       : ""

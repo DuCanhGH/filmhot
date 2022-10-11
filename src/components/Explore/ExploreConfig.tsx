@@ -26,7 +26,7 @@ const ExploreConfig: FC<ExploreConfigProps> = ({ config, sectionIndex }) => {
       <div className="flex gap-3 flex-wrap my-6">
         {config.screeningItems.map((section, index) => (
           <select
-            className="outline-none bg-dark-lighten px-3 py-2 rounded"
+            className="outline-none bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover transition-colors px-3 py-2 rounded cursor-pointer"
             key={`${index}`}
             value={configs[section.items[0].screeningType]}
             onChange={(e) =>

@@ -115,11 +115,11 @@ const WatchView: FC<WatchViewProps> = ({
                   )}
                 </div>
               </div>
-
               <MetaData
                 data={data}
                 episodeIndex={episodeIndex}
                 sources={sources}
+                subtitles={subtitles}
               />
               {data && <Comment data={data} episodeIndex={episodeIndex} />}
             </div>

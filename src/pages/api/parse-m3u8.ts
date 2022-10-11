@@ -1,3 +1,4 @@
+import { M3U8Manifest } from "@/shared/types";
 import axios from "axios";
 // @ts-expect-error
 import { Parser } from "m3u8-parser";
@@ -27,11 +28,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const parser = new Parser();
     parser.push(source);
     parser.end();
-    const manifest = parser.manifest;
+    const manifest: M3U8Manifest = parser.manifest;
     if (!manifest?.segments?.length && !manifest?.playlists?.length) {
       return res.status(400).send("Invalid m3u8");
     }
-    return res.status(200).send(parser.manifest);
+    return res.status(200).send(manifest);
   } catch (error) {
     return res.status(500).send("Internal server error");
   }

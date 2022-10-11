@@ -18,7 +18,6 @@ export const useDownloadVideo = (url: string) => {
     try {
       const { data, isUseProxy } = await getInfo(url.trim());
       setProxy(isUseProxy);
-      console.log(data);
       if (data?.playlists?.length) {
         const result = await Promise.all(
           data.playlists.map(async (playlist: any) => {

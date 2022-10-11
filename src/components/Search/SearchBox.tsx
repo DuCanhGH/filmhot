@@ -53,11 +53,12 @@ const SearchBox: FC = () => {
       </form>
 
       {suggestions.length > 0 && (
-        <div className="absolute z-10 top-full left-0 w-full bg-dark-lighten rounded overflow-x-hidden overflow-y-auto max-h-[200px] flex-col items-stretch hidden group-focus-within:flex">
+        <div className="absolute z-10 top-full left-0 w-full rounded overflow-x-hidden overflow-y-auto max-h-[200px] flex-col items-stretch hidden group-focus-within:flex">
           {suggestions.map((suggestion, index) => (
             <Link
               key={index}
               href={`/search?q=${encodeURIComponent(suggestion)}`}
+              className="bg-dark-lighten hover:bg-dark-lighten-hover active:bg-dark-lighten-hover transition-colors"
             >
               <button
                 className={`text-left p-2 w-full ${

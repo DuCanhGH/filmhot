@@ -7,9 +7,10 @@ import { urlWithProxy } from "@/shared/constants";
 interface DownloadProps {
   segments: string[];
   proxy: boolean;
+  subtitle?: string;
 }
 
-const Download: FC<DownloadProps> = ({ segments, proxy }) => {
+const Download: FC<DownloadProps> = ({ segments, proxy, subtitle }) => {
   const [message, setMessage] = useState("Waiting for your command...");
   const [filePreview, setFilePreview] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ const Download: FC<DownloadProps> = ({ segments, proxy }) => {
   const startDownloadVideo = async () => {
     setMessage("Loading video rendering library...");
     const ffmpeg = createFFmpeg({
-      log: !process.env.PROD,
+      log: process.env.NODE_ENV !== "production",
       corePath: "https://unpkg.com/@ffmpeg/core/dist/ffmpeg-core.js",
     });
 
@@ -28,6 +29,7 @@ const Download: FC<DownloadProps> = ({ segments, proxy }) => {
     setMessage(`Downloading segments (0 / ${segments.length})...`);
 
     let count = 0;
+
     await parallel(
       10,
       segments.map((segment, index: any) => [index, segment]),
@@ -53,22 +55,46 @@ const Download: FC<DownloadProps> = ({ segments, proxy }) => {
         .join("\n")
     );
 
-    await ffmpeg.run("-f", "concat", "-i", "list.txt", "-c", "copy", "all.ts");
-    await ffmpeg.run(
-      "-i",
-      "all.ts",
-      "-acodec",
-      "copy",
-      "-vcodec",
-      "copy",
-      "all.mp4"
-    );
+    if (subtitle) {
+      ffmpeg.FS(
+        "writeFile",
+        "subtitle_file.srt",
+        await fetchFile(proxy ? urlWithProxy(subtitle) : subtitle)
+      );
+      await ffmpeg.run(
+        "-f",
+        "concat",
+        "-i",
+        "list.txt",
+        "-i",
+        "subtitle_file.srt",
+        "-bsf:a",
+        "aac_adtstoasc",
+        "-acodec",
+        "copy",
+        "-vcodec",
+        "copy",
+        "-c:s",
+        "mov_text",
+        "all.mp4"
+      );
+    } else {
+      await ffmpeg.run(
+        "-f",
+        "concat",
+        "-i",
+        "list.txt",
+        "-acodec",
+        "copy",
+        "-vcodec",
+        "copy",
+        "all.mp4"
+      );
+    }
     const data = ffmpeg.FS("readFile", "all.mp4");
-
     const objectURL = URL.createObjectURL(
       new Blob([data.buffer], { type: "video/mp4" })
     );
-
     setFilePreview(objectURL);
     setMessage("Conversion completed.");
     setLoading(false);
@@ -96,7 +122,14 @@ const Download: FC<DownloadProps> = ({ segments, proxy }) => {
           >
             Download video here
           </a>
-          <video src={filePreview} muted autoPlay width="100%" controls></video>
+          <video
+            src={filePreview}
+            muted
+            autoPlay
+            width="100%"
+            controls
+            className="w-full md:w-[50%]"
+          ></video>
         </>
       )}
     </div>
