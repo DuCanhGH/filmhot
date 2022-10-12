@@ -1,6 +1,28 @@
 import axios from "@/shared/axios";
 import { BANNED_IDS } from "@/shared/constants";
-import { DetailType } from "@/shared/types";
+import type { DetailType } from "@/shared/types";
+
+type OgDetailType = Omit<DetailType, "episodeVo"> & {
+  episodeVo: {
+    id: string;
+    definitionList: {
+      code: string;
+      description: string;
+    }[];
+    subtitlingList: {
+      language: string;
+      subtitlingUrl: string;
+      translateType: string;
+      languageAbbr: string;
+    }[];
+  }[];
+};
+
+interface SubtitlesType {
+  language: string;
+  url: string;
+  lang: string;
+}
 
 export const getMovieDetail = async (
   id: string,
@@ -11,11 +33,16 @@ export const getMovieDetail = async (
   sources: { quality: number; url: string }[];
   subtitles: { language: string; url: string; lang: string }[];
 }> => {
+  if (typeof id !== "string") {
+    throw new Error("ID is not string.");
+  }
   if (BANNED_IDS.includes(+id)) {
     throw new Error("Banned movie/tv series.");
   }
   const data = (
-    await axios.get("movieDrama/get", {
+    await axios.get<{
+      data: OgDetailType;
+    }>("movieDrama/get", {
       params: {
         id,
         category,
@@ -26,7 +53,7 @@ export const getMovieDetail = async (
   const sources = (
     await Promise.all(
       data.episodeVo[episodeIndex - 1].definitionList.map(
-        async (quality: any) =>
+        async (quality) =>
           (
             await axios.get("media/previewInfo", {
               params: {
@@ -55,28 +82,61 @@ export const getMovieDetail = async (
   }
 
   const subtitles = data.episodeVo[episodeIndex - 1].subtitlingList
-    .map((sub: any) => ({
+    .map((sub) => ({
       language: `${sub.language}${sub.translateType ? " (Auto)" : ""}`,
       url: sub.subtitlingUrl,
       lang: sub.languageAbbr,
     }))
-    .reduce((acc: any, element: any) => {
+    .reduce((acc, element) => {
       if (element.lang === "en") {
         return [element, ...acc];
       }
       return [...acc, element];
-    }, [])
-    .reduce((acc: any, element: any) => {
+    }, [] as SubtitlesType[])
+    .reduce((acc, element) => {
       if (element.lang === "vi") {
         return [element, ...acc];
       }
       return [...acc, element];
-    }, []);
-
+    }, [] as SubtitlesType[]);
+  const {
+    id: returnId,
+    tagList,
+    category: returnCategory,
+    coverVerticalUrl,
+    name,
+    score,
+    year,
+    introduction,
+    episodeVo,
+    refList,
+    likeList,
+  } = data;
   return {
     data: {
-      ...data,
-      episodeVo: data.episodeVo.length,
+      id: returnId,
+      tagList,
+      category: returnCategory,
+      coverVerticalUrl,
+      name,
+      score,
+      year,
+      introduction,
+      episodeVo: episodeVo.length,
+      refList: refList.map((a) => {
+        const { category, coverVerticalUrl, id, name } = a;
+        return { category, coverVerticalUrl, id, name };
+      }),
+      likeList: likeList.map((a) => {
+        const { category, coverVerticalUrl, id, name, score } = a;
+        return {
+          category,
+          coverVerticalUrl,
+          id,
+          name,
+          score,
+        };
+      }),
     },
     sources,
     subtitles,

@@ -1,4 +1,4 @@
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -10,25 +10,8 @@ import MainSection from "@/components/Home/MainSection";
 import TopSearches from "@/components/Home/TopSearches";
 import SearchBox from "@/components/Search/SearchBox";
 import Sidebar from "@/components/Shared/Sidebar";
-import { getTopSearched } from "@/services/home";
-import type { TopSearched } from "@/shared/types";
 
-interface GSPProps {
-  topSearches: TopSearched[];
-}
-
-export const getStaticProps: GetStaticProps<GSPProps> = async () => {
-  const topSearches = await getTopSearched();
-  return {
-    props: {
-      topSearches,
-    },
-  };
-};
-
-type HomeProps = InferGetStaticPropsType<typeof getStaticProps>;
-
-const Home: NextPage<HomeProps> = (props) => {
+const Home: NextPage = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
   const router = useRouter();
 
@@ -79,7 +62,7 @@ const Home: NextPage<HomeProps> = (props) => {
         <div className="flex-shrink-0 w-[350px] p-8 sticky top-0 h-screen scrollbar overflow-hidden overflow-y-auto hidden md:block">
           <SearchBox />
           <h1 className="text-xl my-6">Top Searches</h1>
-          <TopSearches fallbackData={props.topSearches} />
+          <TopSearches />
         </div>
       </div>
     </>

@@ -7,6 +7,7 @@ import "@ducanh2912/react-tuby/css/main.css";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import Head from "next/head";
 import { SWRConfig } from "swr";
+import { useEffect } from "react";
 
 export function reportWebVitals(metrics: NextWebVitalsMetric) {
   if (process.env.NODE_ENV !== "production") {
@@ -15,6 +16,16 @@ export function reportWebVitals(metrics: NextWebVitalsMetric) {
 }
 
 export default function CustomApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    if (
+      !process.env.NEXT_PUBLIC_CANONICAL_URL &&
+      process.env.NODE_ENV !== "production"
+    ) {
+      console.warn(
+        `You haven't supplied a canonical url, which means that canonical tags will show an undefined url. Please add NEXT_PUBLIC_CANONICAL_URL to an .env file.`
+      );
+    }
+  }, []);
   return (
     <>
       <Head>

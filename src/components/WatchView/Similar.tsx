@@ -16,7 +16,7 @@ const Similar: FC<SimilarProps> = ({ data }) => {
     <div className="flex-shrink-0 md:w-[300px]">
       {data ? (
         <>
-          {data?.refList &&
+          {data.refList &&
             data.refList.filter((item) => item.id !== data.id).length > 0 && (
               <>
                 <h1 className="text-2xl my-3">In the series</h1>
@@ -50,7 +50,7 @@ const Similar: FC<SimilarProps> = ({ data }) => {
               </>
             )}
 
-          {data?.likeList && data.likeList.length > 0 && (
+          {data.likeList && data.likeList.length > 0 && (
             <>
               <h1 className="text-2xl my-3">Similar to this</h1>
               <div className="max-h-[60vh] overflow-x-hidden overflow-y-auto flex flex-col items-stretch gap-2">

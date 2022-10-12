@@ -21,7 +21,7 @@ import {
 
 import Skeleton from "@/components/Shared/Skeleton";
 import { useDownloadVideo } from "@/hooks/useDownloadVideo";
-import type { BookmarkType, DetailType, M3U8Manifest } from "@/shared/types";
+import type { BookmarkType, DetailType } from "@/shared/types";
 
 const Download = dynamic(() => import("./Download"));
 
@@ -110,7 +110,7 @@ const MetaData: FC<MetaDataProps> = ({
     <>
       {data ? (
         <div className="flex flex-col gap-[10px]">
-          <h1 className="text-3xl mt-5">{data?.name}</h1>
+          <h1 className="text-3xl mt-5">{data.name}</h1>
 
           <div className="flex gap-4">
             <div className="flex items-center gap-1">
@@ -121,7 +121,7 @@ const MetaData: FC<MetaDataProps> = ({
                 src="/star.png"
                 alt=""
               />
-              <p>{data?.score?.toFixed(1)}</p>
+              <p>{data.score.toFixed(1)}</p>
             </div>
             <div className="flex items-center gap-1">
               <Image
@@ -131,7 +131,7 @@ const MetaData: FC<MetaDataProps> = ({
                 src="/calendar.png"
                 alt=""
               />
-              <p>{data?.year}</p>
+              <p>{data.year}</p>
             </div>
           </div>
 
@@ -258,7 +258,7 @@ const MetaData: FC<MetaDataProps> = ({
               >
                 {new Array(data.episodeVo).fill("").map((_, index) => (
                   <Link
-                    href={`/tv/${data.id}?episode=${index + 1}`}
+                    href={`/tv/${data.id}/${index + 1}`}
                     key={index}
                     {...(index === data.episodeVo - 1
                       ? { ref: lastEpisodeRef }

@@ -1,18 +1,71 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { FC } from "react";
 import useSWR from "swr";
 
 import Error from "@/components/Shared/Error";
 import WatchView from "@/components/WatchView";
 import { getMovieDetail } from "@/services/movie";
+import type {
+  NextPage,
+  InferGetStaticPropsType,
+  GetStaticProps,
+  GetStaticPaths,
+} from "next";
 
-const Info: FC = () => {
+interface GSProps {
+  fallbackData?: Awaited<ReturnType<typeof getMovieDetail>>;
+}
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: "blocking",
+  };
+};
+
+export const getStaticProps: GetStaticProps<GSProps> = async ({ params }) => {
+  if (!params) {
+    return {
+      notFound: true,
+      props: {},
+    };
+  }
+  const id = params.id as string;
+  if (!id || typeof id !== "string") {
+    return {
+      notFound: true,
+      props: {},
+    };
+  }
+  try {
+    const fallbackData = await getMovieDetail(id, 0);
+    return {
+      props: {
+        fallbackData,
+      },
+      revalidate: 43200,
+    };
+  } catch (e) {
+    return {
+      props: {},
+    };
+  }
+};
+
+type MovieProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Info: NextPage<MovieProps> = (props) => {
+  const { fallbackData } = props;
+
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, error } = useSWR(`movie-${id}`, () =>
-    getMovieDetail(id as string, 0)
+  const { data, error } = useSWR(
+    `movie-${id}`,
+    () => getMovieDetail(id as string, 0),
+    {
+      fallbackData,
+    }
   );
 
   if (error) return <Error />;
