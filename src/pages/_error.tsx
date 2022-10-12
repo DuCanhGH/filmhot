@@ -8,7 +8,7 @@ const CustomError: NextPage = () => {
   return (
     <>
       <Head>
-        <title>An error occurred.</title>
+        <title key="title">An error occurred.</title>
         <meta
           property="og:title"
           content="FilmHot - An error occurred"

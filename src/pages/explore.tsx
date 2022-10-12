@@ -20,7 +20,7 @@ const Explore: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Explore</title>
+        <title key="title">Explore</title>
         <meta property="og:title" content="FilmHot - Explore" key="og-title" />
         <meta
           property="og:url"

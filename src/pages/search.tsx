@@ -15,7 +15,7 @@ const Search: NextPage = () => {
     return (
       <>
         <Head>
-          <title>Search</title>
+          <title key="title">Search</title>
           <meta property="og:title" content="Filmhot - Search" key="og-title" />
           <meta
             property="og:url"
@@ -52,7 +52,7 @@ const Search: NextPage = () => {
   return (
     <>
       <Head>
-        <title>{`Search for '${query}'`}</title>
+        <title key="title">{`Search for '${query}'`}</title>
         <meta property="og:title" content={`Filmhot - Search for '${query}'`} />
         <meta
           property="og:url"

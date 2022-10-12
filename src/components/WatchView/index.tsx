@@ -77,7 +77,7 @@ const WatchView: FC<WatchViewProps> = ({
     <>
       {data && (
         <Head>
-          <title>{`Watch ${data.name}${
+          <title key="title">{`Watch ${data.name}${
             typeof episodeIndex !== "undefined"
               ? ` - Episode ${episodeIndex}`
               : ""

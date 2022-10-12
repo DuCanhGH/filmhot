@@ -35,7 +35,7 @@ const History: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Watch history</title>
+        <title key="title">Watch history</title>
         <meta
           property="og:title"
           content="FilmHot - Watch history"

@@ -45,7 +45,7 @@ const SignIn: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Sign in</title>
+        <title key="title">Sign in</title>
         <meta property="og:title" content="FilmHot - Sign in" key="og-title" />
         <meta
           property="og:url"

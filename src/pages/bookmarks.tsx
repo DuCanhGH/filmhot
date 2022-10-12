@@ -35,7 +35,7 @@ const Bookmarks: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Bookmarks</title>
+        <title key="title">Bookmarks</title>
         <meta
           property="og:title"
           content="FilmHot - Bookmarks"

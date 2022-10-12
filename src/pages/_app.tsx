@@ -29,15 +29,12 @@ export default function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>FilmHot - AdFree Movie / Anime Watching Website</title>
+        <title key="title">
+          FilmHot - AdFree Movie / Anime Watching Website
+        </title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="theme-color" content="#191A1F" />
-        <meta
-          name="title"
-          content="FilmHot - AdFree Movie / Anime Watching Website"
-          key="title"
-        />
         <meta
           name="description"
           content="Watch free movies, animes, TVs without any ADs"

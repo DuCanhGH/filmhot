@@ -55,7 +55,7 @@ const Discovery: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Discovery</title>
+        <title key="title">Discovery</title>
         <meta
           property="og:title"
           content="FilmHot - Discovery"

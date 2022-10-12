@@ -49,7 +49,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   return (
     <>
       <Head>
-        <title>{`Category: ${categoryName}`}</title>
+        <title key="title">{`Category: ${categoryName}`}</title>
         <meta
           property="og:title"
           content={`FilmHot - Category ${categoryName}`}
