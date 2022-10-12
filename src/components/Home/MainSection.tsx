@@ -85,7 +85,13 @@ const MainSection = () => {
                       link:
                         searchParams.get("type") === "0"
                           ? `/movie/${searchParams.get("id")}`
-                          : `/tv/${searchParams.get("id")}`,
+                          : `/tv/${searchParams.get("id")}/${
+                              typeof window === "object"
+                                ? localStorage.getItem(
+                                    `tv-${searchParams.get("id")}-episode`
+                                  ) || 1
+                                : 1
+                            }`,
                     };
                   })
                   .filter(Boolean) as {
@@ -115,7 +121,13 @@ const MainSection = () => {
                     link:
                       searchParams.get("type") === "0"
                         ? `/movie/${searchParams.get("id")}`
-                        : `/tv/${searchParams.get("id")}`,
+                        : `/tv/${searchParams.get("id")}/${
+                            typeof window === "object"
+                              ? localStorage.getItem(
+                                  `tv-${searchParams.get("id")}-episode`
+                                ) || 1
+                              : 1
+                          }`,
                   };
                 })}
               coverType={section.coverType}

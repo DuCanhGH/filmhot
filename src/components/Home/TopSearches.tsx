@@ -32,7 +32,15 @@ const TopSearches: FC = () => {
         .filter((a) => !BANNED_IDS.includes(+a.id))
         .map((top) => (
           <Link
-            href={top.domainType === 0 ? `/movie/${top.id}` : `/tv/${top.id}`}
+            href={
+              top.domainType === 0
+                ? `/movie/${top.id}`
+                : `/tv/${top.id}/${
+                    typeof window === "object"
+                      ? localStorage.getItem(`tv-${top.id}-episode`) || 1
+                      : 1
+                  }`
+            }
             className="flex gap-2 hover:brightness-75 transition duration-300"
             key={top.id}
           >

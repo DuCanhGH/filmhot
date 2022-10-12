@@ -15,10 +15,18 @@ interface Props {
 
 export const FilmItem: FC<Props> = (props) => {
   const { item } = props;
+  const lastWatchedEp =
+    typeof window === "object"
+      ? localStorage.getItem(`tv-${item.id}-episode`) || 1
+      : 1;
   return (
     <Link
       title={item.name}
-      href={item.category === 0 ? `/movie/${item.id}` : `/tv/${item.id}`}
+      href={
+        item.category === 0
+          ? `/movie/${item.id}`
+          : `/tv/${item.id}/${lastWatchedEp}`
+      }
       className="relative h-0 pb-[163%] bg-dark-lighten-100 rounded overflow-hidden group"
     >
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">

@@ -1,3 +1,9 @@
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -5,12 +11,6 @@ import useSWR from "swr";
 import Error from "@/components/Shared/Error";
 import WatchView from "@/components/WatchView";
 import { getMovieDetail } from "@/services/movie";
-import type {
-  NextPage,
-  InferGetStaticPropsType,
-  GetStaticProps,
-  GetStaticPaths,
-} from "next";
 
 interface GSProps {
   fallbackData?: Awaited<ReturnType<typeof getMovieDetail>>;

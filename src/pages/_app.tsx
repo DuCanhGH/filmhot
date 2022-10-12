@@ -6,8 +6,8 @@ import "@ducanh2912/react-tuby/css/main.css";
 
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import Head from "next/head";
-import { SWRConfig } from "swr";
 import { useEffect } from "react";
+import { SWRConfig } from "swr";
 
 export function reportWebVitals(metrics: NextWebVitalsMetric) {
   if (process.env.NODE_ENV !== "production") {

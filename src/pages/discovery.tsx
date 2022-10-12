@@ -136,7 +136,13 @@ const Discovery: NextPage = () => {
                           href={
                             item.refList[0].category === 0
                               ? `/movie/${item.refList[0].id}`
-                              : `/tv/${item.refList[0].id}`
+                              : `/tv/${item.refList[0].id}/${
+                                  typeof window === "object"
+                                    ? localStorage.getItem(
+                                        `tv-${item.refList[0].id}-episode`
+                                      ) || 1
+                                    : 1
+                                }`
                           }
                           className="bg-dark-lighten-100 rounded-full h-10 w-10 flex justify-center items-center"
                           aria-label="Visit movie / TV page for this post"

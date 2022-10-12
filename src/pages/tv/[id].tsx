@@ -5,20 +5,14 @@ const RedirectToEpisode = () => {
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
-    if (router.isReady) {
-      router.replace(
-        {
-          pathname: "/tv/[id]/[episode]",
-          query: {
-            id: id,
-            episode: localStorage.getItem(`tv-${id}-episode`) || 1,
-          },
+    if (id) {
+      router.replace({
+        pathname: "/tv/[id]/[episode]",
+        query: {
+          id: id,
+          episode: localStorage.getItem(`tv-${id}-episode`) || 1,
         },
-        undefined,
-        {
-          shallow: true,
-        }
-      );
+      });
     }
   }, [id, router]);
   return (
