@@ -2,7 +2,24 @@ import axios from "@/shared/axios";
 import type { AdvanceSearchItem, SearchConfig } from "@/shared/types";
 
 export const getSearchConfig = async (): Promise<SearchConfig[]> =>
-  (await axios.get("search/list")).data.data;
+  (
+    await axios.get<{
+      data: SearchConfig[];
+    }>("search/list")
+  ).data.data.map((config) => ({
+    id: config.id,
+    name: config.name,
+    params: config.params,
+    screeningItems: config.screeningItems.map((s_item) => ({
+      id: s_item.id,
+      items: s_item.items.map((item) => ({
+        name: item.name,
+        params: item.params,
+        screeningType: item.screeningType,
+      })),
+      name: s_item.name,
+    })),
+  }));
 
 export const advanceSearch = async (
   params: string,
