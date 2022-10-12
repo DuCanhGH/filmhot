@@ -24,9 +24,25 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
+        <meta
+          property="og:title"
+          content="FilmHot - AdFree Movie / Anime Watching Website"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - AdFree Movie / Anime Watching Website"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">

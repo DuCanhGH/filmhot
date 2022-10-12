@@ -50,6 +50,16 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
     <>
       <Head>
         <title>{`Category: ${categoryName}`}</title>
+        <meta
+          property="og:title"
+          content={`FilmHot - Category ${categoryName}`}
+          key="og-title"
+        />
+        <meta
+          property="twitter:title"
+          content={`FilmHot - Category ${categoryName}`}
+          key="twitter-title"
+        />
       </Head>
       <div className="flex justify-center mx-[7vw]">
         <div className="w-full grid grid-cols-sm md:grid-cols-lg gap-6">

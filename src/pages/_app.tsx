@@ -36,31 +36,45 @@ export default function CustomApp({ Component, pageProps }: AppProps) {
         <meta
           name="title"
           content="FilmHot - AdFree Movie / Anime Watching Website"
+          key="title"
         />
         <meta
           name="description"
           content="Watch free movies, animes, TVs without any ADs"
+          key="description"
         />
         <meta property="og:type" content="website" />
         <meta
           property="og:title"
           content="FilmHot - AdFree Movie / Anime Watching Website"
+          key="og-title"
         />
         <meta
           property="og:description"
-          content="Watch free movies, animes, TVs without any ADs"
+          content="Watch free movies, animes, TVs without any ads"
+          key="og-des"
         />
-        <meta property="og:image" content="/preview.jpg" />
-        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="og:image" content="/preview.jpg" key="og-image" />
+        <meta
+          property="twitter:card"
+          content="summary_large_image"
+          key="twitter-card"
+        />
         <meta
           property="twitter:title"
           content="FilmHot - AdFree Movie / Anime Watching Website"
+          key="twitter-title"
         />
         <meta
           property="twitter:description"
-          content="Watch free movies, animes, TVs without any ADs"
+          content="Watch free movies, animes, TVs without any ads"
+          key="twitter-des"
         />
-        <meta property="twitter:image" content="/preview.jpg" />
+        <meta
+          property="twitter:image"
+          content="/preview.jpg"
+          key="twitter-image"
+        />
         <meta name="referrer" content="no-referrer" />
         <link rel="shortcut icon" href="/icon.png" type="image/x-icon" />
         <link

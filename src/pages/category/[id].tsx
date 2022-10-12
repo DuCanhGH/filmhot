@@ -18,12 +18,13 @@ const Category: FC = () => {
 
   if (error) return <Error />;
 
-  if (!searchConfig)
+  if (!searchConfig) {
     return (
       <div className="flex-grow flex justify-center items-center">
         <div className="w-10 h-10 border-[3px] border-t-transparent border-primary rounded-full animate-spin"></div>
       </div>
     );
+  }
 
   const categoryName = searchConfig[0].screeningItems
     .find((item) => item.id === 5)
@@ -34,9 +35,15 @@ const Category: FC = () => {
   return (
     <>
       <Head>
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/category/1`}
+          key="og-url"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/category/1`}
+          key="canonical-url"
         />
       </Head>
       <div>

@@ -36,9 +36,25 @@ const History: NextPage = () => {
     <>
       <Head>
         <title>Watch history</title>
+        <meta
+          property="og:title"
+          content="FilmHot - Watch history"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/history`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Watch history"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/history`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">

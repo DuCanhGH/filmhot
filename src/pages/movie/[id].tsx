@@ -73,9 +73,15 @@ const Info: NextPage<MovieProps> = (props) => {
   return (
     <>
       <Head>
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/movie/8084`}
+          key="og-url"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/movie/8084`}
+          key="canonical-url"
         />
       </Head>
       <WatchView

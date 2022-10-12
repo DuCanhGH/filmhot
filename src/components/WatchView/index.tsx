@@ -82,6 +82,24 @@ const WatchView: FC<WatchViewProps> = ({
               ? ` - Episode ${episodeIndex}`
               : ""
           }`}</title>
+          <meta
+            property="og:title"
+            content={`FilmHot - Watch ${data.name}${
+              typeof episodeIndex !== "undefined"
+                ? ` - Episode ${episodeIndex}`
+                : ""
+            }`}
+            key="og-title"
+          />
+          <meta
+            property="twitter:title"
+            content={`FilmHot - Watch ${data.name}${
+              typeof episodeIndex !== "undefined"
+                ? ` - Episode ${episodeIndex}`
+                : ""
+            }`}
+            key="twitter-title"
+          />
         </Head>
       )}
       <div className="flex justify-center">

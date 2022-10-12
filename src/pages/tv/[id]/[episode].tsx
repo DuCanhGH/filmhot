@@ -87,9 +87,15 @@ const TV: NextPage<TVProps> = (props) => {
   return (
     <>
       <Head>
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220/0`}
+          key="og-url"
+        />
         <link
           rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220`}
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220/0`}
+          key="canonical-url"
         />
       </Head>
       <WatchView

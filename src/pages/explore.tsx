@@ -21,9 +21,21 @@ const Explore: NextPage = () => {
     <>
       <Head>
         <title>Explore</title>
+        <meta property="og:title" content="FilmHot - Explore" key="og-title" />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/explore`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Explore"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/explore`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex flex-col items-stretch min-h-screen mx-[7vw]">

@@ -36,9 +36,25 @@ const Bookmarks: NextPage = () => {
     <>
       <Head>
         <title>Bookmarks</title>
+        <meta
+          property="og:title"
+          content="FilmHot - Bookmarks"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/bookmarks`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Bookmarks"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/bookmarks`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">

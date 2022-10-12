@@ -16,6 +16,22 @@ const Search: NextPage = () => {
       <>
         <Head>
           <title>Search</title>
+          <meta property="og:title" content="Filmhot - Search" key="og-title" />
+          <meta
+            property="og:url"
+            content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/search`}
+            key="og-url"
+          />
+          <meta
+            property="twitter:title"
+            content="FilmHot - Search"
+            key="twitter-title"
+          />
+          <link
+            rel="canonical"
+            href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/search`}
+            key="canonical-url"
+          />
         </Head>
         <div className="flex justify-center my-[100px] mx-6">
           <div className="w-full max-w-[400px] flex flex-col items-center gap-4">
@@ -37,6 +53,16 @@ const Search: NextPage = () => {
     <>
       <Head>
         <title>{`Search for '${query}'`}</title>
+        <meta property="og:title" content={`Filmhot - Search for '${query}'`} />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/search`}
+        />
+        <meta
+          property="twitter:title"
+          content={`Filmhot - Search for '${query}'`}
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/search`}

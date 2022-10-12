@@ -56,9 +56,25 @@ const Discovery: NextPage = () => {
     <>
       <Head>
         <title>Discovery</title>
+        <meta
+          property="og:title"
+          content="FilmHot - Discovery"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/discovery`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Discovery"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/discovery`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
