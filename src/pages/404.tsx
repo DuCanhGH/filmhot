@@ -1,9 +1,8 @@
-import Image from "next/future/image";
+import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { FC } from "react";
 
-const NonExistentPage: FC = () => {
+const NonExistentPage: NextPage = () => {
   return (
     <>
       <Head>

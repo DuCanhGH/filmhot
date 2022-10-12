@@ -1,8 +1,9 @@
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { FaBars, FaExternalLinkAlt, FaHeart } from "react-icons/fa";
 import { InView } from "react-intersection-observer";
 import useSWRInfinite from "swr/infinite";
@@ -15,7 +16,7 @@ import { getDiscoveryItems } from "@/services/discovery";
 import { BANNED_IDS, resizeImage } from "@/shared/constants";
 import type { DiscoveryItem } from "@/shared/types";
 
-const Discovery: FC = () => {
+const Discovery: NextPage = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const getKey = (index: number) => `discovery-${index || 0}`;

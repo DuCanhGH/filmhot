@@ -1,7 +1,6 @@
-import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { FC } from "react";
 
 import TopSearches from "@/components/Home/TopSearches";
 import SearchBox from "@/components/Search/SearchBox";
@@ -25,7 +24,7 @@ export const getStaticProps: GetStaticProps<GSPProps> = async () => {
 
 type SearchProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Search: FC<SearchProps> = (props) => {
+const Search: NextPage<SearchProps> = (props) => {
   const { topSearches } = props;
   const router = useRouter();
   const { q: query } = router.query;

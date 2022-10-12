@@ -1,8 +1,9 @@
-import { M3U8Manifest } from "@/shared/types";
 import axios from "axios";
 // @ts-expect-error
 import { Parser } from "m3u8-parser";
 import { NextApiRequest, NextApiResponse } from "next";
+
+import { M3U8Manifest } from "@/shared/types";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {

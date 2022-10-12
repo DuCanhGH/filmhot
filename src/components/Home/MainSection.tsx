@@ -1,21 +1,18 @@
-import { FC, startTransition } from "react";
+import { Fragment, startTransition } from "react";
 import { InView } from "react-intersection-observer";
 import useSWRInfinite from "swr/infinite";
 
+import Skeleton from "@/components/Shared/Skeleton";
 import { getHome } from "@/services/home";
-import { BANNED_IDS, convertWebp, resizeImage } from "@/shared/constants";
+import { BANNED_IDS, convertWebp } from "@/shared/constants";
 import type { HomeSection } from "@/shared/types";
 
 import BannerSlider from "./BannerSlider";
 import InfiniteLoader from "./InfiniteLoader";
 import SectionSlider from "./SectionSlider";
+import SkeletonSlider from "./SkeletonSlider";
 
-interface Props {
-  fallbackData: HomeSection[][];
-}
-
-const MainSection: FC<Props> = (props) => {
-  const { fallbackData } = props;
+const MainSection = () => {
   const getKey = (index: number) => `home-${index || 0}`;
   const {
     data: ogData,
@@ -27,7 +24,6 @@ const MainSection: FC<Props> = (props) => {
     (key) => getHome(Number(key.split("-").slice(-1)[0])),
     {
       revalidateFirstPage: false,
-      fallbackData,
     }
   );
   const data = ogData
@@ -47,6 +43,23 @@ const MainSection: FC<Props> = (props) => {
       setSize((prev) => prev + 1);
     });
   };
+  if (!ogData || error) {
+    return (
+      <>
+        <div className="relative h-0 pb-[42%] mt-8">
+          <Skeleton className="absolute top-0 left-0 w-full h-full rounded-2xl" />
+        </div>
+        {[...new Array(2)].map((_, index) => (
+          <Fragment key={index}>
+            <Skeleton className="my-8 h-6 w-full max-w-[200px]" />
+            <div className="overflow-hidden">
+              <SkeletonSlider />
+            </div>
+          </Fragment>
+        ))}
+      </>
+    );
+  }
   return (
     <>
       {data.map((section) =>

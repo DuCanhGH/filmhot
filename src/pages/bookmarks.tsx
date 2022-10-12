@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
@@ -19,7 +20,7 @@ const getBookmarks = () => {
   }
 };
 
-const Bookmarks: FC = () => {
+const Bookmarks: NextPage = () => {
   const [data, setData] = useState<BookmarkType[]>([]);
 
   useEffect(() => {

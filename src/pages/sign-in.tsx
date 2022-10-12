@@ -4,17 +4,18 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useState } from "react";
+import { useState } from "react";
 
 import Navigate from "@/components/Shared/Navigate";
 import { auth } from "@/shared/firebase";
 import { useStore } from "@/store";
 
-const SignIn: FC = () => {
+const SignIn: NextPage = () => {
   const currentUser = useStore((state) => state.currentUser);
 
   const router = useRouter();
