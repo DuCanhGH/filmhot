@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSWR from "swr";
 

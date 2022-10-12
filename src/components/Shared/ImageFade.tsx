@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import { FC, HTMLProps, useState } from "react";
+import type { FC, HTMLProps } from "react";
+import { useState } from "react";
 
 const ImageFade: FC<
   Omit<HTMLProps<HTMLImageElement>, "placeholder" | "src"> & {

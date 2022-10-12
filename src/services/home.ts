@@ -1,5 +1,5 @@
 import axios from "@/shared/axios";
-import { HomeSection, TopSearched } from "@/shared/types";
+import type { HomeSection, TopSearched } from "@/shared/types";
 
 export const getHome = async (page = 0): Promise<HomeSection[]> => {
   try {

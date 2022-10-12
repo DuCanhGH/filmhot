@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { resizeImage } from "@/shared/constants";

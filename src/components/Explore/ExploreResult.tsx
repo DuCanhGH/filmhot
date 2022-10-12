@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FC, startTransition } from "react";
+import type { FC } from "react";
+import { startTransition } from "react";
 import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSWRInfinite from "swr/infinite";

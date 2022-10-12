@@ -12,7 +12,7 @@ import {
 import Image from "next/future/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useState } from "react";
+import { type FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaPaperPlane, FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 
@@ -20,7 +20,7 @@ import { RHFTextArea } from "@/components/Shared/RHFInput";
 import { useCollectionQuery } from "@/hooks/useCollectionQuery";
 import { resizeImage } from "@/shared/constants";
 import { db } from "@/shared/firebase";
-import { CommentType, DetailType } from "@/shared/types";
+import type { CommentType, DetailType } from "@/shared/types";
 import { calculateCreatedTime } from "@/shared/utils";
 import { useStore } from "@/store";
 

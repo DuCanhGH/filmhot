@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";

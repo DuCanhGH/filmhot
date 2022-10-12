@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import type { FC } from "react";
 import useSWR from "swr";
 
 import CategoryResult from "@/components/Category/CategoryResult";

@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 import { FilmItem } from "@/components/Shared/FilmItem";

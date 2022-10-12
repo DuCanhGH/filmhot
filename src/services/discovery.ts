@@ -1,5 +1,5 @@
 import axios from "@/shared/axios";
-import { DiscoveryItem } from "@/shared/types";
+import type { DiscoveryItem } from "@/shared/types";
 
 interface VideoRecommendPoolDataType {
   id: string;

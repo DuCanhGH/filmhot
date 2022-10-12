@@ -3,15 +3,8 @@ import dynamic from "next/dynamic";
 import Image from "next/future/image";
 import Link from "next/link";
 import { capitalize } from "radash";
-import {
-  FC,
-  Fragment,
-  RefCallback,
-  Suspense,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import type { FC, RefCallback } from "react";
+import { Fragment, Suspense, useCallback, useEffect, useState } from "react";
 import {
   FaBookmark,
   FaDownload,

@@ -1,5 +1,5 @@
+import type { AuthProvider } from "firebase/auth";
 import {
-  AuthProvider,
   FacebookAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,

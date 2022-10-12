@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
-import { type FC, Ref, Suspense, useEffect, useRef } from "react";
+import type { FC, Ref } from "react";
+import { Suspense, useEffect, useRef } from "react";
 
 const Player = dynamic(
   () =>

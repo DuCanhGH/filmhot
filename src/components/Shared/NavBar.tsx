@@ -1,6 +1,6 @@
 import Image from "next/future/image";
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { FaSearch } from "react-icons/fa";
 
 import SearchBox from "@/components/Search/SearchBox";
