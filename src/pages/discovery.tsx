@@ -13,7 +13,7 @@ import { ErrorWithRetry } from "@/components/Shared/Error";
 import ImageFade from "@/components/Shared/ImageFade";
 import Sidebar from "@/components/Shared/Sidebar";
 import { getDiscoveryItems } from "@/services/discovery";
-import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import { BANNED_IDS } from "@/shared/constants";
 import type { DiscoveryItem } from "@/shared/types";
 
 const Discovery: NextPage = () => {
@@ -112,7 +112,9 @@ const Discovery: NextPage = () => {
               <div key={item.id} className="w-full max-w-[600px] flex gap-2">
                 <ImageFade
                   className="w-12 h-12 rounded-full flex-shrink-0 bg-gray-500"
-                  src={resizeImage(item.upInfo.upImgUrl, "48", "48")}
+                  src={item.upInfo.upImgUrl ?? "/default-avatar.png"}
+                  width={48}
+                  height={48}
                   alt="OP's profile picture"
                 />
 

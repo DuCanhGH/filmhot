@@ -46,8 +46,10 @@ const Similar: FC<SimilarProps> = ({ data }) => {
                       >
                         <div className="flex-shrink-0 h-[100px] w-[70px]">
                           <ImageFade
+                            height={100}
+                            width={70}
                             className="h-full w-full object-cover"
-                            src={resizeImage(ref.coverVerticalUrl, "", "100")}
+                            src={ref.coverVerticalUrl}
                             alt=""
                           />
                         </div>
