@@ -12,13 +12,16 @@ import MetaData from "./MetaData";
 import Similar from "./Similar";
 
 const Player = dynamic(
-  () => import("@ducanh2912/react-tuby").then((a) => a.Player),
+  () =>
+    import("@ducanh2912/react-tuby").then((a) => ({
+      default: a.Player,
+    })),
   {
-    ssr: false,
+    suspense: true,
   }
 );
 const ReactHlsPlayer = dynamic(() => import("@ducanh2912/react-hls-player"), {
-  ssr: false,
+  suspense: true,
 });
 
 interface WatchViewProps {
