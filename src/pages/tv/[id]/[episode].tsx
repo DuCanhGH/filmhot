@@ -89,12 +89,16 @@ const TV: NextPage<TVProps> = (props) => {
       <Head>
         <meta
           property="og:url"
-          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220/0`}
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/${
+            typeof id === "string" ? id : "14337"
+          }/1`}
           key="og-url"
         />
         <link
           rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220/0`}
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/${
+            typeof id === "string" ? id : "14337"
+          }/1`}
           key="canonical-url"
         />
       </Head>

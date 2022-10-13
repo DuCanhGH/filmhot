@@ -63,7 +63,13 @@ const ExploreResult: FC<ExploreResultProps> = ({
             <Link
               title={item.name}
               href={
-                item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
+                item.domainType === 0
+                  ? `/movie/${item.id}`
+                  : `/tv/${item.id}/${
+                      typeof window === "object"
+                        ? localStorage.getItem(`tv-${item.id}-episode`) || 1
+                        : 1
+                    }`
               }
               key={item.id}
               className="relative h-0 pb-[163%] bg-dark-lighten-100 rounded overflow-hidden group"

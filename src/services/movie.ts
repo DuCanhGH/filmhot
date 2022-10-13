@@ -123,12 +123,12 @@ export const getMovieDetail = async (
       year,
       introduction,
       episodeVo: episodeVo.length,
-      refList: refList.map((a) => {
-        const { category, coverVerticalUrl, id, name } = a;
+      refList: refList.map((list) => {
+        const { category, coverVerticalUrl, id, name } = list;
         return { category, coverVerticalUrl, id, name };
       }),
-      likeList: likeList.map((a) => {
-        const { category, coverVerticalUrl, id, name, score } = a;
+      likeList: likeList.map((list) => {
+        const { category, coverVerticalUrl, id, name, score } = list;
         return {
           category,
           coverVerticalUrl,

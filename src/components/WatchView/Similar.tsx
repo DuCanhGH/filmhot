@@ -31,6 +31,16 @@ const Similar: FC<SimilarProps> = ({ data }) => {
                         key={ref.id}
                         href={`/${ref.category === 0 ? "movie" : "tv"}/${
                           ref.id
+                        }${
+                          ref.category === 0
+                            ? ""
+                            : `/${
+                                typeof window === "object"
+                                  ? localStorage.getItem(
+                                      `tv-${ref.id}-episode`
+                                    ) || 1
+                                  : 1
+                              }`
                         }`}
                         className="flex gap-3 pr-2 hover:brightness-[85%] transition duration-300"
                       >
@@ -61,6 +71,16 @@ const Similar: FC<SimilarProps> = ({ data }) => {
                       key={like.id}
                       href={`/${like.category === 0 ? "movie" : "tv"}/${
                         like.id
+                      }${
+                        like.category === 0
+                          ? ""
+                          : `/${
+                              typeof window === "object"
+                                ? localStorage.getItem(
+                                    `tv-${like.id}-episode`
+                                  ) || 1
+                                : 1
+                            }`
                       }`}
                       className="flex gap-3 pr-2 hover:brightness-[85%] transition duration-300"
                     >
