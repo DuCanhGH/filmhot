@@ -1,10 +1,10 @@
-import {
+import type {
   CollectionReference,
   DocumentData,
-  onSnapshot,
   Query,
   QuerySnapshot,
 } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 export const useCollectionQuery: (

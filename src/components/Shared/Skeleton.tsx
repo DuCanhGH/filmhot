@@ -1,4 +1,4 @@
-import { FC, HTMLProps } from "react";
+import type { FC, HTMLProps } from "react";
 
 const Skeleton: FC<HTMLProps<HTMLDivElement>> = ({ className, ...others }) => {
   return (

@@ -1,10 +1,19 @@
 import dynamic from "next/dynamic";
-import { type FC, Ref, Suspense, useEffect, useRef } from "react";
+import type { FC, Ref } from "react";
+import { Suspense, useEffect, useRef } from "react";
 
-const Player = dynamic(() =>
-  import("@ducanh2912/react-tuby").then((a) => a.Player)
+const Player = dynamic(
+  () =>
+    import("@ducanh2912/react-tuby").then((a) => ({
+      default: a.Player,
+    })),
+  {
+    suspense: true,
+  }
 );
-const ReactHlsPlayer = dynamic(() => import("@ducanh2912/react-hls-player"));
+const ReactHlsPlayer = dynamic(() => import("@ducanh2912/react-hls-player"), {
+  suspense: true,
+});
 
 const DiscoveryPlayer: FC<{
   forwardedRef: Ref<HTMLDivElement>;

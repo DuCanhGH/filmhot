@@ -11,10 +11,18 @@ import Comment from "./Comment";
 import MetaData from "./MetaData";
 import Similar from "./Similar";
 
-const Player = dynamic(() =>
-  import("@ducanh2912/react-tuby").then((a) => a.Player)
+const Player = dynamic(
+  () =>
+    import("@ducanh2912/react-tuby").then((a) => ({
+      default: a.Player,
+    })),
+  {
+    suspense: true,
+  }
 );
-const ReactHlsPlayer = dynamic(() => import("@ducanh2912/react-hls-player"));
+const ReactHlsPlayer = dynamic(() => import("@ducanh2912/react-hls-player"), {
+  suspense: true,
+});
 
 interface WatchViewProps {
   data?: DetailType;
@@ -69,11 +77,29 @@ const WatchView: FC<WatchViewProps> = ({
     <>
       {data && (
         <Head>
-          <title>{`Watch ${data.name}${
+          <title key="title">{`Watch ${data.name}${
             typeof episodeIndex !== "undefined"
               ? ` - Episode ${episodeIndex}`
               : ""
           }`}</title>
+          <meta
+            property="og:title"
+            content={`FilmHot - Watch ${data.name}${
+              typeof episodeIndex !== "undefined"
+                ? ` - Episode ${episodeIndex}`
+                : ""
+            }`}
+            key="og-title"
+          />
+          <meta
+            property="twitter:title"
+            content={`FilmHot - Watch ${data.name}${
+              typeof episodeIndex !== "undefined"
+                ? ` - Episode ${episodeIndex}`
+                : ""
+            }`}
+            key="twitter-title"
+          />
         </Head>
       )}
       <div className="flex justify-center">
@@ -115,11 +141,11 @@ const WatchView: FC<WatchViewProps> = ({
                   )}
                 </div>
               </div>
-
               <MetaData
                 data={data}
                 episodeIndex={episodeIndex}
                 sources={sources}
+                subtitles={subtitles}
               />
               {data && <Comment data={data} episodeIndex={episodeIndex} />}
             </div>

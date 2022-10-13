@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import Image from "next/future/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import type { FC } from "react";
 import type { IconType } from "react-icons";
 import {
   FaBookmark,

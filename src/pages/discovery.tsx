@@ -1,8 +1,9 @@
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { FaBars, FaExternalLinkAlt, FaHeart } from "react-icons/fa";
 import { InView } from "react-intersection-observer";
 import useSWRInfinite from "swr/infinite";
@@ -15,7 +16,7 @@ import { getDiscoveryItems } from "@/services/discovery";
 import { BANNED_IDS, resizeImage } from "@/shared/constants";
 import type { DiscoveryItem } from "@/shared/types";
 
-const Discovery: FC = () => {
+const Discovery: NextPage = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const getKey = (index: number) => `discovery-${index || 0}`;
@@ -54,10 +55,26 @@ const Discovery: FC = () => {
   return (
     <>
       <Head>
-        <title>Discovery</title>
+        <title key="title">Discovery</title>
+        <meta
+          property="og:title"
+          content="FilmHot - Discovery"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/discovery`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Discovery"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/discovery`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
@@ -119,7 +136,7 @@ const Discovery: FC = () => {
                 <div className="flex flex-col items-center justify-center w-20 gap-5">
                   <div className="flex flex-col items-center gap-2">
                     <div
-                      className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
+                      className="bg-dark-lighten-100 rounded-full h-10 w-10 flex justify-center items-center"
                       aria-label="Likes"
                       role="img"
                     >
@@ -135,9 +152,15 @@ const Discovery: FC = () => {
                           href={
                             item.refList[0].category === 0
                               ? `/movie/${item.refList[0].id}`
-                              : `/tv/${item.refList[0].id}`
+                              : `/tv/${item.refList[0].id}/${
+                                  typeof window === "object"
+                                    ? localStorage.getItem(
+                                        `tv-${item.refList[0].id}-episode`
+                                      ) || 1
+                                    : 1
+                                }`
                           }
-                          className="bg-dark-lighten rounded-full h-10 w-10 flex justify-center items-center"
+                          className="bg-dark-lighten-100 rounded-full h-10 w-10 flex justify-center items-center"
                           aria-label="Visit movie / TV page for this post"
                         >
                           <FaExternalLinkAlt />

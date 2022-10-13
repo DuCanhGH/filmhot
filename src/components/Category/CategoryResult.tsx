@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { FC, startTransition } from "react";
+import { type FC, startTransition } from "react";
 import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useInfiniteSWR from "swr/infinite";
@@ -49,7 +49,17 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
   return (
     <>
       <Head>
-        <title>{`Category: ${categoryName}`}</title>
+        <title key="title">{`Category: ${categoryName}`}</title>
+        <meta
+          property="og:title"
+          content={`FilmHot - Category ${categoryName}`}
+          key="og-title"
+        />
+        <meta
+          property="twitter:title"
+          content={`FilmHot - Category ${categoryName}`}
+          key="twitter-title"
+        />
       </Head>
       <div className="flex justify-center mx-[7vw]">
         <div className="w-full grid grid-cols-sm md:grid-cols-lg gap-6">
@@ -62,7 +72,7 @@ const CategoryResult: FC<CategoryResultProps> = ({ id, categoryName }) => {
                   item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
                 }
                 key={item.id}
-                className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
+                className="relative h-0 pb-[163%] bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 transition-colors rounded overflow-hidden group"
               >
                 <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">
                   <div className="relative w-full h-0 pb-[140%] flex-shrink-0 group-hover:brightness-[80%] transition duration-300">

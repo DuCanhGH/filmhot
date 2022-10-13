@@ -1,18 +1,17 @@
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, Fragment, Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa";
 
 import MainSection from "@/components/Home/MainSection";
-import SkeletonSlider from "@/components/Home/SkeletonSlider";
 import TopSearches from "@/components/Home/TopSearches";
 import SearchBox from "@/components/Search/SearchBox";
 import Sidebar from "@/components/Shared/Sidebar";
-import Skeleton from "@/components/Shared/Skeleton";
 
-const Home: FC = () => {
+const Home: NextPage = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
   const router = useRouter();
 
@@ -25,9 +24,25 @@ const Home: FC = () => {
   return (
     <>
       <Head>
+        <meta
+          property="og:title"
+          content="FilmHot - AdFree Movie / Anime Watching Website"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - AdFree Movie / Anime Watching Website"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
@@ -57,25 +72,7 @@ const Home: FC = () => {
         />
 
         <div className="flex-grow px-[4vw] md:px-8 pb-8 pt-0 overflow-hidden flex flex-col items-stretch">
-          <Suspense
-            fallback={
-              <>
-                <div className="relative h-0 pb-[42%] mt-8">
-                  <Skeleton className="absolute top-0 left-0 w-full h-full rounded-2xl" />
-                </div>
-                {[...new Array(2)].map((_, index) => (
-                  <Fragment key={index}>
-                    <Skeleton className="my-8 h-6 w-full max-w-[200px]" />
-                    <div className="overflow-hidden">
-                      <SkeletonSlider />
-                    </div>
-                  </Fragment>
-                ))}
-              </>
-            }
-          >
-            <MainSection />
-          </Suspense>
+          <MainSection />
         </div>
 
         <div className="flex-shrink-0 w-[350px] p-8 sticky top-0 h-screen scrollbar overflow-hidden overflow-y-auto hidden md:block">

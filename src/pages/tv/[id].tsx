@@ -1,61 +1,56 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
-import useSWR from "swr";
+import { useEffect } from "react";
 
-import Error from "@/components/Shared/Error";
-import WatchView from "@/components/WatchView";
-import { getMovieDetail } from "@/services/movie";
-
-const TV: FC = () => {
+const RedirectToEpisode = () => {
   const router = useRouter();
-
-  const { id, episode } = router.query;
-
-  const episodeIndex = Number(typeof episode === "string" ? episode : 0);
-
+  const { id } = router.query;
   useEffect(() => {
-    if (!episodeIndex && router.isReady) {
-      router.replace(
-        `${router.asPath}?episode=${
-          localStorage.getItem(`tv-${id}-episode`) || 1
-        }`,
-        undefined,
-        {
-          shallow: true,
-        }
-      );
+    if (id) {
+      router.replace({
+        pathname: "/tv/[id]/[episode]",
+        query: {
+          id: id,
+          episode: localStorage.getItem(`tv-${id}-episode`) || 1,
+        },
+      });
     }
-  }, [episodeIndex, id, router]);
-
-  const { data, error } = useSWR(
-    id && episodeIndex ? `tv-${id}-${episodeIndex}` : null,
-    () => getMovieDetail(id as string, 1, +episodeIndex)
-  );
-
-  useEffect(() => {
-    if (error || !data) return;
-    localStorage.setItem(`tv-${id}-episode`, `${episodeIndex}`);
-  }, [error, data, id, episodeIndex]);
-
-  if (error) return <Error />;
-
+  }, [id, router]);
   return (
     <>
       <Head>
+        <meta
+          property="og:title"
+          content="FilmHot - Redirecting to last watched episode..."
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220/0`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Redirecting to last watched episode..."
+          key="twitter-title"
+        />
         <link
           rel="canonical"
-          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220`}
+          href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/tv/8220/0`}
+          key="canonical-url"
         />
       </Head>
-      <WatchView
-        data={data?.data}
-        sources={data?.sources}
-        subtitles={data?.subtitles}
-        episodeIndex={episodeIndex}
-      />
+      <div className="flex flex-col min-h-screen justify-center items-center gap-4">
+        {/* eslint-disable @next/next/no-img-element */}
+        <img
+          className="w-full max-w-[200px] h-auto"
+          src="/warning.png"
+          alt=""
+        />
+        <p className="text-xl">Redirecting to last watched episode...</p>
+      </div>
     </>
   );
 };
 
-export default TV;
+export default RedirectToEpisode;

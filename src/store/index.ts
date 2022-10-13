@@ -1,6 +1,6 @@
 import create from "zustand";
 
-import { User } from "@/shared/types";
+import type { User } from "@/shared/types";
 
 interface Store {
   currentUser: null | undefined | User;

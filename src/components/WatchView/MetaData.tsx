@@ -3,15 +3,8 @@ import dynamic from "next/dynamic";
 import Image from "next/future/image";
 import Link from "next/link";
 import { capitalize } from "radash";
-import {
-  FC,
-  Fragment,
-  RefCallback,
-  Suspense,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import type { FC, RefCallback } from "react";
+import { Fragment, Suspense, useCallback, useEffect, useState } from "react";
 import {
   FaBookmark,
   FaDownload,
@@ -34,9 +27,21 @@ interface MetaDataProps {
         url: string;
       }[]
     | undefined;
+  subtitles:
+    | {
+        language: string;
+        url: string;
+        lang: string;
+      }[]
+    | undefined;
 }
 
-const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
+const MetaData: FC<MetaDataProps> = ({
+  data,
+  episodeIndex,
+  sources,
+  subtitles,
+}) => {
   const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMovieBookmarked, setIsMovieBookmarked] = useState(false);
@@ -98,7 +103,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
     <>
       {data ? (
         <div className="flex flex-col gap-[10px]">
-          <h1 className="text-3xl mt-5">{data?.name}</h1>
+          <h1 className="text-3xl mt-5">{data.name}</h1>
 
           <div className="flex gap-4">
             <div className="flex items-center gap-1">
@@ -109,7 +114,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                 src="/star.png"
                 alt=""
               />
-              <p>{data?.score?.toFixed(1)}</p>
+              <p>{data.score.toFixed(1)}</p>
             </div>
             <div className="flex items-center gap-1">
               <Image
@@ -119,7 +124,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                 src="/calendar.png"
                 alt=""
               />
-              <p>{data?.year}</p>
+              <p>{data.year}</p>
             </div>
           </div>
 
@@ -128,7 +133,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
               <Link
                 href={`/category/${tag.id}`}
                 key={tag.id}
-                className="bg-dark-lighten rounded-full px-3 py-1 hover:brightness-125 transition duration-300"
+                className="bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 rounded-full px-3 py-1 transition-colors"
               >
                 {tag.name}
               </Link>
@@ -174,7 +179,11 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
           </button>
           {segments.length > 0 ? (
             <Suspense fallback={<></>}>
-              <Download segments={segments} proxy={proxy} />
+              <Download
+                segments={segments}
+                proxy={proxy}
+                subtitle={subtitles ? subtitles[0].url : undefined}
+              />
             </Suspense>
           ) : (
             <>
@@ -182,9 +191,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                 <>
                   {playlistData?.playlists?.length ? (
                     <div className="w-full flex flex-col items-stretch gap-3">
-                      <h2 className="text-2xl mt-3 mb-1">
-                        Choose a resolution
-                      </h2>
+                      <h2 className="text-2xl mt-3 mb-1">Choose a video</h2>
                       {playlistData.playlists.map((playlist, index: number) => (
                         <p key={playlist.uri}>
                           <span className="font-semibold">
@@ -217,7 +224,7 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
                           <span> </span>
                           <button
                             onClick={() => setSegments(playListSource[index])}
-                            className="text-blue-500"
+                            className="text-primary w-fit h-fit flex items-center gap-2 disabled:text-secondary"
                           >
                             Download
                           </button>
@@ -244,13 +251,13 @@ const MetaData: FC<MetaDataProps> = ({ data, episodeIndex, sources }) => {
               >
                 {new Array(data.episodeVo).fill("").map((_, index) => (
                   <Link
-                    href={`/tv/${data.id}?episode=${index + 1}`}
+                    href={`/tv/${data.id}/${index + 1}`}
                     key={index}
                     {...(index === data.episodeVo - 1
                       ? { ref: lastEpisodeRef }
                       : {})}
                     className={classNames(
-                      "px-4 h-[42px] flex items-center bg-dark-lighten rounded hover:brightness-125 transition duration-300",
+                      "px-4 h-[42px] flex items-center bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 rounded transition-colors",
                       {
                         "!bg-primary text-white":
                           episodeIndex && index === episodeIndex - 1,

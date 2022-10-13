@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC, useEffect, useRef, useState } from "react";
+import { type FC, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
 
@@ -53,11 +53,12 @@ const SearchBox: FC = () => {
       </form>
 
       {suggestions.length > 0 && (
-        <div className="absolute z-10 top-full left-0 w-full bg-dark-lighten rounded overflow-x-hidden overflow-y-auto max-h-[200px] flex-col items-stretch hidden group-focus-within:flex">
+        <div className="absolute z-10 top-full left-0 w-full rounded overflow-x-hidden overflow-y-auto max-h-[200px] flex-col items-stretch hidden group-focus-within:flex">
           {suggestions.map((suggestion, index) => (
             <Link
               key={index}
               href={`/search?q=${encodeURIComponent(suggestion)}`}
+              className="bg-dark-lighten-100 hover:bg-dark-lighten-200 active:bg-dark-lighten-200 transition-colors"
             >
               <button
                 className={`text-left p-2 w-full ${

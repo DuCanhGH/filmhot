@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FC, startTransition } from "react";
+import type { FC } from "react";
+import { startTransition } from "react";
 import { InView } from "react-intersection-observer";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSWRInfinite from "swr/infinite";
@@ -65,7 +66,7 @@ const ExploreResult: FC<ExploreResultProps> = ({
                 item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
               }
               key={item.id}
-              className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
+              className="relative h-0 pb-[163%] bg-dark-lighten-100 rounded overflow-hidden group"
             >
               <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">
                 <div className="relative w-full h-0 pb-[140%] flex-shrink-0 group-hover:brightness-[80%] transition duration-300">

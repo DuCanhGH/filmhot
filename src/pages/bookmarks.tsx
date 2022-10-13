@@ -1,7 +1,8 @@
+import type { NextPage } from "next";
 import Image from "next/future/image";
 import Head from "next/head";
 import Link from "next/link";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 import { FilmItem } from "@/components/Shared/FilmItem";
@@ -19,7 +20,7 @@ const getBookmarks = () => {
   }
 };
 
-const Bookmarks: FC = () => {
+const Bookmarks: NextPage = () => {
   const [data, setData] = useState<BookmarkType[]>([]);
 
   useEffect(() => {
@@ -34,10 +35,26 @@ const Bookmarks: FC = () => {
   return (
     <>
       <Head>
-        <title>Bookmarks</title>
+        <title key="title">Bookmarks</title>
+        <meta
+          property="og:title"
+          content="FilmHot - Bookmarks"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/bookmarks`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Bookmarks"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/bookmarks`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex flex-col items-stretch mx-[7vw] mb-8">

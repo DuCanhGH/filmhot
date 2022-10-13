@@ -1,15 +1,30 @@
-import Image from "next/future/image";
+import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { FC } from "react";
 
-const NonExistentPage: FC = () => {
+const NonExistentPage: NextPage = () => {
   return (
     <>
       <Head>
+        <meta
+          property="og:title"
+          content="FilmHot - Not found"
+          key="og-title"
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/`}
+          key="og-url"
+        />
+        <meta
+          property="twitter:title"
+          content="FilmHot - Not found"
+          key="twitter-title"
+        />
         <link
           rel="canonical"
           href={`${process.env.NEXT_PUBLIC_CANONICAL_URL}/`}
+          key="canonical-url"
         />
       </Head>
       <div className="flex flex-col min-h-screen justify-center items-center gap-4">

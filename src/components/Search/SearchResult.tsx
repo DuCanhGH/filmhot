@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FC } from "react";
+import type { FC } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import useSWR from "swr";
 
@@ -39,10 +39,16 @@ const SearchResult: FC<SearchResultProps> = ({ query }) => {
               <Link
                 title={item.name}
                 href={
-                  item.domainType === 0 ? `/movie/${item.id}` : `/tv/${item.id}`
+                  item.domainType === 0
+                    ? `/movie/${item.id}`
+                    : `/tv/${item.id}/${
+                        typeof window === "object"
+                          ? localStorage.getItem(`tv-${item.id}-episode`) || 1
+                          : 1
+                      }`
                 }
                 key={item.id}
-                className="relative h-0 pb-[163%] bg-dark-lighten rounded overflow-hidden group"
+                className="relative h-0 pb-[163%] bg-dark-lighten-100 rounded overflow-hidden group"
               >
                 <div className="absolute top-0 left-0 w-full h-full flex flex-col items-stretch">
                   <div className="relative w-full h-0 pb-[140%] flex-shrink-0 group-hover:brightness-[80%] transition duration-300">

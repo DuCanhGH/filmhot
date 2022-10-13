@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { FC, useEffect } from "react";
+import type { FC } from "react";
+import { useEffect } from "react";
 
 interface NavigateProps {
   to: string;

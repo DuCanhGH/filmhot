@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import type { FC } from "react";
 import { FaRedoAlt } from "react-icons/fa";
-import { KeyedMutator } from "swr";
+import type { KeyedMutator } from "swr";
 
 const Error: FC = () => {
   const router = useRouter();
