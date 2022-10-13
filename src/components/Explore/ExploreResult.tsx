@@ -12,9 +12,7 @@ import type { AdvanceSearchItem } from "@/shared/types";
 
 interface ExploreResultProps {
   params: string;
-  configs: {
-    [key: string]: any;
-  };
+  configs: Record<string, any>;
   sectionIndex: number;
 }
 

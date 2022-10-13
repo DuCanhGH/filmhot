@@ -6,6 +6,7 @@ specifiers:
   '@ducanh2912/react-tuby': 1.0.2
   '@ffmpeg/core': 0.11.0
   '@ffmpeg/ffmpeg': 0.11.5
+  '@next/env': 12.3.1
   '@types/node': 18.8.5
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
@@ -25,6 +26,7 @@ specifiers:
   m3u8-parser: 6.0.0
   next: 12.3.1
   next-pwa: 5.6.0
+  next-sitemap: 3.1.24
   postcss: 8.4.18
   prettier: 2.7.1
   prettier-plugin-jsdoc: 0.4.2
@@ -50,6 +52,7 @@ dependencies:
   '@ducanh2912/react-tuby': 1.0.2_react@18.2.0
   '@ffmpeg/core': 0.11.0
   '@ffmpeg/ffmpeg': 0.11.5
+  '@next/env': 12.3.1
   axios: 1.1.2
   classnames: 2.3.2
   firebase: 9.12.1
@@ -57,6 +60,7 @@ dependencies:
   m3u8-parser: 6.0.0
   next: 12.3.1_6tziyx3dehkoeijunclpkpolha
   next-pwa: 5.6.0_r4fnhujxxwelquxkfzi3g5np24
+  next-sitemap: 3.1.24_mna6xsgplvxkrmeg4ftolwenke
   radash: 7.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1238,6 +1242,10 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+
+  /@corex/deepmerge/4.0.29:
+    resolution: {integrity: sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A==}
+    dev: false
 
   /@ducanh2912/react-hls-player/3.3.3_hls.js@1.2.4+react@18.2.0:
     resolution: {integrity: sha512-gVBcyk9igh34fdtjiB9jd+kQt2cveY2EtpSFqMNZQFoxpS651ACKKUQtiYJTsHvfLzWhALCyYbGE5jPuIB/o9g==}
@@ -4639,6 +4647,20 @@ packages:
       - supports-color
       - uglify-js
       - webpack
+    dev: false
+
+  /next-sitemap/3.1.24_mna6xsgplvxkrmeg4ftolwenke:
+    resolution: {integrity: sha512-dEFOI6cnNffDcmxis/1IVNK2JI1wtxxGoj2ipP7L8xDVbxjyuuH2V8MEajHPPrIhybfGk6gyZ5HDpXgVcTv9QA==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@next/env': '*'
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.29
+      '@next/env': 12.3.1
+      minimist: 1.2.6
+      next: 12.3.1_6tziyx3dehkoeijunclpkpolha
     dev: false
 
   /next/12.3.1_6tziyx3dehkoeijunclpkpolha:

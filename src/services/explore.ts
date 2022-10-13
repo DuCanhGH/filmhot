@@ -23,7 +23,7 @@ export const getSearchConfig = async (): Promise<SearchConfig[]> =>
 
 export const advanceSearch = async (
   params: string,
-  configs: { [key: string]: any },
+  configs: Record<string, any>,
   sort: string
 ): Promise<AdvanceSearchItem[]> =>
   (
