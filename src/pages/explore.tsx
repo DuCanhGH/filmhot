@@ -4,7 +4,7 @@ import { useState } from "react";
 import useSWR from "swr";
 
 import ExploreConfig from "@/components/Explore/ExploreConfig";
-import Error from "@/components/Shared/Error";
+import ErrorPage from "@/components/Shared/Error";
 import NavBar from "@/components/Shared/NavBar";
 import { getSearchConfig } from "@/services/explore";
 
@@ -15,7 +15,7 @@ const Explore: NextPage = () => {
 
   const [sectionIndex, setSectionIndex] = useState(0);
 
-  if (error) return <Error />;
+  if (error) return <ErrorPage />;
 
   return (
     <>

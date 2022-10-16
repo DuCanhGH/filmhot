@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { FaRedoAlt } from "react-icons/fa";
 import type { KeyedMutator } from "swr";
 
-const Error: FC = () => {
+const ErrorPage: FC = () => {
   const router = useRouter();
   return (
     <div className="flex flex-col min-h-screen justify-center items-center gap-4">
@@ -47,4 +47,4 @@ export const ErrorWithRetry: EWRFCType = (props) => {
   );
 };
 
-export default Error;
+export default ErrorPage;

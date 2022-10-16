@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 
 import CategoryResult from "@/components/Category/CategoryResult";
-import Error from "@/components/Shared/Error";
+import ErrorPage from "@/components/Shared/Error";
 import NavBar from "@/components/Shared/NavBar";
 import { getSearchConfig } from "@/services/explore";
 import type { SearchConfig } from "@/shared/types";
@@ -55,7 +55,7 @@ const Category: NextPage<CategoryProps> = (props) => {
     }
   );
 
-  if (error) return <Error />;
+  if (error) return <ErrorPage />;
 
   if (!searchConfig) {
     return (
@@ -69,7 +69,7 @@ const Category: NextPage<CategoryProps> = (props) => {
     .find((item) => item.id === 5)
     ?.items.find((item) => item.params === id)?.name;
 
-  if (!categoryName) return <Error />;
+  if (!categoryName) return <ErrorPage />;
 
   return (
     <>

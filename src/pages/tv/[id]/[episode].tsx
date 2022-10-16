@@ -8,10 +8,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import useSWR from "swr";
+import { v4 as uuidv4 } from "uuid";
 
-import Error from "@/components/Shared/Error";
+import ErrorPage from "@/components/Shared/Error";
 import WatchView from "@/components/WatchView";
 import { getMovieDetail } from "@/services/movie";
+import { logger } from "@/shared/logger";
 
 interface GSProps {
   fallbackData?: Awaited<ReturnType<typeof getMovieDetail>>;
@@ -25,7 +27,13 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps<GSProps> = async ({ params }) => {
+  const log = logger.child({
+    requestId: uuidv4(),
+  });
   if (!params) {
+    log.error(
+      "No params given for getStaticProps to run (page: /tv/[id]/[episode])."
+    );
     return {
       notFound: true,
       props: {},
@@ -39,6 +47,9 @@ export const getStaticProps: GetStaticProps<GSProps> = async ({ params }) => {
     (episodeIndex &&
       (typeof episodeIndex !== "string" || Number.isNaN(episodeIndex)))
   ) {
+    log.error(
+      "Invalid params given to getStaticProps (page: /tv/[id]/[episode])."
+    );
     return {
       notFound: true,
       props: {},
@@ -46,13 +57,19 @@ export const getStaticProps: GetStaticProps<GSProps> = async ({ params }) => {
   }
   try {
     const fallbackData = await getMovieDetail(id, 1, +episodeIndex);
+    log.info(`Fetched fallbackData for /tv/${id}/${episodeIndex}`);
     return {
       props: {
         fallbackData,
       },
       revalidate: 43200,
     };
-  } catch (e) {
+  } catch (err) {
+    log.error(
+      `${
+        err instanceof Error ? err.message : "Unknown error."
+      } (page: /tv/${id}/${episodeIndex})`
+    );
     return {
       props: {},
     };
@@ -82,7 +99,7 @@ const TV: NextPage<TVProps> = (props) => {
     localStorage.setItem(`tv-${id}-episode`, `${episodeIndex}`);
   }, [error, data, id, episodeIndex]);
 
-  if (error) return <Error />;
+  if (error) return <ErrorPage />;
 
   return (
     <>

@@ -7,10 +7,12 @@ import type {
 import Head from "next/head";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import { v4 as uuidv4 } from "uuid";
 
-import Error from "@/components/Shared/Error";
+import ErrorPage from "@/components/Shared/Error";
 import WatchView from "@/components/WatchView";
 import { getMovieDetail } from "@/services/movie";
+import { logger } from "@/shared/logger";
 
 interface GSProps {
   fallbackData?: Awaited<ReturnType<typeof getMovieDetail>>;
@@ -24,7 +26,11 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps<GSProps> = async ({ params }) => {
+  const log = logger.child({
+    requestId: uuidv4(),
+  });
   if (!params) {
+    log.error(`No params given for getStaticProps to run (page: /movie/[id]).`);
     return {
       notFound: true,
       props: {},
@@ -32,6 +38,7 @@ export const getStaticProps: GetStaticProps<GSProps> = async ({ params }) => {
   }
   const id = params.id as string;
   if (!id || typeof id !== "string") {
+    log.error("Invalid params given to getStaticProps (page: /movie/[id]).");
     return {
       notFound: true,
       props: {},
@@ -39,13 +46,19 @@ export const getStaticProps: GetStaticProps<GSProps> = async ({ params }) => {
   }
   try {
     const fallbackData = await getMovieDetail(id, 0);
+    log.info(`Fetched fallbackData for /movie/${id}`);
     return {
       props: {
         fallbackData,
       },
       revalidate: 43200,
     };
-  } catch (e) {
+  } catch (err) {
+    log.error(
+      `${
+        err instanceof Error ? err.message : "Unknown error."
+      } (page: /movie/${id})`
+    );
     return {
       props: {},
     };
@@ -68,7 +81,7 @@ const Info: NextPage<MovieProps> = (props) => {
     }
   );
 
-  if (error) return <Error />;
+  if (error) return <ErrorPage />;
 
   return (
     <>

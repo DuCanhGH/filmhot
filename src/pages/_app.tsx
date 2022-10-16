@@ -73,6 +73,7 @@ export default function CustomApp({ Component, pageProps }: AppProps) {
           key="twitter-image"
         />
         <meta name="referrer" content="no-referrer" />
+        <meta name="robots" content="index, follow" />
         <link rel="shortcut icon" href="/icon.png" type="image/x-icon" />
         <link
           rel="apple-touch-icon"
