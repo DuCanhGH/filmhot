@@ -5,8 +5,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import type { NextPage } from "next";
-import Image from "next/image";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
