@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import dynamic from "next/dynamic";
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { capitalize } from "radash";
 import type { FC, RefCallback } from "react";

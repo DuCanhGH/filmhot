@@ -22,9 +22,7 @@ const nextConfig = {
       },
     ];
   },
-  experimental: {
-    newNextLinkBehavior: true,
-  },
+  experimental: {},
   images: {
     domains: ["images.weserv.nl"],
   },
