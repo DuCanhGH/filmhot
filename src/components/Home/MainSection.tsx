@@ -4,7 +4,7 @@ import useSWRInfinite from "swr/infinite";
 
 import Skeleton from "@/components/Shared/Skeleton";
 import { getHome } from "@/services/home";
-import { BANNED_IDS, convertWebp } from "@/shared/constants";
+import { BANNED_IDS } from "@/shared/constants";
 import type { HomeSection } from "@/shared/types";
 
 import BannerSlider from "./BannerSlider";
@@ -117,7 +117,7 @@ const MainSection = () => {
                   );
                   return {
                     title: item.title,
-                    image: convertWebp(item.imageUrl),
+                    image: item.imageUrl,
                     link:
                       searchParams.get("type") === "0"
                         ? `/movie/${searchParams.get("id")}`

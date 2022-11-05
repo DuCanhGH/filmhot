@@ -4,7 +4,7 @@ import type { FC } from "react";
 
 import ImageFade from "@/components/Shared/ImageFade";
 import Skeleton from "@/components/Shared/Skeleton";
-import { BANNED_IDS, resizeImage } from "@/shared/constants";
+import { BANNED_IDS } from "@/shared/constants";
 import type { DetailType } from "@/shared/types";
 
 interface SimilarProps {
@@ -89,7 +89,8 @@ const Similar: FC<SimilarProps> = ({ data }) => {
                       <div className="flex-shrink-0 h-[100px] w-[70px]">
                         <ImageFade
                           className="h-full w-full object-cover"
-                          src={resizeImage(like.coverVerticalUrl, "", "100")}
+                          src={like.coverVerticalUrl}
+                          height={100}
                           alt=""
                         />
                       </div>
