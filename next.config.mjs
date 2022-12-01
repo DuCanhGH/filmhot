@@ -1,5 +1,5 @@
-import withPWAInit from "next-pwa";
-import runtimeCaching from "next-pwa/cache.js";
+// @ts-check
+import withPWAInit, { runtimeCaching } from "@ducanh2912/next-pwa";
 
 const withPWA = withPWAInit({
   dest: "public",
