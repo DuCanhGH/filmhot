@@ -3,8 +3,10 @@ import withPWAInit, { runtimeCaching } from "@ducanh2912/next-pwa";
 
 const withPWA = withPWAInit({
   dest: "public",
-  runtimeCaching,
   disable: process.env.NODE_ENV !== "production",
+  workboxOptions: {
+    runtimeCaching,
+  },
 });
 
 /** @type {import("next").NextConfig} */
